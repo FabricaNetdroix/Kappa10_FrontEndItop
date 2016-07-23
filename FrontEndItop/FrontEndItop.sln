@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Gui", "Tier.Gui\Tier.Gui.csproj", "{52993671-C99D-421C-8528-E04DACAE6148}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2527DC29-7161-4B30-9223-9CC428303545} = {2527DC29-7161-4B30-9223-9CC428303545}
+		{97512EF2-A7BF-4BDD-8415-322AFD6E0FE5} = {97512EF2-A7BF-4BDD-8415-322AFD6E0FE5}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Business", "Tier.Business\Tier.Business.csproj", "{97512EF2-A7BF-4BDD-8415-322AFD6E0FE5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2527DC29-7161-4B30-9223-9CC428303545} = {2527DC29-7161-4B30-9223-9CC428303545}
+		{53993543-C201-4DB2-8BF1-CC7C46A6B9DC} = {53993543-C201-4DB2-8BF1-CC7C46A6B9DC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Data", "Tier.Data\Tier.Data.csproj", "{53993543-C201-4DB2-8BF1-CC7C46A6B9DC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2527DC29-7161-4B30-9223-9CC428303545} = {2527DC29-7161-4B30-9223-9CC428303545}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Dto", "Tier.Dto\Tier.Dto.csproj", "{2527DC29-7161-4B30-9223-9CC428303545}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52993671-C99D-421C-8528-E04DACAE6148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52993671-C99D-421C-8528-E04DACAE6148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52993671-C99D-421C-8528-E04DACAE6148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52993671-C99D-421C-8528-E04DACAE6148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97512EF2-A7BF-4BDD-8415-322AFD6E0FE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97512EF2-A7BF-4BDD-8415-322AFD6E0FE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97512EF2-A7BF-4BDD-8415-322AFD6E0FE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97512EF2-A7BF-4BDD-8415-322AFD6E0FE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53993543-C201-4DB2-8BF1-CC7C46A6B9DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53993543-C201-4DB2-8BF1-CC7C46A6B9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53993543-C201-4DB2-8BF1-CC7C46A6B9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53993543-C201-4DB2-8BF1-CC7C46A6B9DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2527DC29-7161-4B30-9223-9CC428303545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2527DC29-7161-4B30-9223-9CC428303545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2527DC29-7161-4B30-9223-9CC428303545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2527DC29-7161-4B30-9223-9CC428303545}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal
