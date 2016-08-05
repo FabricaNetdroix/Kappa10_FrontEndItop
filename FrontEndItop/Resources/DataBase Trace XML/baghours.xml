@@ -1,0 +1,20 @@
+<root>
+    <new>
+        <id></id>
+        <organization></organization>
+        <contract></contract>
+        <quantity></quantity>
+        <status></status>
+        <last_user_update></last_user_update>
+        <notes><![CDATA[]]></notes>
+    </new>
+    <old>
+        <id></id>
+        <organization></organization>
+        <contract></contract>
+        <quantity></quantity>
+        <status></status>
+        <last_user_update></last_user_update>
+        <notes><![CDATA[]]></notes>
+    </old>
+</root>

@@ -1,0 +1,28 @@
+<root>
+    <new>
+        <id></id>
+        <alias></alias>
+        <password></password>
+        <role></role>
+        <first_name></first_name>
+        <last_name></last_name>
+        <email></email>
+        <department></department>
+        <status></status>
+        <notes><![CDATA[]]></notes>
+        <last_user_update></last_user_update>
+    </new>
+    <old>
+        <id></id>
+        <alias></alias>
+        <password></password>
+        <role></role>
+        <first_name></first_name>
+        <last_name></last_name>
+        <email></email>
+        <department></department>
+        <status></status>
+        <notes><![CDATA[]]></notes>
+        <last_user_update></last_user_update>
+    </old>
+</root>
