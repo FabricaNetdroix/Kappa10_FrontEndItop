@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Gui", "Tier.Gui\Tier.Gui.csproj", "{52993671-C99D-421C-8528-E04DACAE6148}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -21,6 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Data", "Tier.Data\Tier
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Dto", "Tier.Dto\Tier.Dto.csproj", "{2527DC29-7161-4B30-9223-9CC428303545}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{87C5E27C-7BC7-4DE4-BF8F-7355942081EA}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\FrontEnd_Itop_Model.mwb = Resources\FrontEnd_Itop_Model.mwb
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
