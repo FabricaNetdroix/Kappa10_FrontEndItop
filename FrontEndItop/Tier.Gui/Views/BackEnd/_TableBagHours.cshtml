@@ -1,0 +1,40 @@
+﻿<table id="tblBagHours">
+    <thead>
+        <tr>
+            <th>Organización</th>
+            <th>Contrato</th>
+            <th>Horas</th>
+            <th>Vigencia</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ASESOFTWARE</td>
+            <td>K01_821_ASESOFTWARE</td>
+            <td>250</td>
+            <td>@System.DateTime.Now.ToShortDateString() al @System.DateTime.Now.ToShortDateString()</td>
+            <td><small class="label bg-aqua">Activo</small></td>
+        </tr>
+        <tr>
+            <td>BT_ARGOS</td>
+            <td>K01_858_BT_ARGOS</td>
+            <td>500</td>
+            <td>@System.DateTime.Now.ToShortDateString() al @System.DateTime.Now.ToShortDateString()</td>
+            <td><small class="label bg-orange">Notificada</small></td>
+        </tr>
+        <tr>
+            <td>INCOCREDITO</td>
+            <td>K01_001_INCOCREDITO</td>
+            <td>100</td>
+            <td>@System.DateTime.Now.ToShortDateString() al @System.DateTime.Now.ToShortDateString()</td>
+            <td><small class="label bg-red">Inactivo</small></td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#tblBagHours').DataTable();
+    });
+</script>

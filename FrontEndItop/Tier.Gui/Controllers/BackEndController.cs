@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Tier.Gui.Controllers
 {
-    public class BackEndController : BaseController
+    public partial class BackEndController : BaseController
     {
         //
         // GET: /BackEnd/
@@ -14,5 +14,5 @@ namespace Tier.Gui.Controllers
         {
             return View();
         }
-	}
+    }
 }

@@ -16,7 +16,7 @@ namespace Tier.Gui
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Security", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "BackEnd", action = "BagHours", id = UrlParameter.Optional }
             );
         }
     }

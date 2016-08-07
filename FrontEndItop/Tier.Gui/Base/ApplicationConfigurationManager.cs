@@ -16,5 +16,35 @@ namespace Tier.Gui.Base
                     : "Front-End-Itop";
             }
         }
+
+        public static string ApplicationName
+        {
+            get
+            {
+                return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["ApplicationName"].ToString())
+                    ? System.Configuration.ConfigurationManager.AppSettings["ApplicationName"].ToString()
+                    : "FrontEnd-Itop";
+            }
+        }
+
+        public static string reCAPTCHA_SiteKey
+        {
+            get
+            {
+                return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA_SiteKey"].ToString())
+                    ? "undefined"
+                    : System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA_SiteKey"].ToString();
+            }
+        }
+
+        public static string reCAPTCHA_SecretKey
+        {
+            get
+            {
+                return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA_SecretKey"].ToString())
+                    ? "undefined"
+                    : System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA_SecretKey"].ToString();
+            }
+        }
     }
 }

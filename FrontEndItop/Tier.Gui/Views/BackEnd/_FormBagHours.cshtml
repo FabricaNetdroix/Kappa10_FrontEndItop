@@ -1,0 +1,59 @@
+﻿@using (Ajax.BeginForm("", "", new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "tblTableBagHoursList" }))
+{
+    <div class="form-group">
+        <label>Cliente</label>
+        <select class="form-control select2">
+            <option selected="selected">Alabama</option>
+            <option>Alaska</option>
+            <option>California</option>
+            <option>Delaware</option>
+            <option>Tennessee</option>
+            <option>Texas</option>
+            <option>Washington</option>
+        </select>
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <label>Contrato</label>
+        <select class="form-control select2" style="width: 100%;">
+            <option selected="selected">Alabama</option>
+            <option>Alaska</option>
+            <option>California</option>
+            <option>Delaware</option>
+            <option>Tennessee</option>
+            <option>Texas</option>
+            <option>Washington</option>
+        </select>
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <label>Fecha inicio:</label>
+        <input type="text" name="FechaInicioContrato" id="FechaInicioContrato" value="" class="form-control" readonly="readonly" />
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <label>Fecha fin:</label>
+        <input type="text" name="FechaFinContrato" id="FechaFinContrato" value="" class="form-control" readonly="readonly" />
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <label>Cantidad horas:</label>
+        <input type="text" name="CantidadHoras" id="CantidadHoras" value="" class="form-control" />
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <label>Garantía?:</label>
+        <input type="checkbox" class="minimal" name="chkEsGarantia" id="chkEsGarantia" value="" checked />
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <label>Observaciones:</label>
+        <textarea name="txtObservaciones" id="txtObservaciones" value="" class="form-control"></textarea>
+    </div>
+    <!-- /.form-group -->
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="reset" class="btn btn-default pull-right">Limpiar</button>
+    </div>
+}

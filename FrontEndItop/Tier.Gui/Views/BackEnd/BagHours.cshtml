@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Bolsa de horas";
+    ViewBag.SectionTitle = "Gestión de bolsa de horas";
+    Layout = "~/Views/Shared/_Layout_Back.cshtml";
+}
+<!-- Small boxes (Stat box) -->
+<div class="row">
+</div>
+<!-- /.row -->
+<!-- Main row -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <i class="fa fa-pencil-square-o"></i>
+                <h3 class="box-title">Formulario</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body tblTableBagHoursForm">
+                @Html.Partial("_FormBagHours")
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-8">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <i class="fa fa-list"></i>
+                <h3 class="box-title">Lista</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body tblTableBagHoursList">
+                @Html.Partial("_TableBagHours")
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+<!-- /.row (main row) -->
+<script>
+    $(document).ready(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+
+        $('input[type="checkbox"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        });
+    });
+</script>

@@ -1,0 +1,33 @@
+﻿<table id="tblBagHours">
+    <thead>
+        <tr>
+            <th>NÚMERO CASO</th>
+            <th class="hidden-xs">DESCRIPCIÓN</th>
+            <th class="hidden-xs">TIEMPO ATENCIÓN</th>
+            <th class="hidden-xs">TIEMPO SERVICIO</th>
+            <th>TOTAL HORAS </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="#" data-toggle="modal" data-target="#myModal">R-000123</a></td>
+            <td class="hidden-xs">Neque porro quisquam est qui dolorem ipsum quia dolor...</td>
+            <td class="hidden-xs">@DateTime.Now</td>
+            <td class="hidden-xs">@DateTime.Now</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td><a href="#" data-toggle="modal" data-target="#myModal">I-000321</a></td>
+            <td class="hidden-xs">Sed ut perspiciatis unde omnis iste natus error sit...</td>
+            <td class="hidden-xs">@DateTime.Now</td>
+            <td class="hidden-xs">@DateTime.Now</td>
+            <td>6</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#tblBagHours').DataTable();
+    });
+</script>
