@@ -1,0 +1,29 @@
+CREATE PROCEDURE `usp_core_baghours` (
+	in accion tinyint,
+	in ...
+    )
+BEGIN
+	if intaccion = 1 then 
+    begin -- Insert
+		
+		
+		select LAST_INSERT_ID();
+    end;
+    
+    elseif intaccion = 2 then
+    begin -- Select
+    
+    end;
+    
+    elseif intaccion = 3 then
+    begin -- Update
+    
+    end;
+    
+    elseif intaccion = 4 then
+    begin -- Delete
+    
+    end;
+    
+    end if;
+END
