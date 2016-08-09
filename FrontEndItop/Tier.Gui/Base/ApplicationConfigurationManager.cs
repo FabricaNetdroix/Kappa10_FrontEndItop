@@ -12,8 +12,8 @@ namespace Tier.Gui.Base
             get
             {
                 return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["WindowsEventLogApplicationName"].ToString())
-                    ? System.Configuration.ConfigurationManager.AppSettings["WindowsEventLogApplicationName"].ToString()
-                    : "Front-End-Itop";
+                    ? "Front-End-Itop"
+                    : System.Configuration.ConfigurationManager.AppSettings["WindowsEventLogApplicationName"].ToString();
             }
         }
 
@@ -22,8 +22,8 @@ namespace Tier.Gui.Base
             get
             {
                 return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["ApplicationName"].ToString())
-                    ? System.Configuration.ConfigurationManager.AppSettings["ApplicationName"].ToString()
-                    : "FrontEnd-Itop";
+                    ? "FrontEnd-Itop"
+                    : System.Configuration.ConfigurationManager.AppSettings["ApplicationName"].ToString();
             }
         }
 

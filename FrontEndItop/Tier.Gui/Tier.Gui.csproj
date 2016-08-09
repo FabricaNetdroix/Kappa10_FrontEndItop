@@ -172,6 +172,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1005,6 +1010,8 @@
     <Content Include="plugins\morris\morris.css" />
     <Content Include="plugins\morris\morris.js" />
     <Content Include="plugins\morris\morris.min.js" />
+    <Content Include="plugins\notify\pnotify.custom.min.css" />
+    <Content Include="plugins\notify\pnotify.custom.min.js" />
     <Content Include="plugins\pace\pace.css" />
     <Content Include="plugins\pace\pace.js" />
     <Content Include="plugins\pace\pace.min.css" />
@@ -1198,6 +1205,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1230,6 +1239,10 @@
     <Content Include="Views\BackEnd\PreNotification.cshtml" />
     <Content Include="Views\Security\UserProfile.cshtml" />
     <Content Include="Views\Security\LogIn.cshtml" />
+    <Content Include="Views\BackEnd\_ModalContractDetails.cshtml" />
+    <None Include="Web.uat.netdroix.com.co.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1241,6 +1254,22 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tier.Business\Tier.Business.csproj">
+      <Project>{97512ef2-a7bf-4bdd-8415-322afd6e0fe5}</Project>
+      <Name>Tier.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tier.Dto\Tier.Dto.csproj">
+      <Project>{2527dc29-7161-4b30-9223-9cc428303545}</Project>
+      <Name>Tier.Dto</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

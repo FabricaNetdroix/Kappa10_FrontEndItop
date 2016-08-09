@@ -15,10 +15,23 @@ namespace Tier.Data
         DatabaseProviderFactory objDatabaseProviderFactory;
         Database objDatabase;
         #endregion
-        
+
         #region [Properties]
         public System.Configuration.ConnectionStringSettings CurrentConnectionString { get { return this.objConnectionString; } }
         public Database CurrentDatabase { get { return this.objDatabase; } }
+
+        /// <summary>
+        /// Database schema for iTop platform installation Database.
+        /// </summary>
+        public string iTopPlatformSchema
+        {
+            get
+            {
+                return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["iTopPlatformSchema"].ToString())
+                    ? "itop"
+                    : System.Configuration.ConfigurationManager.AppSettings["iTopPlatformSchema"].ToString();
+            }
+        }
         #endregion
 
         #region [Constructors]
@@ -68,6 +81,9 @@ namespace Tier.Data
         public abstract bool Delete(T obj, MySql.Data.MySqlClient.MySqlTransaction objTrans);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class IENumerableExtensions
     {
         public static IEnumerable<T> FromDataReader<T>(this IEnumerable<T> list, System.Data.IDataReader dr)
@@ -109,6 +125,9 @@ namespace Tier.Data
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class Reflection
     {
         public void FillObjectWithProperty(ref object objectTo, string propertyName, object propertyValue)

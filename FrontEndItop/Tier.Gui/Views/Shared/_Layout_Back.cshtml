@@ -1,15 +1,15 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-<html>
+<html lang="es-co">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewBag.Title | @Tier.Gui.Base.ApplicationConfigurationManager.ApplicationName</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="@Url.Content("~/bootstrap/css/bootstrap.min.css")">
     <!-- Font Awesome -->
@@ -37,7 +37,10 @@
     <link rel="stylesheet" href="@Url.Content("~/plugins/select2/select2.min.css")">
     <!-- Datatables -->
     <link href="@Url.Content("~/plugins/datatables/jquery.dataTables.min.css")" rel="stylesheet" />
+    <!-- Pace -->
+    <link href="@Url.Content("~/plugins/pace/pace.min.css")" rel="stylesheet" />
 
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -85,10 +88,19 @@
     <script src="@Url.Content("~/plugins/select2/select2.min.js")"></script>
     <!-- icheck -->
     <script src="@Url.Content("~/plugins/iCheck/icheck.min.js")"></script>
-
     <!-- Datatables -->
     <script src="@Url.Content("~/plugins/datatables/jquery.dataTables.min.js")"></script>
     <script src="@Url.Content("~/plugins/datatables/dataTables.bootstrap.min.js")"></script>
+    <!-- Pace -->
+    <script data-pace-options='{ "document": false, "elements": false, "eventLag": false, "ajax": false }' src='@Url.Content("~/plugins/pace/pace.min.js")'></script>
+    <!-- jquery.validate -->
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <!-- jquery.unobtrusive -->
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <!-- pnotify -->
+    <link href="@Url.Content("~/plugins/notify/pnotify.custom.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/plugins/notify/pnotify.custom.min.js")"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -258,3 +270,9 @@
     <!-- ./wrapper -->
 </body>
 </html>
+<script>
+    PNotify.prototype.options.styling = "bootstrap3";
+    //PNotify.prototype.options.styling = "jqueryui";
+    //PNotify.prototype.options.styling = "fontawesome";
+    $(document).ajaxStart(function () { Pace.restart(); });
+</script>

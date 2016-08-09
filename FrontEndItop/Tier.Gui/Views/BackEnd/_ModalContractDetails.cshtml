@@ -1,0 +1,45 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Detalle de caso</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblContractDetails">
+                    <tr>
+                        <th>Contrato No:</th>
+                        <td><span id="sContractNumber"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Nombre:</th>
+                        <td><span id="sContractName"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Vigencia:</th>
+                        <td><span id="sContractTerm"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Proveedor:</th>
+                        <td><span id="sContractProvider"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Descripción:</th>
+                        <td><span id="sContractDescription"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #tblContractDetails > tbody > tr > th {
+        width: 100px;
+        vertical-align: top;
+    }
+</style>
