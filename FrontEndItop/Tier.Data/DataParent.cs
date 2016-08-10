@@ -133,7 +133,10 @@ namespace Tier.Data
         public void FillObjectWithProperty(ref object objectTo, string propertyName, object propertyValue)
         {
             Type tOb2 = objectTo.GetType();
-            tOb2.GetProperty(propertyName).SetValue(objectTo, propertyValue);
+            if (!propertyValue.Equals(DBNull.Value))
+            {
+                tOb2.GetProperty(propertyName).SetValue(objectTo, propertyValue);
+            }
         }
     }
 }

@@ -140,7 +140,7 @@
     -- `_itopview_contract`.`contracttype_id_friendlyname`,
     -- `_itopview_contract`.`provider_id_friendlyname`
 from `[&lt;SCHEMA&gt;]`.`_itopview_contract`
-where `status` = 'production' and contracttype_id = 39;</value>
+where `status` = 'production' and contracttype_id = 39 and provider_id_friendlyname = 'KAPPA10 LTDA';</value>
     <comment>Consulta que se envia para recuperar los contratos para la creación de bolsas de horas.</comment>
   </data>
 </root>

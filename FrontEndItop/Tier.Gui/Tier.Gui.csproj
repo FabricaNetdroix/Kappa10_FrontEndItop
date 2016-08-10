@@ -1233,13 +1233,13 @@
     <Content Include="Views\BackEnd\Index.cshtml" />
     <Content Include="Views\BackEnd\BagHours.cshtml" />
     <Content Include="Views\BackEnd\_FormBagHours.cshtml" />
-    <Content Include="Views\BackEnd\_TableBagHours.cshtml" />
     <Content Include="Views\BackEnd\Notifications.cshtml" />
     <Content Include="Views\BackEnd\AdministratorUsers.cshtml" />
     <Content Include="Views\BackEnd\PreNotification.cshtml" />
     <Content Include="Views\Security\UserProfile.cshtml" />
     <Content Include="Views\Security\LogIn.cshtml" />
     <Content Include="Views\BackEnd\_ModalContractDetails.cshtml" />
+    <Content Include="Views\BackEnd\_TableBagHours.cshtml" />
     <None Include="Web.uat.netdroix.com.co.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

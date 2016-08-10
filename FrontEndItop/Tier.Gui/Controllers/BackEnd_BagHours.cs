@@ -11,12 +11,15 @@ namespace Tier.Gui.Controllers
         public ActionResult BagHours()
         {
             IList<Dto.IP_Contract> lstContracts = new Business.BItopPlatform().GetProductionContracts();
+
             List<KeyValuePair<int, string>> lstOrgs = lstContracts.Select(
                 ee => new KeyValuePair<int, string>(ee.org_id.Value, ee.organization_name)
-                ).ToList();
+                ).Distinct().ToList();
 
             ViewBag.organization_id = new SelectList(lstOrgs, "Key", "Value");
             ViewBag.contract_id = new SelectList(new List<KeyValuePair<int, string>>(), "Key", "Value");
+
+            ViewBag.bagHoursList = new Business.BFEi_BagHours().GetAllBagHours();
 
             return View(new Dto.FEi_BagHours());
         }
@@ -49,11 +52,45 @@ namespace Tier.Gui.Controllers
                 obj.contract_start = objIPC.start_date;
                 obj.contract_end = objIPC.end_date;
 
-                return Json(new { result = true, message = Messages.Success, notificationType = "success" });
+                obj.last_user_update = 1;
+                obj.status = (short)Dto.BagHoursStatus.Active;
+
+                bool result = new Business.BFEi_BagHours().CreateBagHours(obj);
+
+                if (result)
+                {
+                    return Json(new { result = true, message = Messages.Success, notificationType = "success" });
+                }
+                else
+                {
+                    return Json(new { result = false, message = Messages.Failure, notificationType = "error" });
+                }
             }
             else
             {
                 return Json(new { result = false, message = Messages.InvalidForm, notificationType = "notice" });
+            }
+        }
+
+        public PartialViewResult GetAllBagHours()
+        {
+            IList<Dto.FEi_BagHours> lstBagHours = new Business.BFEi_BagHours().GetAllBagHours();
+
+            return PartialView("_TableBagHours", lstBagHours);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteBagHours(int id)
+        {
+            Dto.FEi_BagHours obj = new Business.BFEi_BagHours().GetBagHoursById(id);
+
+            if (new Business.BFEi_BagHours().DeleteBagHours(obj))
+            {
+                return Json(new { result = true, message = Messages.Success, notificationType = "success" });
+            }
+            else
+            {
+                return Json(new { result = false, message = Messages.Failure, notificationType = "error" });
             }
         }
     }

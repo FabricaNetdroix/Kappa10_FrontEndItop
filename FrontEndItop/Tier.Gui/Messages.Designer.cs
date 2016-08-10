@@ -63,9 +63,9 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to La solicitud no puedo ser procesada correctamente..
         /// </summary>
-        internal static string Error {
+        internal static string Failure {
             get {
-                return ResourceManager.GetString("Error", resourceCulture);
+                return ResourceManager.GetString("Failure", resourceCulture);
             }
         }
         

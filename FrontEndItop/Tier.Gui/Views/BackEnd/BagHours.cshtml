@@ -34,7 +34,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body tblTableBagHoursList">
-                @Html.Partial("_TableBagHours", Model)
+                @Html.Partial("_TableBagHours", (IEnumerable<Tier.Dto.FEi_BagHours>)ViewBag.bagHoursList)
             </div>
             <!-- /.box-body -->
         </div>
@@ -42,18 +42,114 @@
     </div>
 </div>
 <!-- /.row (main row) -->
-
 <!-- modal detalle de contrato -->
 @Html.Partial("_ModalContractDetails")
 
 <script>
-    $(document).ready(function () {
-        //Initialize Select2 Elements
-        //$(".select2").select2();
+    $("#organization_id").change(function () {
+        var orgid = $(this).val();
+        var orgname = $(this).text();
 
-        $('input[type="checkbox"].minimal').iCheck({
-            checkboxClass: 'icheckbox_minimal-blue',
-            radioClass: 'iradio_minimal-blue'
-        });
+        $.get("@Url.Action("GetContractByOrganization", "BackEnd")", { organizationId: orgid })
+            .success(function (data) {
+                var atrArrOpts = '<option value> --Seleccione -- </option>';
+                $(data).each(function (idx, item) {
+                    atrArrOpts = atrArrOpts + '<option value="' + item.Value + '">' + item.Text + '</option>';
+                })
+
+                $("#contract_id").empty();
+                $("#contract_id").append(atrArrOpts);
+
+                $("#btnViwContratDetails").attr("disabled", "disabled");
+            })
     });
+
+    $("#contract_id").change(function () {
+        var orgid = $(this).val();
+
+        $.get("@Url.Action("GetContractInfoById", "BackEnd")", { contractId: orgid })
+            .success(function (data) {
+                $("#sContractNumber").text(data.id);
+                $("#sContractName").text(data.name);
+                $("#sContractDescription").text(data.description);
+
+                var contractStartDate = new Date(parseInt(data.start_date.substr(6))).toLocaleDateString();
+                var contractEndDate = new Date(parseInt(data.end_date.substr(6))).toLocaleDateString();
+
+                $("#sContractTerm").text(contractStartDate + " hasta " + contractEndDate);
+                $("#sContractProvider").text(data.provider_name);
+
+                $("#btnViwContratDetails").removeAttr("disabled");
+            })
+    });
+
+    function SaveBagHoursFail(data) {
+        new PNotify({
+            title: 'Fallido',
+            text: data.message,
+            type: data.notificationType,
+            hide: true
+        });
+    }
+
+    function SaveBagHoursSuccess(data) {
+        if (data.result) {
+            new PNotify({
+                title: 'Exitoso',
+                text: data.message,
+                type: data.notificationType,
+                hide: true
+            });
+
+            $("#btnResetBagHoursForm").click();
+
+            RefreshBagHoursTable();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia',
+                text: data.message,
+                type: data.notificationType,
+                hide: true
+            });
+        }
+    }
+
+    function RefreshBagHoursTable() {
+        $.get('@Url.Action("GetAllBagHours", "BackEnd")')
+        .success(function (data) {
+            $(".tblTableBagHoursList").empty();
+            $(".tblTableBagHoursList").html(data);
+        })
+    }
+
+    function DeleteBagHoursFail(data) {
+        new PNotify({
+            title: 'Fallido',
+            text: data.message,
+            type: data.notificationType,
+            hide: true
+        });
+    }
+
+    function DeleteBagHoursSuccess(data) {
+        if (data.result) {
+            new PNotify({
+                title: 'Exitoso',
+                text: data.message,
+                type: data.notificationType,
+                hide: true
+            });
+
+            RefreshBagHoursTable();
+        }
+        else {
+            new PNotify({
+                title: 'Advertencia',
+                text: data.message,
+                type: data.notificationType,
+                hide: true
+            });
+        }
+    }
 </script>

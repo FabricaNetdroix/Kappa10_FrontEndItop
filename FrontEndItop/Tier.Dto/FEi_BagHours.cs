@@ -16,12 +16,14 @@ namespace Tier.Dto
         [Required(ErrorMessage = "Dato requerido.")]
         public Nullable<int> organization_id { get; set; }
 
+        [Display(Name = "Cliente")]
         public string organization_name { get; set; }
 
         [Display(Name = "Contrato")]
         [Required(ErrorMessage = "Dato requerido.")]
         public Nullable<int> contract_id { get; set; }
 
+        [Display(Name = "Contrato")]
         public string contract_name { get; set; }
 
         [Display(Name = "Fecha inicio")]
@@ -30,7 +32,7 @@ namespace Tier.Dto
         [Display(Name = "Fecha fin")]
         public Nullable<DateTime> contract_end { get; set; }
 
-        [Display(Name = "Cantidad Horas")]
+        [Display(Name = "Horas")]
         [Required(ErrorMessage = "Dato requerido.")]
         [Range(1, short.MaxValue)]
         public Nullable<short> quantity { get; set; }
@@ -41,7 +43,8 @@ namespace Tier.Dto
         [Display(Name = "Observaciones")]
         public string notes { get; set; }
 
-        public Nullable<Dto.BagHoursStatus> status { get; set; }
+        [Display(Name = "Estado")]
+        public Nullable<short> status { get; set; }
 
         public Nullable<int> last_user_update { get; set; }
     }

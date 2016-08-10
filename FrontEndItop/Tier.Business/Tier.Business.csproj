@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BFEi_BagHours.cs" />
     <Compile Include="BItopPlatform.cs" />
     <Compile Include="BusinessParent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

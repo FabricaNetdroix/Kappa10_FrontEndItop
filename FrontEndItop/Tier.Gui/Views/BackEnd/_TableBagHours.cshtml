@@ -1,37 +1,86 @@
-﻿<table id="tblBagHours">
+﻿@model IEnumerable<Tier.Dto.FEi_BagHours>
+
+<table class="table" id="tblBagHours">
     <thead>
         <tr>
-            <th>Organización</th>
-            <th>Contrato</th>
-            <th>Horas</th>
-            <th>Vigencia</th>
-            <th>Estado</th>
+            <th>
+                @Html.DisplayNameFor(model => model.organization_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contract_name)
+            </th>
+            <th>
+                Vigencia
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>Opciones</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>ASESOFTWARE</td>
-            <td>K01_821_ASESOFTWARE</td>
-            <td>250</td>
-            <td>@System.DateTime.Now.ToShortDateString() al @System.DateTime.Now.ToShortDateString()</td>
-            <td><small class="label bg-aqua">Activo</small></td>
-        </tr>
-        <tr>
-            <td>BT_ARGOS</td>
-            <td>K01_858_BT_ARGOS</td>
-            <td>500</td>
-            <td>@System.DateTime.Now.ToShortDateString() al @System.DateTime.Now.ToShortDateString()</td>
-            <td><small class="label bg-orange">Notificada</small></td>
-        </tr>
-        <tr>
-            <td>INCOCREDITO</td>
-            <td>K01_001_INCOCREDITO</td>
-            <td>100</td>
-            <td>@System.DateTime.Now.ToShortDateString() al @System.DateTime.Now.ToShortDateString()</td>
-            <td><small class="label bg-red">Inactivo</small></td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.organization_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.contract_name)
+                </td>
+                <td>
+                    @item.contract_start.Value.ToShortDateString() hasta @item.contract_end.Value.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @{Tier.Dto.BagHoursStatus eStatus;
+                    Enum.TryParse(item.status.Value.ToString(), out eStatus);
+                    }
+                    @switch (eStatus)
+                    {
+                        case Tier.Dto.BagHoursStatus.Active:
+                            <text><small class="label bg-aqua">Activo</small></text>
+                            break;
+                        case Tier.Dto.BagHoursStatus.Notified:
+                        <text><small class="label bg-orange">Notificada</small></text>
+                            break;
+                        case Tier.Dto.BagHoursStatus.Inactive:
+                        <text><small class="label bg-red">Inactivo</small></text>
+                            break;
+                        default:
+                        <text><small class="label bg-gray">N/A</small></text>
+                            break;
+                    }
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default">Ver</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            @*<li><a href="#">Editar</a></li>*@
+                            <li class="divider"></li>
+                            <li>@Ajax.ActionLink("Eliminar", "DeleteBagHours", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "POST", OnFailure = "DeleteBagHoursSuccess", OnSuccess = "DeleteBagHoursSuccess" })</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<style>
+    #tblBagHours > thead > tr > th, #tblBagHours > tbody > tr > td {
+        vertical-align: middle;
+    }
+</style>
 
 <script>
     $(document).ready(function () {
