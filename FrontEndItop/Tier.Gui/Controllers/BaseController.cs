@@ -77,9 +77,12 @@ namespace Tier.Gui.Controllers
         /// <param name="module"></param>
         private static void WriteEntry(string message, System.Diagnostics.EventLogEntryType type, string module)
         {
-            System.Diagnostics.EventLog appLog = new System.Diagnostics.EventLog();
-            appLog.Source = Base.ApplicationConfigurationManager.WindowsEventLogApplicationName;
-            appLog.WriteEntry(message, type);
+            System.Diagnostics.Trace.WriteLine(string.Format("{0}|{1}|{2}|{3}",
+                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                 type,
+                 module,
+                 message)
+             );
         }
         #endregion
     }
