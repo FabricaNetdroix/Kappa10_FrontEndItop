@@ -39,7 +39,7 @@ namespace Tier.Data
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = "fe_itop.usp_core_baghours";
+                cmd.CommandText = base.GetProcedureNameWithSchema("usp_core_baghours");
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("p_accion", StoreProcedureActions.Select));
@@ -57,7 +57,7 @@ namespace Tier.Data
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "fe_itop.usp_core_baghours";
+                cmd.CommandText = base.GetProcedureNameWithSchema("usp_core_baghours");
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("p_accion", StoreProcedureActions.Insert));
                 this.AssingParametersValues(cmd, obj);
@@ -88,7 +88,7 @@ namespace Tier.Data
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "fe_itop.usp_core_baghours";
+                cmd.CommandText = base.GetProcedureNameWithSchema("usp_core_baghours");
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("p_accion", StoreProcedureActions.Delete));
                 this.AssingParametersValues(cmd, obj);

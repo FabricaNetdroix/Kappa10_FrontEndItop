@@ -32,6 +32,19 @@ namespace Tier.Data
                     : System.Configuration.ConfigurationManager.AppSettings["iTopPlatformSchema"].ToString();
             }
         }
+
+        /// <summary>
+        /// Database schema for iTop platform installation Database.
+        /// </summary>
+        public string FEiTopPlatformSchema
+        {
+            get
+            {
+                return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["FEiTopPlatformSchema"].ToString())
+                    ? "fe_itop"
+                    : System.Configuration.ConfigurationManager.AppSettings["FEiTopPlatformSchema"].ToString();
+            }
+        }
         #endregion
 
         #region [Constructors]
@@ -79,6 +92,16 @@ namespace Tier.Data
 
         public abstract bool Delete(T obj);
         public abstract bool Delete(T obj, MySql.Data.MySqlClient.MySqlTransaction objTrans);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="storeProcedureName"></param>
+        /// <returns></returns>
+        internal string GetProcedureNameWithSchema(string storeProcedureName)
+        {
+            return string.Format("{0}.{1}", this.FEiTopPlatformSchema, storeProcedureName);
+        }
     }
 
     /// <summary>
