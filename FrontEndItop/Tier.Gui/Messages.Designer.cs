@@ -86,5 +86,14 @@ namespace Tier.Gui {
                 return ResourceManager.GetString("Success", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El contrato seleccionado ya tiene una bolsa de horas creada. No es posible continuar..
+        /// </summary>
+        internal static string UniqueContractConstraint {
+            get {
+                return ResourceManager.GetString("UniqueContractConstraint", resourceCulture);
+            }
+        }
     }
 }

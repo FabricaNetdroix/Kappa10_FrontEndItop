@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Tier.Gui.Base;
 
 namespace Tier.Gui.Controllers
 {
@@ -24,18 +25,18 @@ namespace Tier.Gui.Controllers
             return View(new Dto.FEi_BagHours());
         }
 
-        public JsonResult GetContractByOrganization(int organizationId)
+        public JsonResult GetContractByOrganization(int id)
         {
             IList<Dto.IP_Contract> lstContracts = new Business.BItopPlatform().GetProductionContracts();
-            SelectList sl = new SelectList(lstContracts.Where(ee => ee.org_id == organizationId).ToList(), "id", "name");
+            SelectList sl = new SelectList(lstContracts.Where(ee => ee.org_id == id).ToList(), "id", "name");
 
             return Json(sl, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetContractInfoById(int contractId)
+        public JsonResult GetContractInfoById(int id)
         {
             IList<Dto.IP_Contract> lstContracts = new Business.BItopPlatform().GetProductionContracts();
-            Dto.IP_Contract obj = lstContracts.Where(ee => ee.id == contractId).FirstOrDefault();
+            Dto.IP_Contract obj = lstContracts.Where(ee => ee.id == id).FirstOrDefault();
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
 
@@ -59,16 +60,31 @@ namespace Tier.Gui.Controllers
 
                 if (result)
                 {
-                    return Json(new { result = true, message = Messages.Success, notificationType = "success" });
+                    return Json(new
+                    {
+                        result = true,
+                        message = Messages.Success,
+                        notificationType = Enumerations.NotificationTypes.success.ToString()
+                    });
                 }
                 else
                 {
-                    return Json(new { result = false, message = Messages.Failure, notificationType = "error" });
+                    return Json(new
+                    {
+                        result = false,
+                        message = Messages.Failure,
+                        notificationType = Enumerations.NotificationTypes.error.ToString()
+                    });
                 }
             }
             else
             {
-                return Json(new { result = false, message = Messages.InvalidForm, notificationType = "notice" });
+                return Json(new
+                {
+                    result = false,
+                    message = Messages.InvalidForm,
+                    notificationType = Enumerations.NotificationTypes.notice.ToString()
+                });
             }
         }
 
@@ -86,12 +102,53 @@ namespace Tier.Gui.Controllers
 
             if (new Business.BFEi_BagHours().DeleteBagHours(obj))
             {
-                return Json(new { result = true, message = Messages.Success, notificationType = "success" });
+                return Json(new
+                {
+                    result = true,
+                    message = Messages.Success,
+                    notificationType = Enumerations.NotificationTypes.success.ToString()
+                });
             }
             else
             {
-                return Json(new { result = false, message = Messages.Failure, notificationType = "error" });
+                return Json(new
+                {
+                    result = false,
+                    message = Messages.Failure,
+                    notificationType = Enumerations.NotificationTypes.error.ToString()
+                });
             }
+        }
+
+        public JsonResult ExistBagHoursToContract(int id)
+        {
+            Dto.FEi_BagHours obj = new Business.BFEi_BagHours().GetBagHoursByContractId(id);
+
+            if (obj == null)
+            {
+                return Json(new
+                {
+                    result = true,
+                    message = Messages.Success,
+                    notificationType = Enumerations.NotificationTypes.success.ToString()
+                }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new
+                {
+                    result = false,
+                    message = Messages.UniqueContractConstraint,
+                    notificationType = Enumerations.NotificationTypes.notice.ToString()
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult GetBagHoursById(int id)
+        {
+            Dto.FEi_BagHours obj = new Business.BFEi_BagHours().GetBagHoursById(id);
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
         }
     }
 }

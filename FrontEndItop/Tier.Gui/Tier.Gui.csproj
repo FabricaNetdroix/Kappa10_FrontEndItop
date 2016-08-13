@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Base\ApplicationConfigurationManager.cs" />
+    <Compile Include="Base\Enumerations.cs" />
     <Compile Include="Base\Utilities.cs" />
     <Compile Include="Controllers\BackEndController.cs" />
     <Compile Include="Controllers\BackEnd_AdministratorUsers.cs" />
@@ -1228,6 +1229,7 @@
     <Content Include="Views\Security\LogIn.cshtml" />
     <Content Include="Views\BackEnd\_ModalContractDetails.cshtml" />
     <Content Include="Views\BackEnd\_TableBagHours.cshtml" />
+    <Content Include="Views\BackEnd\_ModalBagHoursDetails.cshtml" />
     <None Include="Web.uat.netdroix.com.co.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

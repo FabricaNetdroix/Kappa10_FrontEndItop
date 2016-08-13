@@ -27,5 +27,11 @@ namespace Tier.Business
         {
             return new Data.DFEi_BagHours().Delete(obj);
         }
+
+        public Dto.FEi_BagHours GetBagHoursByContractId(int idContract)
+        {
+            return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { contract_id = idContract }).FirstOrDefault();
+        }
+
     }
 }

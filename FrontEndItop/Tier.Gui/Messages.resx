@@ -129,4 +129,8 @@
     <value>Solicitud procesada correctamente.</value>
     <comment>Mensaje que se muestra en las idas al servidor correctamente.</comment>
   </data>
+  <data name="UniqueContractConstraint" xml:space="preserve">
+    <value>El contrato seleccionado ya tiene una bolsa de horas creada. No es posible continuar.</value>
+    <comment>Mensaje que se muestra al seleccionar un contrato con bolsa de horas creadas en el formulario de creación de bolsas de horas.</comment>
+  </data>
 </root>

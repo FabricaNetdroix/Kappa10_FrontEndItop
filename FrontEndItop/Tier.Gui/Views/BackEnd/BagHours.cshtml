@@ -44,52 +44,86 @@
 <!-- /.row (main row) -->
 <!-- modal detalle de contrato -->
 @Html.Partial("_ModalContractDetails")
+<!-- modal detalle de bolsa de hora -->
+@Html.Partial("_ModalBagHoursDetails")
 
 <script>
     $("#organization_id").change(function () {
-        var orgid = $(this).val();
+        var orgId = $(this).val();
         var orgname = $(this).text();
 
-        $.get("@Url.Action("GetContractByOrganization", "BackEnd")", { organizationId: orgid })
+        $.get("@Url.Action("GetContractByOrganization", "BackEnd")", { id: orgId })
             .success(function (data) {
-                var atrArrOpts = '<option value> --Seleccione -- </option>';
+                var atrArrOpts = '<option value> -- Seleccione -- </option>';
                 $(data).each(function (idx, item) {
                     atrArrOpts = atrArrOpts + '<option value="' + item.Value + '">' + item.Text + '</option>';
-                })
+                });
 
                 $("#contract_id").empty();
                 $("#contract_id").append(atrArrOpts);
 
-                $("#btnViwContratDetails").attr("disabled", "disabled");
-            })
+                $("#btnViewContratDetails").attr("disabled", "disabled");
+            });
     });
 
     $("#contract_id").change(function () {
-        var orgid = $(this).val();
+        var contId = $("#contract_id").val();
 
-        $.get("@Url.Action("GetContractInfoById", "BackEnd")", { contractId: orgid })
+        $.get("@Url.Action("ExistBagHoursToContract", "BackEnd")", { id: contId })
+            .success(function (data) {
+                if (!data.result) {
+                    new PNotify({
+                        title: 'Advertencia',
+                        text: data.message,
+                        type: data.notificationType,
+                        hide: true
+                    });
+
+                    $("#contract_id").val(null);
+                    $("#btnViewContratDetails").attr("disabled", "disabled");
+                }
+                else {
+                    $("#btnViewContratDetails").removeAttr("disabled");
+                }
+            });
+
+    });
+
+    $('#myModalCD').on('show.bs.modal', function (e) {
+        var contId = $("#contract_id").val();
+
+        $.get("@Url.Action("GetContractInfoById", "BackEnd")", { id: contId })
             .success(function (data) {
                 $("#sContractNumber").text(data.id);
                 $("#sContractName").text(data.name);
-                $("#sContractDescription").text(data.description);
 
                 var contractStartDate = new Date(parseInt(data.start_date.substr(6))).toLocaleDateString();
                 var contractEndDate = new Date(parseInt(data.end_date.substr(6))).toLocaleDateString();
-
                 $("#sContractTerm").text(contractStartDate + " hasta " + contractEndDate);
-                $("#sContractProvider").text(data.provider_name);
 
-                $("#btnViwContratDetails").removeAttr("disabled");
-            })
+                $("#sContractProvider").text(data.provider_name);
+                $("#sContractDescription").text(data.description);
+            });
+    });
+
+    $('#myModalCD').on('show.bs.modal', function (e) {
+        $("#sContractNumber").text("-");
+        $("#sContractName").text("-");
+        $("#sContractDescription").text("-");
+        $("#sContractNumber").text("-");
+        $("#sContractName").text("-");
+        $("#sContractDescription").text("-");
     });
 
     function SaveBagHoursFail(data) {
         new PNotify({
             title: 'Fallido',
-            text: data.message,
+            text: data.statusText,
             type: data.notificationType,
             hide: true
         });
+
+        console.log(data.responseText);
     }
 
     function SaveBagHoursSuccess(data) {
@@ -126,10 +160,12 @@
     function DeleteBagHoursFail(data) {
         new PNotify({
             title: 'Fallido',
-            text: data.message,
+            text: data.statusText,
             type: data.notificationType,
             hide: true
         });
+
+        console.log(data.responseText);
     }
 
     function DeleteBagHoursSuccess(data) {
@@ -152,4 +188,39 @@
             });
         }
     }
+
+    $('#myModalBHD').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var bhId = button.data('idbh') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        $.get("@Url.Action("GetBagHoursById", "BackEnd")", { id: bhId })
+            .success(function (data) {
+                $("#sBHNumber").text(data.id);
+                $("#sBHOrganizationName").text(data.organization_name);
+                $("#sBHContractName").text(data.contract_name);
+
+                var contractStartDate = new Date(parseInt(data.contract_start.substr(6))).toLocaleDateString();
+                var contractEndDate = new Date(parseInt(data.contract_end.substr(6))).toLocaleDateString();
+                $("#sBHTerm").text(contractStartDate + " hasta " + contractEndDate);
+
+                $("#sBHQuantity").text(data.quantity + "hora(s)");
+                $("#sBHIsWarranty").text(data.is_warranty ? "Si" : "No");
+                switch (data.status) {
+                    case 1:
+                        $("#sBHStatus").html("<small class=\"label bg-aqua\">Activo</small>");
+                        break;
+                    case 2:
+                        $("#sBHStatus").html("<small class=\"label bg-orange\">Notificada</small>");
+                        break;
+                    case 3:
+                        $("#sBHStatus").html("<small class=\"label bg-red\">Inactivo</small>");
+                        break;
+                    default:
+                        $("#sBHStatus").html("<small class=\"label bg-gray\">N/A</small>");
+                        break;
+                }
+                $("#sBHNotes").text(data.notes);
+            });
+    })
 </script>

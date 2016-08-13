@@ -1,0 +1,57 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="myModalBHD" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Información de la bolsa de horas</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblBagHoursDetails">
+                    <tr>
+                        <th>Bolsa No:</th>
+                        <td><span id="sBHNumber"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Organización:</th>
+                        <td><span id="sBHOrganizationName"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Contrato:</th>
+                        <td><span id="sBHContractName"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Vigencia:</th>
+                        <td><span id="sBHTerm"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Cantidad:</th>
+                        <td><span id="sBHQuantity"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Por garantía:</th>
+                        <td><span id="sBHIsWarranty"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Estado:</th>
+                        <td><span id="sBHStatus"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Observaciones:</th>
+                        <td><div id="sBHNotes"></div></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #tblBagHoursDetails > tbody > tr > th {
+        width: 100px;
+        vertical-align: top;
+    }
+</style>
