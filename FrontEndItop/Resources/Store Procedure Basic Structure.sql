@@ -3,24 +3,24 @@ CREATE PROCEDURE `usp_..._...` (
 	in p_...
     )
 BEGIN
-	if intaccion = 1 then 
+	if p_accion = 1 then 
     begin -- Insert
 		
 		
 		select LAST_INSERT_ID();
     end;
     
-    elseif intaccion = 2 then
+    elseif p_accion = 2 then
     begin -- Select
     
     end;
     
-    elseif intaccion = 3 then
+    elseif p_accion = 3 then
     begin -- Update
     
     end;
     
-    elseif intaccion = 4 then
+    elseif p_accion = 4 then
     begin -- Delete
     
     end;

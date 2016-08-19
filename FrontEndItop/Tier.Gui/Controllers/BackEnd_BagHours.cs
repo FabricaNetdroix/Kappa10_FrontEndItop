@@ -91,6 +91,7 @@ namespace Tier.Gui.Controllers
             }
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public PartialViewResult GetAllBagHours()
         {
             IList<Dto.FEi_BagHours> lstBagHours = new Business.BFEi_BagHours().GetAllBagHours();
