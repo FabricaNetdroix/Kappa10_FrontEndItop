@@ -25,12 +25,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{87C5E27C-7BC7-4DE4-BF8F-7355942081EA}"
 	ProjectSection(SolutionItems) = preProject
 		Resources\FrontEnd_Itop_Model.mwb = Resources\FrontEnd_Itop_Model.mwb
+		Resources\Store Procedure Basic Structure.sql = Resources\Store Procedure Basic Structure.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{EB863268-94B5-4E1C-B3A3-7D1F3FC66862}"
 	ProjectSection(SolutionItems) = preProject
 		Resources\Libraries\MySql.Data.dll = Resources\Libraries\MySql.Data.dll
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Transverse", "Tier.Transverse\Tier.Transverse.csproj", "{9446FFA6-E927-440B-9FE8-BAB9AD340A8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +57,10 @@ Global
 		{2527DC29-7161-4B30-9223-9CC428303545}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2527DC29-7161-4B30-9223-9CC428303545}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2527DC29-7161-4B30-9223-9CC428303545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9446FFA6-E927-440B-9FE8-BAB9AD340A8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9446FFA6-E927-440B-9FE8-BAB9AD340A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9446FFA6-E927-440B-9FE8-BAB9AD340A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9446FFA6-E927-440B-9FE8-BAB9AD340A8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

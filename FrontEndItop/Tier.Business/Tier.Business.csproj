@@ -40,7 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BFEi_BagHours.cs" />
-    <Compile Include="BItopPlatform.cs" />
+    <Compile Include="BFEi_Users.cs" />
+    <Compile Include="IP_General.cs" />
     <Compile Include="BusinessParent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\Tier.Dto\Tier.Dto.csproj">
       <Project>{2527dc29-7161-4b30-9223-9cc428303545}</Project>
       <Name>Tier.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tier.Transverse\Tier.Transverse.csproj">
+      <Project>{9446ffa6-e927-440b-9fe8-bab9ad340a8d}</Project>
+      <Name>Tier.Transverse</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

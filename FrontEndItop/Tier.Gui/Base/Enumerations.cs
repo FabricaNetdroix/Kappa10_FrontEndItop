@@ -7,6 +7,9 @@ namespace Tier.Gui.Base
 {
     public class Enumerations
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public enum NotificationTypes
         {
             success,

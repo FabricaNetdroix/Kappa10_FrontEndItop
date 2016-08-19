@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tier.Business
 {
-    public class BItopPlatform : BusinessParent
+    public class IP_General : BusinessParent
     {
         public IList<Dto.IP_Contract> GetProductionContracts()
         {

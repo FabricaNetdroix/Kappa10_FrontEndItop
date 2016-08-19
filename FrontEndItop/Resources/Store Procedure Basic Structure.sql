@@ -1,6 +1,6 @@
-CREATE PROCEDURE `usp_core_baghours` (
-	in accion tinyint,
-	in ...
+CREATE PROCEDURE `usp_..._...` (
+	in p_accion tinyint,
+	in p_...
     )
 BEGIN
 	if intaccion = 1 then 
@@ -26,4 +26,4 @@ BEGIN
     end;
     
     end if;
-END
+END $$

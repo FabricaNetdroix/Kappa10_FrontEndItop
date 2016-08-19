@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Tier.Gui.Models.LoginModel
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -32,7 +33,11 @@
     <!-- iCheck -->
     <script src="@Url.Content("~/plugins/iCheck/icheck.min.js")"></script>
 
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+
+    <!-- pnotify -->
+    <link href="@Url.Content("~/plugins/notify/pnotify.custom.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/plugins/notify/pnotify.custom.min.js")"></script>
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -44,18 +49,18 @@
             <p class="login-box-msg">Inicio de sesión</p>
             <form action="@Url.Action("LogIn","Security")" method="post">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Usuario" id="txtUserAlias" name="txtUserAlias">
+                    @Html.TextBoxFor(m => m.UserAlias, new { placeholder = "Usuario", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UserAlias)
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" id="txtUserPassword" name="txtUserPassword">
+                    @Html.PasswordFor(m => m.UserPassword, new { placeholder = "Clave", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UserPassword)
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <select class="form-control" id="ddlUserType" name="ddlUserType">
-                        <option value="0">Cliente</option>
-                        <option value="1">Administrador</option>
-                    </select>
+                    @Html.DropDownListFor(m => m.UserType, null, " -- Seleccione -- ", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UserType)
                     <span class="glyphicon glyphicon-king form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
@@ -83,6 +88,26 @@
                 increaseArea: '20%' // optional
             });
         });
+
+        PNotify.prototype.options.styling = "bootstrap3";
+        $(document).ajaxStart(function () { Pace.restart(); });
     </script>
+
+    <!-- Menjsajes de confirmación -->
+    @if (TempData["MostrarNotificacion"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                var obj = JSON.parse(String('@TempData["MostrarNotificacion"]'));
+
+                new PNotify({
+                    title: obj.notificationTitle,
+                    text: obj.notificationMessage,
+                    type: obj.notificationType
+                });
+
+            });
+        </script>
+    }
 </body>
 </html>

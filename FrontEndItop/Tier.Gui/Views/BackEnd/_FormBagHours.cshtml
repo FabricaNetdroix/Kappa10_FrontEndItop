@@ -1,6 +1,6 @@
 ﻿@model Tier.Dto.FEi_BagHours
 
-@using (Ajax.BeginForm("SaveBagHours", "BackEnd", new AjaxOptions() { HttpMethod = "POST", OnFailure = "SaveBagHoursFail", OnSuccess = "SaveBagHoursSuccess", }))
+@using (Ajax.BeginForm("SaveBagHours", "BackEnd", new AjaxOptions() { HttpMethod = "POST", OnFailure = "SaveBagHoursFail", OnSuccess = "SaveBagHoursSuccess", Confirm = "Desea guardar la bolsa de horas?" }))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.organization_id)

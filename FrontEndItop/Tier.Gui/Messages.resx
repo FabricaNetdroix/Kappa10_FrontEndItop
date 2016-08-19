@@ -117,20 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Failure" xml:space="preserve">
-    <value>La solicitud no puedo ser procesada correctamente.</value>
-    <comment>Mensaje que se muestra en las idas al servidor con error.</comment>
+  <data name="CaptchaValidationFailure" xml:space="preserve">
+    <value>No se ha superado la validación de seguridad Captcha.</value>
+    <comment>Mensaje que se muestra en el inicio de sesión al no superar la validación Captcha.</comment>
   </data>
   <data name="InvalidForm" xml:space="preserve">
     <value>Los datos solicitados no están correctamente diligenciados.</value>
     <comment>Mensaje que se muestra cuando la validación ModelState.IsValid no es correcta.</comment>
   </data>
-  <data name="Success" xml:space="preserve">
+  <data name="NotificationTextFailure" xml:space="preserve">
+    <value>La solicitud no puedo ser procesada correctamente.</value>
+    <comment>Mensaje que se muestra en las idas al servidor con error.</comment>
+  </data>
+  <data name="NotificationTextSuccess" xml:space="preserve">
     <value>Solicitud procesada correctamente.</value>
     <comment>Mensaje que se muestra en las idas al servidor correctamente.</comment>
+  </data>
+  <data name="NotificationTextWarning" xml:space="preserve">
+    <value>Hay advertencias para la solicitud.</value>
+    <comment>Mensaje que se muestra en las idas al servidor con advertencias.</comment>
+  </data>
+  <data name="NotificationTitleError" xml:space="preserve">
+    <value>Fallido</value>
+    <comment>Texto que s mostrará en las notificaciones de cliente con error</comment>
+  </data>
+  <data name="NotificationTitleSuccess" xml:space="preserve">
+    <value>Exitoso</value>
+    <comment>Texto que s mostrará en las notificaciones de cliente exitosas.</comment>
+  </data>
+  <data name="NotificationTitleWarning" xml:space="preserve">
+    <value>Advertencia</value>
+    <comment>Texto que s mostrará en las notificaciones de cliente con advertencias.</comment>
+  </data>
+  <data name="RoleDisplayTextAdministrator" xml:space="preserve">
+    <value>Administrador</value>
+    <comment>Texto que se muestra como nombre de rol administrador.</comment>
+  </data>
+  <data name="RoleDisplayTextCostumer" xml:space="preserve">
+    <value>Cliente</value>
+    <comment>Texto que se muestra como nombre de rol cliente final.</comment>
+  </data>
+  <data name="RoleDisplayTextVendor" xml:space="preserve">
+    <value>Comercial</value>
+    <comment>Texto que se muestra como nombre de rol comercial.</comment>
   </data>
   <data name="UniqueContractConstraint" xml:space="preserve">
     <value>El contrato seleccionado ya tiene una bolsa de horas creada. No es posible continuar.</value>
     <comment>Mensaje que se muestra al seleccionar un contrato con bolsa de horas creadas en el formulario de creación de bolsas de horas.</comment>
+  </data>
+  <data name="UnknownProfile" xml:space="preserve">
+    <value>Perfil de usuario desconocido</value>
+    <comment>Mensaje cuando en los datos de inicio de sesión se recibe un id de perfil desconocido.</comment>
+  </data>
+  <data name="UserAutenticationFailure" xml:space="preserve">
+    <value>Usuario o clave inválida.</value>
+    <comment>Mensaje que se muestra cuando la lógica de inicio de sesión indica que no se debe permitir el acceso al usuario.</comment>
   </data>
 </root>

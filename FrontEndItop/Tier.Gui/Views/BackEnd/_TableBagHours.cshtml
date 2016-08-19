@@ -3,13 +3,13 @@
 <table class="table" id="tblBagHours">
     <thead>
         <tr>
-            <th>
+            <th class="hidden-xs">
                 @Html.DisplayNameFor(model => model.organization_name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.contract_name)
             </th>
-            <th>
+            <th class="hidden-xs">
                 Vigencia
             </th>
             <th>
@@ -25,13 +25,13 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td class="hidden-xs">
                     @Html.DisplayFor(modelItem => item.organization_name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.contract_name)
                 </td>
-                <td>
+                <td class="hidden-xs">
                     @item.contract_start.Value.ToShortDateString() hasta @item.contract_end.Value.ToShortDateString()
                 </td>
                 <td>
@@ -67,7 +67,7 @@
                         <ul class="dropdown-menu" role="menu">
                             @*<li><a href="#">Editar</a></li>*@
                             <li class="divider"></li>
-                            <li>@Ajax.ActionLink("Eliminar", "DeleteBagHours", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "POST", OnFailure = "DeleteBagHoursSuccess", OnSuccess = "DeleteBagHoursSuccess" })</li>
+                            <li>@Ajax.ActionLink("Eliminar", "DeleteBagHours", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "POST", OnFailure = "DeleteBagHoursSuccess", OnSuccess = "DeleteBagHoursSuccess", Confirm = "Desea eliminar la bolsa de horas?" }, null)</li>
                         </ul>
                     </div>
                 </td>

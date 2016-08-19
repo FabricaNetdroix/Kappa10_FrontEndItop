@@ -61,11 +61,11 @@ namespace Tier.Gui {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La solicitud no puedo ser procesada correctamente..
+        ///   Looks up a localized string similar to No se ha superado la validación de seguridad Captcha..
         /// </summary>
-        internal static string Failure {
+        internal static string CaptchaValidationFailure {
             get {
-                return ResourceManager.GetString("Failure", resourceCulture);
+                return ResourceManager.GetString("CaptchaValidationFailure", resourceCulture);
             }
         }
         
@@ -79,11 +79,83 @@ namespace Tier.Gui {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La solicitud no puedo ser procesada correctamente..
+        /// </summary>
+        internal static string NotificationTextFailure {
+            get {
+                return ResourceManager.GetString("NotificationTextFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Solicitud procesada correctamente..
         /// </summary>
-        internal static string Success {
+        internal static string NotificationTextSuccess {
             get {
-                return ResourceManager.GetString("Success", resourceCulture);
+                return ResourceManager.GetString("NotificationTextSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hay advertencias para la solicitud..
+        /// </summary>
+        internal static string NotificationTextWarning {
+            get {
+                return ResourceManager.GetString("NotificationTextWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fallido.
+        /// </summary>
+        internal static string NotificationTitleError {
+            get {
+                return ResourceManager.GetString("NotificationTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exitoso.
+        /// </summary>
+        internal static string NotificationTitleSuccess {
+            get {
+                return ResourceManager.GetString("NotificationTitleSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advertencia.
+        /// </summary>
+        internal static string NotificationTitleWarning {
+            get {
+                return ResourceManager.GetString("NotificationTitleWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrador.
+        /// </summary>
+        internal static string RoleDisplayTextAdministrator {
+            get {
+                return ResourceManager.GetString("RoleDisplayTextAdministrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cliente.
+        /// </summary>
+        internal static string RoleDisplayTextCostumer {
+            get {
+                return ResourceManager.GetString("RoleDisplayTextCostumer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comercial.
+        /// </summary>
+        internal static string RoleDisplayTextVendor {
+            get {
+                return ResourceManager.GetString("RoleDisplayTextVendor", resourceCulture);
             }
         }
         
@@ -93,6 +165,24 @@ namespace Tier.Gui {
         internal static string UniqueContractConstraint {
             get {
                 return ResourceManager.GetString("UniqueContractConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Perfil de usuario desconocido.
+        /// </summary>
+        internal static string UnknownProfile {
+            get {
+                return ResourceManager.GetString("UnknownProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario o clave inválida..
+        /// </summary>
+        internal static string UserAutenticationFailure {
+            get {
+                return ResourceManager.GetString("UserAutenticationFailure", resourceCulture);
             }
         }
     }

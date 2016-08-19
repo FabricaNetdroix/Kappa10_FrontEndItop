@@ -17,6 +17,17 @@ namespace Tier.Gui.Controllers
             Logs.Error(filterContext.Exception, modulo);
             base.OnException(filterContext);
         }
+
+        /// <summary>
+        /// Registra en la variable temporal "MostrarNotificacion" tempdata los datos de una notificación a mostar del lado del cliente.
+        /// </summary>
+        /// <param name="Mensaje">Texto a mostar en la notificación</param>
+        /// <param name="Tipo">Tipo de la notificación (Exitosa, Error, Advertencia ...)</param>
+        /// <param name="Titulo">Titulo a mostar en la notificación</param>
+        protected void RegistrarNotificación(string Mensaje, Base.Enumerations.NotificationTypes Tipo, string Titulo)
+        {
+            TempData["MostrarNotificacion"] = new HtmlString("{" + string.Format("\"notificationMessage\":\"{0}\",\"notificationType\":\"{1}\",\"notificationTitle\":\"{2}\"", Mensaje, Tipo, Titulo) + "}");
+        }
     }
 
     /// <summary>
@@ -77,12 +88,10 @@ namespace Tier.Gui.Controllers
         /// <param name="module"></param>
         private static void WriteEntry(string message, System.Diagnostics.EventLogEntryType type, string module)
         {
-            System.Diagnostics.Trace.WriteLine(string.Format("{0}|{1}|{2}|{3}",
-                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                 type,
-                 module,
-                 message)
-             );
+            string entryText = string.Format("{0}|{1}|{2}|{3}",
+                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), type, module, message);
+
+            System.Diagnostics.Trace.WriteLine(entryText);
         }
         #endregion
     }

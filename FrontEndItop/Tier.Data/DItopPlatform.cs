@@ -65,7 +65,7 @@ namespace Tier.Data
 
                 using (System.Data.IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    return new List<Dto.IP_Contract>().FromDataReader<Dto.IP_Contract>(reader).ToList();
+                    return CastObjetos.IDataReaderToList<Dto.IP_Contract>(reader);
                 }
             }
         }

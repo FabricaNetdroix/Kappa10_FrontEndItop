@@ -11,7 +11,7 @@ namespace Tier.Gui.Controllers
     {
         public ActionResult BagHours()
         {
-            IList<Dto.IP_Contract> lstContracts = new Business.BItopPlatform().GetProductionContracts();
+            IList<Dto.IP_Contract> lstContracts = new Business.IP_General().GetProductionContracts();
 
             List<KeyValuePair<int, string>> lstOrgs = lstContracts.Select(
                 ee => new KeyValuePair<int, string>(ee.org_id.Value, ee.organization_name)
@@ -27,7 +27,7 @@ namespace Tier.Gui.Controllers
 
         public JsonResult GetContractByOrganization(int id)
         {
-            IList<Dto.IP_Contract> lstContracts = new Business.BItopPlatform().GetProductionContracts();
+            IList<Dto.IP_Contract> lstContracts = new Business.IP_General().GetProductionContracts();
             SelectList sl = new SelectList(lstContracts.Where(ee => ee.org_id == id).ToList(), "id", "name");
 
             return Json(sl, JsonRequestBehavior.AllowGet);
@@ -35,7 +35,7 @@ namespace Tier.Gui.Controllers
 
         public JsonResult GetContractInfoById(int id)
         {
-            IList<Dto.IP_Contract> lstContracts = new Business.BItopPlatform().GetProductionContracts();
+            IList<Dto.IP_Contract> lstContracts = new Business.IP_General().GetProductionContracts();
             Dto.IP_Contract obj = lstContracts.Where(ee => ee.id == id).FirstOrDefault();
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
@@ -45,7 +45,7 @@ namespace Tier.Gui.Controllers
         {
             if (ModelState.IsValid)
             {
-                IList<Dto.IP_Contract> lstContracts = new Business.BItopPlatform().GetProductionContracts();
+                IList<Dto.IP_Contract> lstContracts = new Business.IP_General().GetProductionContracts();
                 Dto.IP_Contract objIPC = lstContracts.Where(ee => ee.id == obj.contract_id).FirstOrDefault();
 
                 obj.contract_name = objIPC.name;
@@ -63,8 +63,9 @@ namespace Tier.Gui.Controllers
                     return Json(new
                     {
                         result = true,
-                        message = Messages.Success,
-                        notificationType = Enumerations.NotificationTypes.success.ToString()
+                        notificationMessage = Messages.NotificationTextSuccess,
+                        notificationType = Enumerations.NotificationTypes.success.ToString(),
+                        notificationTitle = Messages.NotificationTitleSuccess
                     });
                 }
                 else
@@ -72,8 +73,9 @@ namespace Tier.Gui.Controllers
                     return Json(new
                     {
                         result = false,
-                        message = Messages.Failure,
-                        notificationType = Enumerations.NotificationTypes.error.ToString()
+                        notificationMessage = Messages.NotificationTextFailure,
+                        notificationType = Enumerations.NotificationTypes.error.ToString(),
+                        notificationTitle = Messages.NotificationTitleError
                     });
                 }
             }
@@ -82,8 +84,9 @@ namespace Tier.Gui.Controllers
                 return Json(new
                 {
                     result = false,
-                    message = Messages.InvalidForm,
-                    notificationType = Enumerations.NotificationTypes.notice.ToString()
+                    notificationMessage = Messages.InvalidForm,
+                    notificationType = Enumerations.NotificationTypes.notice.ToString(),
+                    notificationTitle = Messages.NotificationTitleWarning
                 });
             }
         }
@@ -105,8 +108,9 @@ namespace Tier.Gui.Controllers
                 return Json(new
                 {
                     result = true,
-                    message = Messages.Success,
-                    notificationType = Enumerations.NotificationTypes.success.ToString()
+                    notificationMessage = Messages.NotificationTextSuccess,
+                    notificationType = Enumerations.NotificationTypes.success.ToString(),
+                    notificationTitle = Messages.NotificationTitleSuccess
                 });
             }
             else
@@ -114,8 +118,9 @@ namespace Tier.Gui.Controllers
                 return Json(new
                 {
                     result = false,
-                    message = Messages.Failure,
-                    notificationType = Enumerations.NotificationTypes.error.ToString()
+                    notificationMessage = Messages.NotificationTextFailure,
+                    notificationType = Enumerations.NotificationTypes.error.ToString(),
+                    notificationTitle = Messages.NotificationTitleError
                 });
             }
         }
@@ -129,8 +134,9 @@ namespace Tier.Gui.Controllers
                 return Json(new
                 {
                     result = true,
-                    message = Messages.Success,
-                    notificationType = Enumerations.NotificationTypes.success.ToString()
+                    notificationMessage = Messages.NotificationTextSuccess,
+                    notificationType = Enumerations.NotificationTypes.success.ToString(),
+                    notificationTitle = Messages.NotificationTitleSuccess
                 }, JsonRequestBehavior.AllowGet);
             }
             else
@@ -138,8 +144,9 @@ namespace Tier.Gui.Controllers
                 return Json(new
                 {
                     result = false,
-                    message = Messages.UniqueContractConstraint,
-                    notificationType = Enumerations.NotificationTypes.notice.ToString()
+                    notificationMessage = Messages.UniqueContractConstraint,
+                    notificationType = Enumerations.NotificationTypes.notice.ToString(),
+                    notificationTitle = Messages.NotificationTitleWarning
                 }, JsonRequestBehavior.AllowGet);
             }
         }
