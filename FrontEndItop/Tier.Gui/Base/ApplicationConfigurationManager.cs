@@ -48,6 +48,16 @@ namespace Tier.Gui.Base
                     : System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA_SecretKey"].ToString();
             }
         }
+
+        public static string reCAPTCHA_Url
+        {
+            get
+            {
+                return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA_Url"].ToString())
+                    ? "undefined"
+                    : System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA_Url"].ToString();
+            }
+        }
         #endregion
 
         #region [Public Methods]

@@ -128,7 +128,7 @@ namespace Tier.Gui.Controllers
 
             string PrivateKey = Base.ApplicationConfigurationManager.reCAPTCHA_SecretKey;
 
-            var GoogleReply = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", PrivateKey, EncodedResponse));
+            var GoogleReply = client.DownloadString(string.Format(Base.ApplicationConfigurationManager.reCAPTCHA_Url, PrivateKey, EncodedResponse));
 
             var captchaResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ReCaptchaClass>(GoogleReply);
 
