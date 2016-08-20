@@ -1,0 +1,13 @@
+﻿@{
+    Tier.Dto.FEi_User objU = (Tier.Dto.FEi_User)Session["CurrentUser"];
+    string userFullName = objU != null ? string.Format("{0} {1}", objU.first_name, objU.last_name) : "N/A";
+}
+<div class="user-panel">
+    <div class="pull-left image">
+        <img src="@Url.Content("~/dist/img/profile-menu-128x128.png")" class="img-circle" alt="User Image">
+    </div>
+    <div class="pull-left info">
+        <p>@userFullName</p>
+        <a href="#"><i class="fa fa-circle text-success"></i> Administración - Online</a>
+    </div>
+</div>

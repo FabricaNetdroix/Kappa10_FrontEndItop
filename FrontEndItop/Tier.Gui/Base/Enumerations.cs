@@ -18,5 +18,16 @@ namespace Tier.Gui.Base
             notice,
             warning,
         }
+
+        public enum ApplicationModules : byte
+        {
+            FrontEndSummary = 1,
+            BackEndSummary = 2,
+            BagHoursManagement = 3,
+            NotificationManagement = 4,
+            UserManagement = 5,
+            Notifications = 6,
+            SelfManagement = 7
+        }
     }
 }

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace Tier.Gui.Base
 {
-    public class ApplicationConfigurationManager
+    public static class ApplicationConfigurationManager
     {
+        #region [Properties]
         public static string WindowsEventLogApplicationName
         {
             get
@@ -46,5 +48,31 @@ namespace Tier.Gui.Base
                     : System.Configuration.ConfigurationManager.AppSettings["reCAPTCHA_SecretKey"].ToString();
             }
         }
+        #endregion
+
+        #region [Public Methods]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userType"></param>
+        /// <param name="appFunctionality"></param>
+        /// <returns></returns>
+        public static bool ValidateRolePermission(Dto.UserTypes userType, Base.Enumerations.ApplicationModules appFunctionality)
+        {
+            string rolePermissionString = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/Assets/json/RolePermission.json"));
+            Newtonsoft.Json.Linq.JArray jsonArray = Newtonsoft.Json.Linq.JArray.Parse(rolePermissionString);
+
+            if (jsonArray.Count <= 0)
+                return false;
+
+            var rolePermissionList = jsonArray.Select(ee => new
+            {
+                role = ((dynamic)ee).role,
+                func = ((dynamic)ee).func
+            }).ToList();
+
+            return rolePermissionList.Where(ee => ee.role == (byte)userType && ee.func == (byte)appFunctionality).Count() > 0;
+        }
+        #endregion
     }
 }

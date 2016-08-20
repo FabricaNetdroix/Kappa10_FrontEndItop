@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -92,10 +96,6 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <Private>True</Private>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -1185,6 +1185,7 @@
     <Content Include="plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
+    <Content Include="Assets\json\RolePermission.json" />
     <None Include="Properties\PublishProfiles\uat.netdroix.com.co.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1223,11 +1224,15 @@
     <Content Include="Views\BackEnd\Notifications.cshtml" />
     <Content Include="Views\BackEnd\AdministratorUsers.cshtml" />
     <Content Include="Views\BackEnd\PreNotification.cshtml" />
-    <Content Include="Views\Security\UserProfile.cshtml" />
+    <Content Include="Views\Security\SelfManagement.cshtml" />
     <Content Include="Views\Security\LogIn.cshtml" />
     <Content Include="Views\BackEnd\_ModalContractDetails.cshtml" />
     <Content Include="Views\BackEnd\_TableBagHours.cshtml" />
     <Content Include="Views\BackEnd\_ModalBagHoursDetails.cshtml" />
+    <Content Include="Views\Shared\_SideBarUserPanel.cshtml" />
+    <Content Include="Views\Shared\_SideBarMenu.cshtml" />
+    <Content Include="Views\Shared\_TopBarUserMenu.cshtml" />
+    <Content Include="Views\Shared\_TopBarNotifications.cshtml" />
     <None Include="Web.uat.netdroix.com.co.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

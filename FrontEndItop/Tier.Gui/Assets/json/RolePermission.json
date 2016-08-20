@@ -1,0 +1,15 @@
+﻿[
+    { "role": 0, "func": 1 },
+
+    { "role": 1, "func": 2 },
+    { "role": 1, "func": 3 },
+    { "role": 1, "func": 6 },
+    { "role": 1, "func": 7 },
+
+    { "role": 2, "func": 2 },
+    { "role": 2, "func": 3 },
+    { "role": 2, "func": 4 },
+    { "role": 2, "func": 5 },
+    { "role": 2, "func": 6 },
+    { "role": 2, "func": 7 }
+]

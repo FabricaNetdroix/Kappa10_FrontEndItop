@@ -8,6 +8,16 @@ namespace Tier.Gui.Controllers
 {
     public class BaseController : Controller
     {
+        internal Dto.FEi_User CurrentUser
+        {
+            get
+            {
+                return (Dto.FEi_User)Session["CurrentUser"];
+            }
+
+            set { Session["CurrentUser"] = value; }
+        }
+
         protected override void OnException(ExceptionContext filterContext)
         {
             System.Diagnostics.Debugger.Break();

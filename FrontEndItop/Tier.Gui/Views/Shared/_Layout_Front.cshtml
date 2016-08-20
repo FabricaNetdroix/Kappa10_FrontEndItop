@@ -62,28 +62,7 @@
                     <ul class="nav navbar-nav">
                         <!-- Tasks: style can be found in dropdown.less -->
                         <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="@Url.Content("~/dist/img/profile-menu-128x128.png")" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Opciones de cuenta</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header">
-                                    <img src="@Url.Content("~/dist/img/building-128x128.png")" class="img-circle" alt="User Image">
-                                    <p>
-                                        [NOMBRE CLIENTE]
-                                        <small>[Información Adicional]</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-right">
-                                        <a href="@Url.Action("SingOut","Security")" class="btn btn-default btn-flat">Salir</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                        @Html.Partial("_TopBarUserMenu")
                     </ul>
                 </div>
             </nav>
@@ -93,25 +72,10 @@
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                 <!-- Sidebar user panel -->
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="@Url.Content("~/dist/img/app-logo.png")" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p>[NOMBRE CLIENTE]</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Consulta - Online</a>
-                    </div>
-                </div>
+                @Html.Partial("_SideBarUserPanel")
                 <br style="clear:both;" />
                 <!-- sidebar menu: : style can be found in sidebar.less -->
-                <ul class="sidebar-menu">
-                    <li class="header">Menú principal</li>
-                    <li>
-                        <a href="@Url.Action("Index","FrontEnd")">
-                            <i class="fa fa-th"></i> <span>Resumen</span>
-                        </a>
-                    </li>
-                </ul>
+                @Html.Partial("_SideBarMenu")
             </section>
             <!-- /.sidebar -->
         </aside>

@@ -8,7 +8,7 @@ namespace Tier.Gui.Controllers
 {
     public partial class SecurityController : BaseController
     {
-        public ActionResult UserProfile()
+        public ActionResult SelfManagement()
         {
             return View();
         }

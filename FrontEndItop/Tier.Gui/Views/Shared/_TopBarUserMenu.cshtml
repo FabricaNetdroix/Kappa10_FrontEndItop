@@ -1,0 +1,38 @@
+﻿@using Tier.Gui.Base;
+@using Tier.Dto;
+
+@{
+    FEi_User objU = (FEi_User)Session["CurrentUser"];
+    string userFullName = objU != null ? string.Format("{0} {1}", objU.first_name, objU.last_name) : "N/A";
+
+    var objP = Utilities.GetRolesList().Where(ee => ee.Key == objU.role).FirstOrDefault();
+    string userRoleName = objP.Value != null ? objP.Value : "N/A";
+}
+<li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="@Url.Content("~/dist/img/profile-menu-128x128.png")" class="user-image" alt="User Image">
+        <span class="hidden-xs">Optiones de perfil</span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header">
+            <img src="@Url.Content("~/dist/img/profile-menu-128x128.png")" class="img-circle" alt="User Image">
+            <p>
+                @userFullName
+                <small>@userRoleName</small>
+            </p>
+        </li>
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.SelfManagement))
+            {
+                <div class="pull-left">
+                    <a href="@Url.Action("SelfManagement", "Security")" class="btn btn-default btn-flat">Perfil</a>
+                </div>
+            }
+            <div class="pull-right">
+                <a href="@Url.Action("SingOut","Security")" class="btn btn-default btn-flat">Salir</a>
+            </div>
+        </li>
+    </ul>
+</li>

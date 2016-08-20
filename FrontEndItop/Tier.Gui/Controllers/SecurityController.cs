@@ -45,7 +45,7 @@ namespace Tier.Gui.Controllers
             {
                 //Se recupera y valida la respuesta del servicio de Google reCaptcha.
                 obj.RecaptchaToken = Request["g-Recaptcha-Response"].ToString();
-                bool IsCaptchaValid = (ReCaptchaClass.Validate(obj.RecaptchaToken) == "True" ? true : false);
+                bool IsCaptchaValid = (ReCaptchaClass.Validate(obj.RecaptchaToken).ToLower() == "true" ? true : false);
 
                 if (IsCaptchaValid)
                 {
@@ -54,6 +54,7 @@ namespace Tier.Gui.Controllers
                         // Validar usuario iTop
                         if (true)
                         {
+                            base.CurrentUser = new Dto.FEi_User() { alias = obj.UserAlias, password = obj.UserPassword, role = obj.UserType };
                             return RedirectToAction("Index", "FrontEnd");
                         }
                         else
@@ -69,6 +70,9 @@ namespace Tier.Gui.Controllers
 
                         if (objUser != null && objUser.status == (short)Dto.UserStatus.Active)
                         {
+                            //Cargar datos usuario
+                            base.CurrentUser = objUser;
+
                             if (obj.UserType == (byte)Dto.UserTypes.Vendor)
                             {
                                 return RedirectToAction("BagHours", "BackEnd");

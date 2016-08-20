@@ -1,0 +1,66 @@
+﻿@using Tier.Gui.Base;
+@using Tier.Dto;
+
+@{
+    Tier.Dto.FEi_User objU = (Tier.Dto.FEi_User)Session["CurrentUser"];
+}
+<ul class="sidebar-menu">
+    <li class="header">MENÚ PRINCIPAL</li>
+    @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.FrontEndSummary))
+    {
+        <li>
+            <a href="@Url.Action("Index", "FrontEnd")">
+                <i class="fa fa-th"></i> <span>Resumen</span>
+            </a>
+        </li>
+    }
+
+    @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.BackEndSummary))
+    {
+        <li>
+            <a href="@Url.Action("Index", "BackEnd")">
+                <i class="fa fa-th"></i> <span>Resumen</span>
+            </a>
+        </li>
+    }
+
+    @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.BagHoursManagement))
+    {
+        <li>
+            <a href="@Url.Action("BagHours", "BackEnd")">
+                <i class="fa fa-history"></i> <span>Gestión bolsas de horas</span>
+            </a>
+        </li>
+    }
+
+    @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.NotificationManagement))
+    {
+        <li>
+            <a href="@Url.Action("Notifications", "BackEnd")">
+                <i class="fa fa-paper-plane "></i> <span>Gestión de notificaciones</span>
+            </a>
+        </li>
+    }
+
+    @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.UserManagement))
+    {
+        <li>
+            <a href="@Url.Action("AdministratorUsers", "BackEnd")">
+                <i class="fa fa-users"></i> <span>Gestión de administradores</span>
+            </a>
+        </li>
+    }
+
+    @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.Notifications))
+    {
+        <li class="header">Funciones</li>
+        <li>
+            <a href="@Url.Action("PreNotification", "BackEnd")">
+                <i class="fa fa-circle-o text-yellow"></i> <span>Alertas</span>
+                <span class="pull-right-container">
+                    <small class="label pull-right bg-yellow">10</small>
+                </span>
+            </a>
+        </li>
+    }
+</ul>
