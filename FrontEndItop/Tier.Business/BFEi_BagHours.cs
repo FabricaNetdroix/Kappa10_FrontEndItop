@@ -33,5 +33,9 @@ namespace Tier.Business
             return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { contract_id = idContract }).FirstOrDefault();
         }
 
+        public bool UpdateBagHours(Dto.FEi_BagHours obj)
+        {
+            return new Data.DFEi_BagHours().Update(obj);
+        }
     }
 }

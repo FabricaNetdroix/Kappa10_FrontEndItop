@@ -25,6 +25,7 @@ namespace Tier.Gui.Controllers
             return View(new Dto.FEi_BagHours());
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetContractByOrganization(int id)
         {
             IList<Dto.IP_Contract> lstContracts = new Business.IP_General().GetProductionContracts();
@@ -33,6 +34,7 @@ namespace Tier.Gui.Controllers
             return Json(sl, JsonRequestBehavior.AllowGet);
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetContractInfoById(int id)
         {
             IList<Dto.IP_Contract> lstContracts = new Business.IP_General().GetProductionContracts();
@@ -103,6 +105,8 @@ namespace Tier.Gui.Controllers
         public JsonResult DeleteBagHours(int id)
         {
             Dto.FEi_BagHours obj = new Business.BFEi_BagHours().GetBagHoursById(id);
+            
+            obj.last_user_update = 1;
 
             if (new Business.BFEi_BagHours().DeleteBagHours(obj))
             {
@@ -126,6 +130,7 @@ namespace Tier.Gui.Controllers
             }
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult ExistBagHoursToContract(int id)
         {
             Dto.FEi_BagHours obj = new Business.BFEi_BagHours().GetBagHoursByContractId(id);
@@ -152,11 +157,78 @@ namespace Tier.Gui.Controllers
             }
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetBagHoursById(int id)
         {
             Dto.FEi_BagHours obj = new Business.BFEi_BagHours().GetBagHoursById(id);
 
             return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public PartialViewResult EditBagHours(int id)
+        {
+            Dto.FEi_BagHours obj = new Business.BFEi_BagHours().GetBagHoursById(id);
+
+            IList<Dto.IP_Contract> lstContracts = new Business.IP_General().GetProductionContracts();
+
+            List<KeyValuePair<int, string>> lstOrgs = lstContracts.Select(
+                            ee => new KeyValuePair<int, string>(ee.org_id.Value, ee.organization_name)
+                            ).Distinct().ToList();
+
+            ViewBag.organization_id = new SelectList(lstOrgs, "Key", "Value", obj.organization_id);
+            ViewBag.contract_id = new SelectList(lstContracts.Where(ee => ee.org_id == obj.organization_id).ToList(), "id", "name", obj.contract_id);
+
+            return PartialView("_FormEditBagHours", obj);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateBagHours(Dto.FEi_BagHours obj)
+        {
+            Dto.FEi_BagHours objDB = new Business.BFEi_BagHours().GetBagHoursById((int)obj.id);
+
+            objDB.quantity = obj.quantity;
+            objDB.notes = obj.notes;
+            objDB.is_warranty = obj.is_warranty;
+            obj.last_user_update = 1;
+
+            bool result = new Business.BFEi_BagHours().UpdateBagHours(objDB);
+
+            if (result)
+            {
+                return Json(new
+                {
+                    result = true,
+                    notificationMessage = Messages.NotificationTextSuccess,
+                    notificationType = Enumerations.NotificationTypes.success.ToString(),
+                    notificationTitle = Messages.NotificationTitleSuccess
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    result = false,
+                    notificationMessage = Messages.NotificationTextFailure,
+                    notificationType = Enumerations.NotificationTypes.error.ToString(),
+                    notificationTitle = Messages.NotificationTitleError
+                });
+            }
+        }
+
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public PartialViewResult CreateBagHours()
+        {
+            IList<Dto.IP_Contract> lstContracts = new Business.IP_General().GetProductionContracts();
+
+            List<KeyValuePair<int, string>> lstOrgs = lstContracts.Select(
+                ee => new KeyValuePair<int, string>(ee.org_id.Value, ee.organization_name)
+                ).Distinct().ToList();
+
+            ViewBag.organization_id = new SelectList(lstOrgs, "Key", "Value");
+            ViewBag.contract_id = new SelectList(new List<KeyValuePair<int, string>>(), "Key", "Value");
+
+            return PartialView("_FormCreateBagHours");
         }
     }
 }

@@ -65,9 +65,9 @@
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Editar</a></li>
+                            <li>@Ajax.ActionLink("Editar", "EditBagHours", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divBagHoursForm", InsertionMode = InsertionMode.Replace, OnFailure = "EditBagHoursFail" }, null)</li>
                             <li class="divider"></li>
-                            <li>@Ajax.ActionLink("Eliminar", "DeleteBagHours", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "POST", OnFailure = "DeleteBagHoursSuccess", OnSuccess = "DeleteBagHoursSuccess", Confirm = "Desea eliminar la bolsa de horas?" }, null)</li>
+                            <li>@Ajax.ActionLink("Eliminar", "DeleteBagHours", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "DeleteBagHoursSuccess", Confirm = "Desea eliminar la bolsa de horas?" }, null)</li>
                         </ul>
                     </div>
                 </td>

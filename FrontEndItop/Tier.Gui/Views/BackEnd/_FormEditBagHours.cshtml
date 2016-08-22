@@ -1,21 +1,22 @@
 ﻿@model Tier.Dto.FEi_BagHours
 
-@using (Ajax.BeginForm("SaveBagHours", "BackEnd", new AjaxOptions() { HttpMethod = "POST", OnFailure = "SaveBagHoursFail", OnSuccess = "SaveBagHoursSuccess", Confirm = "Desea guardar la bolsa de horas?" }))
+@using (Ajax.BeginForm("UpdateBagHours", "BackEnd", null, new AjaxOptions() { HttpMethod = "POST", OnFailure = "UpdateBagHoursFail", OnSuccess = "UpdateBagHoursSuccess", Confirm = "Desea actualizar la bolsa de horas?" }, new { id = "frmEdit" }))
 {
+    @Html.HiddenFor(m => m.id)
     <div class="form-group">
         @Html.LabelFor(m => m.organization_id)
-        @Html.DropDownListFor(m => m.organization_id, null, "-- Seleccione --", new { @class = "form-control select2" })
+        @Html.DropDownListFor(m => m.organization_id, null, "-- Seleccione --", new { @class = "form-control", disabled = "disabled" })
         @Html.ValidationMessageFor(m => m.organization_id)
     </div>
     <!-- /.form-group -->
-    <div class="form-group">
+    <div class="form-group" disabled>
         @Html.LabelFor(m => m.contract_id)
-        @Html.DropDownListFor(m => m.contract_id, null, "-- Seleccione --", new { @class = "form-control select2" })
+        @Html.DropDownListFor(m => m.contract_id, null, "-- Seleccione --", new { @class = "form-control", disabled = "disabled" })
         @Html.ValidationMessageFor(m => m.contract_id)
     </div>
    <!-- /.form-group -->
     <div class="form-group">
-        <input type="button" name="btnViewContratDetails" id="btnViewContratDetails" value="Ver detalle" class="btn btn-info" disabled="disabled" data-toggle="modal" data-target="#myModalCD" />
+        <input type="button" name="btnViewContratDetails" id="btnViewContratDetails" value="Ver detalle" class="btn btn-info" data-toggle="modal" data-target="#myModalCD" />
     </div>
    <!-- /.form-group -->
     <div class="form-group">
@@ -37,7 +38,11 @@
     <!-- /.box-body -->
     <div class="box-footer">
         <button type="submit" class="btn btn-primary">Guardar</button>
-        <button type="reset" class="btn btn-default pull-right" id="btnResetBagHoursForm">Limpiar</button>
+        @Ajax.ActionLink("Cancelar", "CreateBagHours", "BackEnd", null, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divBagHoursForm", InsertionMode = InsertionMode.Replace, OnFailure = "EditBagHoursFail" }, new { @class = "btn btn-danger pull-right", id = "btnCancelBagHoursForm" })
     </div>
     <!-- /.box-footer -->
 }
+<script>
+    var $form = $("#frmEdit");
+    $.validator.unobtrusive.parse($form);
+</script>

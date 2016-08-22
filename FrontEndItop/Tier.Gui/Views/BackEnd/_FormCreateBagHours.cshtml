@@ -1,0 +1,95 @@
+﻿@model Tier.Dto.FEi_BagHours
+
+@using (Ajax.BeginForm("SaveBagHours", "BackEnd", null, new AjaxOptions() { HttpMethod = "POST", OnFailure = "SaveBagHoursFail", OnSuccess = "SaveBagHoursSuccess", Confirm = "Desea guardar la bolsa de horas?" }, new { id = "frmCreate" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.organization_id)
+        @Html.DropDownListFor(m => m.organization_id, null, "-- Seleccione --", new { @class = "form-control select2" })
+        @Html.ValidationMessageFor(m => m.organization_id)
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.contract_id)
+        @Html.DropDownListFor(m => m.contract_id, null, "-- Seleccione --", new { @class = "form-control select2" })
+        @Html.ValidationMessageFor(m => m.contract_id)
+    </div>
+   <!-- /.form-group -->
+    <div class="form-group">
+        <input type="button" name="btnViewContratDetails" id="btnViewContratDetails" value="Ver detalle" class="btn btn-info" disabled="disabled" data-toggle="modal" data-target="#myModalCD" />
+    </div>
+   <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.quantity)
+        @Html.TextBoxFor(m => m.quantity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.quantity)
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.is_warranty) &nbsp;
+        @Html.CheckBox("is_warranty", new { @class = "minimal" })
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.notes)
+        @Html.TextAreaFor(m => m.notes, new { @class = "form-control" })
+    </div>
+    <!-- /.form-group -->
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="reset" class="btn btn-default pull-right" id="btnResetBagHoursForm">Limpiar</button>
+    </div>
+    <!-- /.box-footer -->
+}
+
+<script>
+
+    $("#organization_id").on("change", function () {
+        var orgId = $(this).val();
+        var orgname = $(this).text();
+
+        $.get("@Url.Action("GetContractByOrganization", "BackEnd")", { id: orgId }, function (data) {
+            var atrArrOpts = '<option value> -- Seleccione -- </option>';
+            $(data).each(function (idx, item) {
+                atrArrOpts = atrArrOpts + '<option value="' + item.Value + '">' + item.Text + '</option>';
+            });
+
+            $("#contract_id").empty();
+            $("#contract_id").append(atrArrOpts);
+
+            $("#btnViewContratDetails").attr("disabled", "disabled");
+        })
+        .fail(function (ex) {
+            NotifyFailureAjax(ex);
+            console.log(ex.responseText);
+        });
+    });
+
+    $("#contract_id").on("change", function () {
+        var contId = $("#contract_id").val();
+
+        $.get("@Url.Action("ExistBagHoursToContract", "BackEnd")", { id: contId }, function (data) {
+            if (!data.result) {
+                new PNotify({
+                    title: data.notificationTitle,
+                    text: data.notificationMessage,
+                    type: data.notificationType,
+                    hide: true
+                });
+
+                $("#contract_id").val(null);
+                $("#btnViewContratDetails").attr("disabled", "disabled");
+            }
+            else {
+                $("#btnViewContratDetails").removeAttr("disabled");
+            }
+        })
+        .fail(function (ex) {
+            NotifyFailureAjax(ex);
+            console.log(ex.responseText);
+        });
+    });
+
+    var $form = $("#frmCreate");
+    $.validator.unobtrusive.parse($form);
+</script>

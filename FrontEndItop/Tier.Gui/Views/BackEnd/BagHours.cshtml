@@ -18,8 +18,8 @@
                 <h3 class="box-title">Formulario</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body divBagHoursForm">
-                @Html.Partial("_FormBagHours")
+            <div class="box-body" id="divBagHoursForm">
+                @Html.Partial("_FormCreateBagHours")
             </div>
             <!-- /.box-body -->
         </div>
@@ -52,50 +52,6 @@
         $("#btnViewContratDetails").attr("disabled", "disabled");
     });
 
-    $("#organization_id").change(function () {
-        var orgId = $(this).val();
-        var orgname = $(this).text();
-
-        $.get("@Url.Action("GetContractByOrganization", "BackEnd")", { id: orgId }, function (data) {
-            var atrArrOpts = '<option value> -- Seleccione -- </option>';
-            $(data).each(function (idx, item) {
-                atrArrOpts = atrArrOpts + '<option value="' + item.Value + '">' + item.Text + '</option>';
-            });
-
-            $("#contract_id").empty();
-            $("#contract_id").append(atrArrOpts);
-
-            $("#btnViewContratDetails").attr("disabled", "disabled");
-        })
-        .fail(function (ex) {
-            console.log(ex);
-        });
-    });
-
-    $("#contract_id").change(function () {
-        var contId = $("#contract_id").val();
-
-        $.get("@Url.Action("ExistBagHoursToContract", "BackEnd")", { id: contId }, function (data) {
-            if (!data.result) {
-                new PNotify({
-                    title: data.notificationTitle,
-                    text: data.notificationMessage,
-                    type: data.notificationType,
-                    hide: true
-                });
-
-                $("#contract_id").val(null);
-                $("#btnViewContratDetails").attr("disabled", "disabled");
-            }
-            else {
-                $("#btnViewContratDetails").removeAttr("disabled");
-            }
-        })
-        .fail(function (ex) {
-            console.log(ex);
-        });
-    });
-
     $('#myModalCD').on('show.bs.modal', function (e) {
         var contId = $("#contract_id").val();
 
@@ -111,7 +67,8 @@
             $("#sContractDescription").text(data.description);
         })
         .fail(function (ex) {
-            console.log(ex);
+            NotifyFailureAjax(ex);
+            console.log(ex.responseText);
         });
     });
 
@@ -123,17 +80,6 @@
         $("#sContractName").text("-");
         $("#sContractDescription").text("-");
     });
-
-    function SaveBagHoursFail(data) {
-        new PNotify({
-            title: data.notificationTitle,
-            text: data.statusText,
-            type: data.notificationType,
-            hide: true
-        });
-
-        console.log(data.responseText);
-    }
 
     function SaveBagHoursSuccess(data) {
         if (data.result) {
@@ -158,26 +104,29 @@
         }
     }
 
-    function RefreshBagHoursTable() {
+    function SaveBagHoursFail(data) {
+        NotifyFailureAjax(data);
+        console.log(data.responseText);
+    }
 
+    function RefreshBagHoursTable() {
         $.get('@Url.Action("GetAllBagHours", "BackEnd")', null, function (data) {
             $(".divTableBagHoursList").empty();
             $(".divTableBagHoursList").html(data);
         })
         .fail(function (ex) {
-            console.log(ex);
+            NotifyFailureAjax(ex);
+            console.log(ex.responseText);
         });
     }
 
-    function DeleteBagHoursFail(data) {
+    function NotifyFailureAjax(data) {
         new PNotify({
-            title: data.notificationTitle,
+            title: "Error en la solicitud",
             text: data.statusText,
-            type: data.notificationType,
+            type: "error",
             hide: true
         });
-
-        console.log(data.responseText);
     }
 
     function DeleteBagHoursSuccess(data) {
@@ -199,6 +148,11 @@
                 hide: true
             });
         }
+    }
+
+    function DeleteBagHoursFail(data) {
+        NotifyFailureAjax(data);
+        console.log(data.responseText);
     }
 
     $('#myModalBHD').on('show.bs.modal', function (event) {
@@ -237,15 +191,41 @@
             $("#sBHNotes").text(data.notes);
         })
         .fail(function (ex) {
-            console.log(ex);
+            NotifyFailureAjax(ex);
+            console.log(ex.responseText);
         });
     });
 
-    function LoadBagHoursForEdit(idBagHours) {
-        $.get("@Url.Action("GetBagHoursById", "BackEnd")", { id: idBagHours }, function (data) {
-            console.log(data);
-        }).fail(function (ex) {
-            console.log(ex);
-        });
+    function EditBagHoursFail(data) {
+        NotifyFailureAjax(data);
+        console.log(data.responseText);
+    }
+
+    function UpdateBagHoursSuccess(data) {
+        if (data.result) {
+            new PNotify({
+                title: data.notificationTitle,
+                text: data.notificationMessage,
+                type: data.notificationType,
+                hide: true
+            });
+
+            $("#btnCancelBagHoursForm").click();
+
+            RefreshBagHoursTable();
+        }
+        else {
+            new PNotify({
+                title: data.notificationTitle,
+                text: data.notificationMessage,
+                type: data.notificationType,
+                hide: true
+            });
+        }
+    }
+
+    function UpdateBagHoursFail(data) {
+        NotifyFailureAjax(data);
+        console.log(data.responseText);
     }
 </script>
