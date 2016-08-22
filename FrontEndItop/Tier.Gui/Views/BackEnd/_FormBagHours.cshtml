@@ -17,6 +17,7 @@
     <div class="form-group">
         <input type="button" name="btnViewContratDetails" id="btnViewContratDetails" value="Ver detalle" class="btn btn-info" disabled="disabled" data-toggle="modal" data-target="#myModalCD" />
     </div>
+   <!-- /.form-group -->
     <div class="form-group">
         @Html.LabelFor(m => m.quantity)
         @Html.TextBoxFor(m => m.quantity, new { @class = "form-control" })
@@ -38,4 +39,5 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
         <button type="reset" class="btn btn-default pull-right" id="btnResetBagHoursForm">Limpiar</button>
     </div>
+    <!-- /.box-footer -->
 }

@@ -165,9 +165,9 @@
         </footer>
     </div>
     <!-- ./wrapper -->
+    <script>
+        PNotify.prototype.options.styling = "bootstrap3";
+        $(document).ajaxStart(function () { Pace.restart(); });
+    </script>
 </body>
 </html>
-<script>
-    PNotify.prototype.options.styling = "bootstrap3";
-    $(document).ajaxStart(function () { Pace.restart(); });
-</script>

@@ -18,7 +18,7 @@
                 <h3 class="box-title">Formulario</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body tblTableBagHoursForm">
+            <div class="box-body divBagHoursForm">
                 @Html.Partial("_FormBagHours")
             </div>
             <!-- /.box-body -->
@@ -33,7 +33,7 @@
                 <h3 class="box-title">Lista</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body tblTableBagHoursList">
+            <div class="box-body divTableBagHoursList">
                 @Html.Partial("_TableBagHours", (IEnumerable<Tier.Dto.FEi_BagHours>)ViewBag.bagHoursList)
             </div>
             <!-- /.box-body -->
@@ -56,58 +56,63 @@
         var orgId = $(this).val();
         var orgname = $(this).text();
 
-        $.get("@Url.Action("GetContractByOrganization", "BackEnd")", { id: orgId })
-            .success(function (data) {
-                var atrArrOpts = '<option value> -- Seleccione -- </option>';
-                $(data).each(function (idx, item) {
-                    atrArrOpts = atrArrOpts + '<option value="' + item.Value + '">' + item.Text + '</option>';
-                });
-
-                $("#contract_id").empty();
-                $("#contract_id").append(atrArrOpts);
-
-                $("#btnViewContratDetails").attr("disabled", "disabled");
+        $.get("@Url.Action("GetContractByOrganization", "BackEnd")", { id: orgId }, function (data) {
+            var atrArrOpts = '<option value> -- Seleccione -- </option>';
+            $(data).each(function (idx, item) {
+                atrArrOpts = atrArrOpts + '<option value="' + item.Value + '">' + item.Text + '</option>';
             });
+
+            $("#contract_id").empty();
+            $("#contract_id").append(atrArrOpts);
+
+            $("#btnViewContratDetails").attr("disabled", "disabled");
+        })
+        .fail(function (ex) {
+            console.log(ex);
+        });
     });
 
     $("#contract_id").change(function () {
         var contId = $("#contract_id").val();
 
-        $.get("@Url.Action("ExistBagHoursToContract", "BackEnd")", { id: contId })
-            .success(function (data) {
-                if (!data.result) {
-                    new PNotify({
-                        title: data.notificationTitle,
-                        text: data.notificationMessage,
-                        type: data.notificationType,
-                        hide: true
-                    });
+        $.get("@Url.Action("ExistBagHoursToContract", "BackEnd")", { id: contId }, function (data) {
+            if (!data.result) {
+                new PNotify({
+                    title: data.notificationTitle,
+                    text: data.notificationMessage,
+                    type: data.notificationType,
+                    hide: true
+                });
 
-                    $("#contract_id").val(null);
-                    $("#btnViewContratDetails").attr("disabled", "disabled");
-                }
-                else {
-                    $("#btnViewContratDetails").removeAttr("disabled");
-                }
-            });
-
+                $("#contract_id").val(null);
+                $("#btnViewContratDetails").attr("disabled", "disabled");
+            }
+            else {
+                $("#btnViewContratDetails").removeAttr("disabled");
+            }
+        })
+        .fail(function (ex) {
+            console.log(ex);
+        });
     });
 
     $('#myModalCD').on('show.bs.modal', function (e) {
         var contId = $("#contract_id").val();
 
-        $.get("@Url.Action("GetContractInfoById", "BackEnd")", { id: contId })
-            .success(function (data) {
-                $("#sContractNumber").text(data.id);
-                $("#sContractName").text(data.name);
+        $.get("@Url.Action("GetContractInfoById", "BackEnd")", { id: contId }, function (data) {
+            $("#sContractNumber").text(data.id);
+            $("#sContractName").text(data.name);
 
-                var contractStartDate = new Date(parseInt(data.start_date.substr(6))).toLocaleDateString();
-                var contractEndDate = new Date(parseInt(data.end_date.substr(6))).toLocaleDateString();
-                $("#sContractTerm").text(contractStartDate + " hasta " + contractEndDate);
+            var contractStartDate = new Date(parseInt(data.start_date.substr(6))).toLocaleDateString();
+            var contractEndDate = new Date(parseInt(data.end_date.substr(6))).toLocaleDateString();
+            $("#sContractTerm").text(contractStartDate + " hasta " + contractEndDate);
 
-                $("#sContractProvider").text(data.provider_name);
-                $("#sContractDescription").text(data.description);
-            });
+            $("#sContractProvider").text(data.provider_name);
+            $("#sContractDescription").text(data.description);
+        })
+        .fail(function (ex) {
+            console.log(ex);
+        });
     });
 
     $('#myModalCD').on('show.bs.modal', function (e) {
@@ -154,11 +159,14 @@
     }
 
     function RefreshBagHoursTable() {
-        $.get('@Url.Action("GetAllBagHours", "BackEnd")')
-        .success(function (data) {
-            $(".tblTableBagHoursList").empty();
-            $(".tblTableBagHoursList").html(data);
+
+        $.get('@Url.Action("GetAllBagHours", "BackEnd")', null, function (data) {
+            $(".divTableBagHoursList").empty();
+            $(".divTableBagHoursList").html(data);
         })
+        .fail(function (ex) {
+            console.log(ex);
+        });
     }
 
     function DeleteBagHoursFail(data) {
@@ -198,35 +206,46 @@
         var bhId = button.data('idbh') // Extract info from data-* attributes
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        $.get("@Url.Action("GetBagHoursById", "BackEnd")", { id: bhId })
-            .success(function (data) {
-                $("#sBHNumber").text(data.id);
-                $("#sBHOrganizationName").text(data.organization_name);
-                $("#sBHContractName").text(data.contract_name);
 
-                var contractStartDate = new Date(parseInt(data.contract_start.substr(6))).toLocaleDateString();
-                var contractEndDate = new Date(parseInt(data.contract_end.substr(6))).toLocaleDateString();
-                $("#sBHTerm").text(contractStartDate + " hasta " + contractEndDate);
+        $.get("@Url.Action("GetBagHoursById", "BackEnd")", { id: bhId }, function (data) {
+            $("#sBHNumber").text(data.id);
+            $("#sBHOrganizationName").text(data.organization_name);
+            $("#sBHContractName").text(data.contract_name);
 
-                $("#sBHQuantity").text(data.quantity + "hora(s)");
-                $("#sBHIsWarranty").text(data.is_warranty ? "Si" : "No");
+            var contractStartDate = new Date(parseInt(data.contract_start.substr(6))).toLocaleDateString();
+            var contractEndDate = new Date(parseInt(data.contract_end.substr(6))).toLocaleDateString();
+            $("#sBHTerm").text(contractStartDate + " hasta " + contractEndDate);
 
-                switch (data.status) {
-                    case 1:
-                        $("#sBHStatus").html("<small class=\"label bg-aqua\">Activo</small>");
-                        break;
-                    case 2:
-                        $("#sBHStatus").html("<small class=\"label bg-orange\">Notificada</small>");
-                        break;
-                    case 3:
-                        $("#sBHStatus").html("<small class=\"label bg-red\">Inactivo</small>");
-                        break;
-                    default:
-                        $("#sBHStatus").html("<small class=\"label bg-gray\">N/A</small>");
-                        break;
-                }
+            $("#sBHQuantity").text(data.quantity + "hora(s)");
+            $("#sBHIsWarranty").text(data.is_warranty ? "Si" : "No");
 
-                $("#sBHNotes").text(data.notes);
-            });
-    })
+            switch (data.status) {
+                case 1:
+                    $("#sBHStatus").html("<small class=\"label bg-aqua\">Activo</small>");
+                    break;
+                case 2:
+                    $("#sBHStatus").html("<small class=\"label bg-orange\">Notificada</small>");
+                    break;
+                case 3:
+                    $("#sBHStatus").html("<small class=\"label bg-red\">Inactivo</small>");
+                    break;
+                default:
+                    $("#sBHStatus").html("<small class=\"label bg-gray\">N/A</small>");
+                    break;
+            }
+
+            $("#sBHNotes").text(data.notes);
+        })
+        .fail(function (ex) {
+            console.log(ex);
+        });
+    });
+
+    function LoadBagHoursForEdit(idBagHours) {
+        $.get("@Url.Action("GetBagHoursById", "BackEnd")", { id: idBagHours }, function (data) {
+            console.log(data);
+        }).fail(function (ex) {
+            console.log(ex);
+        });
+    }
 </script>
