@@ -2,7 +2,10 @@
 
 @using (Ajax.BeginForm("UpdateBagHours", "BackEnd", null, new AjaxOptions() { HttpMethod = "POST", OnFailure = "UpdateBagHoursFail", OnSuccess = "UpdateBagHoursSuccess", Confirm = "Desea actualizar la bolsa de horas?" }, new { id = "frmEdit" }))
 {
+    @Html.AntiForgeryToken()
+
     @Html.HiddenFor(m => m.id)
+
     <div class="form-group">
         @Html.LabelFor(m => m.organization_id)
         @Html.DropDownListFor(m => m.organization_id, null, "-- Seleccione --", new { @class = "form-control", disabled = "disabled" })

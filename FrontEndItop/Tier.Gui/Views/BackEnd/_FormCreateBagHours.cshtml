@@ -2,6 +2,8 @@
 
 @using (Ajax.BeginForm("SaveBagHours", "BackEnd", null, new AjaxOptions() { HttpMethod = "POST", OnFailure = "SaveBagHoursFail", OnSuccess = "SaveBagHoursSuccess", Confirm = "Desea guardar la bolsa de horas?" }, new { id = "frmCreate" }))
 {
+    @Html.AntiForgeryToken()
+
     <div class="form-group">
         @Html.LabelFor(m => m.organization_id)
         @Html.DropDownListFor(m => m.organization_id, null, "-- Seleccione --", new { @class = "form-control select2" })

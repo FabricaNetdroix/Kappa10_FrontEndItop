@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Tier.Gui.Controllers
 {
@@ -18,6 +19,26 @@ namespace Tier.Gui.Controllers
             set { Session["CurrentUser"] = value; }
         }
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            bool blnSaltarAutorizacion = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true)
+                || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
+
+            if (this.CurrentUser != null || blnSaltarAutorizacion)
+            {
+                base.OnActionExecuting(filterContext);
+            }
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                new RouteValueDictionary
+                {
+                    { "controller", "Security" },
+                    { "action", "LogIn" },
+                    { "ReturnUrl", filterContext.HttpContext.Request.RawUrl }
+                });
+            }
+        }
         protected override void OnException(ExceptionContext filterContext)
         {
             System.Diagnostics.Debugger.Break();

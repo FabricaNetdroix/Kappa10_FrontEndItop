@@ -43,6 +43,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult SaveBagHours(Dto.FEi_BagHours obj)
         {
             if (ModelState.IsValid)
@@ -105,7 +106,7 @@ namespace Tier.Gui.Controllers
         public JsonResult DeleteBagHours(int id)
         {
             Dto.FEi_BagHours obj = new Business.BFEi_BagHours().GetBagHoursById(id);
-            
+
             obj.last_user_update = 1;
 
             if (new Business.BFEi_BagHours().DeleteBagHours(obj))
@@ -183,6 +184,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult UpdateBagHours(Dto.FEi_BagHours obj)
         {
             Dto.FEi_BagHours objDB = new Business.BFEi_BagHours().GetBagHoursById((int)obj.id);

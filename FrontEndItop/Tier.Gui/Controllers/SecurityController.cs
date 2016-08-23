@@ -9,13 +9,7 @@ namespace Tier.Gui.Controllers
 {
     public partial class SecurityController : BaseController
     {
-        //
-        // GET: /Security/
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        [AllowAnonymous]
         public ActionResult SingOut()
         {
             Session.Abandon();
@@ -30,6 +24,7 @@ namespace Tier.Gui.Controllers
             ViewBag.UserType = new SelectList(Base.Utilities.GetRolesList(), "Key", "Value");
         }
 
+        [AllowAnonymous]
         public ActionResult LogIn()
         {
             Session.Abandon();
@@ -39,6 +34,7 @@ namespace Tier.Gui.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult LogIn(Models.LoginModel obj)
         {
             if (ModelState.IsValid)
