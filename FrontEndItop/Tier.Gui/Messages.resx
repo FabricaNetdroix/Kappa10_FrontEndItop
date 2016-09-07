@@ -173,4 +173,12 @@
     <value>Usuario o clave inválida.</value>
     <comment>Mensaje que se muestra cuando la lógica de inicio de sesión indica que no se debe permitir el acceso al usuario.</comment>
   </data>
+  <data name="UserStatusDisplayTextActive" xml:space="preserve">
+    <value>Activo</value>
+    <comment>Texto que se muestra para el estado activo de los usuarios</comment>
+  </data>
+  <data name="UserStatusDisplayTextInactive" xml:space="preserve">
+    <value>Inactivo</value>
+    <comment>Texto que se muestra para el estado inactivo de los usuarios</comment>
+  </data>
 </root>

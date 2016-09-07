@@ -23,5 +23,25 @@ namespace Tier.Business
             string encryptedPassword = Tier.Transverse.Crypto.GetMd5Hash(userPassword);
             return new Data.DFEi_User().RetrieveFiltered(new Dto.FEi_User() { alias = userAlias, password = encryptedPassword, role = (byte)userType }).FirstOrDefault();
         }
+
+        public bool CreateUser(Dto.FEi_User obj)
+        {
+            return new Data.DFEi_User().Insert(obj);
+        }
+
+        public IList<Dto.FEi_User> GetFiltered(Dto.FEi_User obj)
+        {
+            return new Data.DFEi_User().RetrieveFiltered(obj);
+        }
+
+        public bool UpdateUser(Dto.FEi_User obj)
+        {
+            return new Data.DFEi_User().Update(obj);
+        }
+
+        public bool DeleteUser(Dto.FEi_User obj)
+        {
+            return new Data.DFEi_User().Delete(obj);
+        }
     }
 }

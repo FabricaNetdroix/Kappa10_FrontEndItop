@@ -1234,6 +1234,9 @@
     <Content Include="Views\Shared\_TopBarUserMenu.cshtml" />
     <Content Include="Views\Shared\_TopBarNotifications.cshtml" />
     <Content Include="Views\BackEnd\_FormEditBagHours.cshtml" />
+    <Content Include="Views\BackEnd\_FormCreateUsers.cshtml" />
+    <Content Include="Views\BackEnd\_TableUsers.cshtml" />
+    <Content Include="Views\BackEnd\_FormEditUser.cshtml" />
     <None Include="Web.uat.netdroix.com.co.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

@@ -15,5 +15,13 @@ namespace Tier.Gui.Base
                 new KeyValuePair<byte, string>(2, Messages.RoleDisplayTextAdministrator)
             };
         }
+
+        public static IList<KeyValuePair<short, string>> GetUserStatusList()
+        {
+            return new List<KeyValuePair<short, string>>() { 
+                new KeyValuePair<short, string>((short)Dto.UserStatus.Active, Messages.UserStatusDisplayTextActive), 
+                new KeyValuePair<short, string>((short)Dto.UserStatus.Inactive, Messages.UserStatusDisplayTextInactive)
+            };
+        }
     }
 }

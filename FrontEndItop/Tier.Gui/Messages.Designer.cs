@@ -185,5 +185,23 @@ namespace Tier.Gui {
                 return ResourceManager.GetString("UserAutenticationFailure", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activo.
+        /// </summary>
+        internal static string UserStatusDisplayTextActive {
+            get {
+                return ResourceManager.GetString("UserStatusDisplayTextActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactivo.
+        /// </summary>
+        internal static string UserStatusDisplayTextInactive {
+            get {
+                return ResourceManager.GetString("UserStatusDisplayTextInactive", resourceCulture);
+            }
+        }
     }
 }

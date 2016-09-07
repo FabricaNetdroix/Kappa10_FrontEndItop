@@ -48,6 +48,15 @@
 @Html.Partial("_ModalBagHoursDetails")
 
 <script>
+    function NotifyFailureAjax(data) {
+        new PNotify({
+            title: "Error en la solicitud",
+            text: data.statusText,
+            type: "error",
+            hide: true
+        });
+    }
+
     $("#btnResetBagHoursForm").click(function () {
         $("#btnViewContratDetails").attr("disabled", "disabled");
     });
@@ -117,15 +126,6 @@
         .fail(function (ex) {
             NotifyFailureAjax(ex);
             console.log(ex.responseText);
-        });
-    }
-
-    function NotifyFailureAjax(data) {
-        new PNotify({
-            title: "Error en la solicitud",
-            text: data.statusText,
-            type: "error",
-            hide: true
         });
     }
 

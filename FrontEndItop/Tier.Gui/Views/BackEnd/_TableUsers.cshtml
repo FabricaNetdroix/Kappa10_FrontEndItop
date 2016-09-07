@@ -1,0 +1,99 @@
+﻿@using Tier.Gui.Base;
+@using Tier.Dto;
+
+@model IEnumerable<Tier.Dto.FEi_User>
+
+<table id="tblUsers">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.alias)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role)
+            </th>
+            <th class="hidden-xs">
+                @Html.DisplayNameFor(model => model.first_name)
+            </th>
+            <th class="hidden-xs">
+                @Html.DisplayNameFor(model => model.last_name)
+            </th>
+            <th class="hidden-xs hidden-md">
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.alias)
+                </td>
+                <td>
+                    @{
+            var objP = Utilities.GetRolesList().Where(ee => ee.Key == item.role).FirstOrDefault();
+            string userRoleName = objP.Value != null ? objP.Value : "N/A";
+                    }
+                    @userRoleName
+                </td>
+                <td class="hidden-xs">
+                    @Html.DisplayFor(modelItem => item.first_name)
+                </td>
+                <td class="hidden-xs">
+                    @Html.DisplayFor(modelItem => item.last_name)
+                </td>
+                <td class="hidden-xs hidden-md">
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @{Tier.Dto.UserStatus eStatus;
+                    Enum.TryParse(item.status.Value.ToString(), out eStatus);
+                    }
+                    @switch (eStatus)
+                    {
+                        case Tier.Dto.UserStatus.Active:
+                            <text><small class="label bg-aqua">Activo</small></text>
+                            break;
+                        case Tier.Dto.UserStatus.Inactive:
+                        <text><small class="label bg-red">Inactivo</small></text>
+                            break;
+                        default:
+                        <text><small class="label bg-gray">N/A</small></text>
+                            break;
+                    }
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalUD" data-idbh="@item.id">Ver</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Ajax.ActionLink("Editar", "EditUser", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divUsersForm", InsertionMode = InsertionMode.Replace, OnFailure = "EditUserFail" }, null)</li>
+                            <li class="divider"></li>
+                            <li>@Ajax.ActionLink("Eliminar", "DeleteUser", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "DeleteUserSuccess", OnFailure = "DeleteUserFail", Confirm = "Desea eliminar el usuario?" }, null)</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    #tblBagHours > thead > tr > th, #tblBagHours > tbody > tr > td {
+        vertical-align: middle;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('#tblUsers').DataTable();
+    });
+</script>

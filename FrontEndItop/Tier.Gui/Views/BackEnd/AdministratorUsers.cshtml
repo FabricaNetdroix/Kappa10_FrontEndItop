@@ -1,5 +1,150 @@
 ﻿@{
-    ViewBag.Title = "Usuarios Adm";
+    ViewBag.Title = "Usuarios";
     ViewBag.SectionTitle = "Gestión de usuarios administradores";
     Layout = "~/Views/Shared/_Layout_Back.cshtml";
 }
+<!-- Small boxes (Stat box) -->
+<div class="row">
+</div>
+<!-- /.row -->
+<!-- Main row -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <i class="fa fa-pencil-square-o"></i>
+                <h3 class="box-title">Formulario</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" id="divUsersForm">
+                @Html.Partial("_FormCreateUsers")
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-8">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <i class="fa fa-list"></i>
+                <h3 class="box-title">Lista</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body divTableUsersList">
+                @Html.Partial("_TableUsers", (IEnumerable<Tier.Dto.FEi_User>)ViewBag.usersList)
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+<!-- /.row (main row) -->
+<script>
+    function NotifyFailureAjax(data) {
+        new PNotify({
+            title: "Error en la solicitud",
+            text: data.statusText,
+            type: "error",
+            hide: true
+        });
+    }
+
+    function SaveUserSuccess(data) {
+        if (data.result) {
+            new PNotify({
+                title: data.notificationTitle,
+                text: data.notificationMessage,
+                type: data.notificationType,
+                hide: true
+            });
+
+            $("#btnResetUsersForm").click();
+
+            RefreshUsersTable();
+        }
+        else {
+            new PNotify({
+                title: data.notificationTitle,
+                text: data.notificationMessage,
+                type: data.notificationType,
+                hide: true
+            });
+        }
+    }
+
+    function SaveUserFail(data) {
+        NotifyFailureAjax(data);
+        console.log(data.responseText);
+    }
+
+    function RefreshUsersTable() {
+        $.get('@Url.Action("GetAllUsers", "BackEnd")', null, function (data) {
+            $(".divTableUsersList").empty();
+            $(".divTableUsersList").html(data);
+        })
+        .fail(function (ex) {
+            NotifyFailureAjax(ex);
+            console.log(ex.responseText);
+        });
+    }
+
+    function EditUserFail(data) {
+        NotifyFailureAjax(data);
+        console.log(data.responseText);
+    }
+
+    function UpdateUserSuccess(data) {
+        if (data.result) {
+            new PNotify({
+                title: data.notificationTitle,
+                text: data.notificationMessage,
+                type: data.notificationType,
+                hide: true
+            });
+
+            $("#btnCancelUsersForm").click();
+
+            RefreshUsersTable();
+        }
+        else {
+            new PNotify({
+                title: data.notificationTitle,
+                text: data.notificationMessage,
+                type: data.notificationType,
+                hide: true
+            });
+        }
+    }
+
+    function UpdateUserFail(data) {
+        NotifyFailureAjax(data);
+        console.log(data.responseText);
+    }
+
+    function DeleteUserSuccess(data) {
+        if (data.result) {
+            new PNotify({
+                title: data.notificationTitle,
+                text: data.notificationMessage,
+                type: data.notificationType,
+                hide: true
+            });
+
+            RefreshUsersTable();
+        }
+        else {
+            new PNotify({
+                title: data.notificationTitle,
+                text: data.notificationMessage,
+                type: data.notificationType,
+                hide: true
+            });
+        }
+    }
+
+    function DeleteUserFail(data) {
+        NotifyFailureAjax(data);
+        console.log(data.responseText);
+    }
+</script>

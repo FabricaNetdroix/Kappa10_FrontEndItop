@@ -1,0 +1,79 @@
+﻿@model Tier.Dto.FEi_User
+
+@using (Ajax.BeginForm("UpdateUser", "BackEnd", null, new AjaxOptions() { HttpMethod = "POST", OnFailure = "UpdateUserFail", OnSuccess = "UpdateUserSuccess", Confirm = "Desea actualizar el nuevo usuario?" }, new { id = "frmEdit" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id)
+    @Html.Hidden("editando", true)
+    @Html.Hidden("initialalias", Model.alias)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.alias)
+        @Html.TextBoxFor(m => m.alias, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.alias)
+    </div>
+    <!-- /.form-group -->
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.password)
+            @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.password)
+        </div>
+        <!-- /.form-group -->
+        <div class="form-group">
+            @Html.LabelFor(m => m.passwordConfirm)
+            @Html.PasswordFor(m => m.passwordConfirm, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.passwordConfirm)
+        </div>
+        <!-- /.form-group -->*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.role)
+        @Html.DropDownListFor(m => m.role, null, "-- Seleccione --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.role)
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.first_name)
+        @Html.TextBoxFor(m => m.first_name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.first_name)
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.last_name)
+        @Html.TextBoxFor(m => m.last_name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.last_name)
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.email)
+        @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.email)
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.department)
+        @Html.TextBoxFor(m => m.department, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.department)
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.notes)
+        @Html.TextAreaFor(m => m.notes, new { @class = "form-control" })
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.status)
+        @Html.DropDownListFor(m => m.status, null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.status)
+    </div>
+    <!-- /.form-group -->
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        @Ajax.ActionLink("Cancelar", "CreateUsers", "BackEnd", null, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divUsersForm", InsertionMode = InsertionMode.Replace, OnFailure = "EditUserFail" }, new { @class = "btn btn-danger pull-right", id = "btnCancelUsersForm" })
+    </div>
+    <!-- /.box-footer -->
+}
+<script>
+    var $form = $("#frmEdit");
+    $.validator.unobtrusive.parse($form);
+</script>

@@ -9,7 +9,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.contract_name)
             </th>
-            <th class="hidden-xs">
+            <th class="hidden-xs hidden-md">
                 Vigencia
             </th>
             <th>
@@ -31,7 +31,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.contract_name)
                 </td>
-                <td class="hidden-xs">
+                <td class="hidden-xs hidden-md">
                     @item.contract_start.Value.ToShortDateString() hasta @item.contract_end.Value.ToShortDateString()
                 </td>
                 <td>
@@ -67,7 +67,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>@Ajax.ActionLink("Editar", "EditBagHours", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divBagHoursForm", InsertionMode = InsertionMode.Replace, OnFailure = "EditBagHoursFail" }, null)</li>
                             <li class="divider"></li>
-                            <li>@Ajax.ActionLink("Eliminar", "DeleteBagHours", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "DeleteBagHoursSuccess", Confirm = "Desea eliminar la bolsa de horas?" }, null)</li>
+                            <li>@Ajax.ActionLink("Eliminar", "DeleteBagHours", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "DeleteBagHoursSuccess", OnFailure = "DeleteBagHoursFail", Confirm = "Desea eliminar la bolsa de horas?" }, null)</li>
                         </ul>
                     </div>
                 </td>

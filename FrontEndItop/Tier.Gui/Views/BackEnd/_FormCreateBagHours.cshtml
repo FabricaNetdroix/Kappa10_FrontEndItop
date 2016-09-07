@@ -6,13 +6,13 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.organization_id)
-        @Html.DropDownListFor(m => m.organization_id, null, "-- Seleccione --", new { @class = "form-control select2" })
+        @Html.DropDownListFor(m => m.organization_id, null, "-- Seleccione --", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.organization_id)
     </div>
     <!-- /.form-group -->
     <div class="form-group">
         @Html.LabelFor(m => m.contract_id)
-        @Html.DropDownListFor(m => m.contract_id, null, "-- Seleccione --", new { @class = "form-control select2" })
+        @Html.DropDownListFor(m => m.contract_id, null, "-- Seleccione --", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.contract_id)
     </div>
    <!-- /.form-group -->
@@ -45,7 +45,6 @@
 }
 
 <script>
-
     $("#organization_id").on("change", function () {
         var orgId = $(this).val();
         var orgname = $(this).text();
