@@ -45,7 +45,7 @@
     @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.UserManagement))
     {
         <li>
-            <a href="@Url.Action("AdministratorUsers", "BackEnd")">
+            <a href="@Url.Action("Users", "BackEnd")">
                 <i class="fa fa-users"></i> <span>Gestión de usuarios</span>
             </a>
         </li>

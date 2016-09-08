@@ -162,7 +162,7 @@
     <Compile Include="Base\Enumerations.cs" />
     <Compile Include="Base\Utilities.cs" />
     <Compile Include="Controllers\BackEndController.cs" />
-    <Compile Include="Controllers\BackEnd_AdministratorUsers.cs" />
+    <Compile Include="Controllers\BackEnd_Users.cs" />
     <Compile Include="Controllers\BackEnd_BagHours.cs" />
     <Compile Include="Controllers\BackEnd_Notifications.cs" />
     <Compile Include="Controllers\BackEnd_PreNotification.cs" />
@@ -1222,7 +1222,7 @@
     <Content Include="Views\BackEnd\BagHours.cshtml" />
     <Content Include="Views\BackEnd\_FormCreateBagHours.cshtml" />
     <Content Include="Views\BackEnd\Notifications.cshtml" />
-    <Content Include="Views\BackEnd\AdministratorUsers.cshtml" />
+    <Content Include="Views\BackEnd\Users.cshtml" />
     <Content Include="Views\BackEnd\PreNotification.cshtml" />
     <Content Include="Views\Security\SelfManagement.cshtml" />
     <Content Include="Views\Security\LogIn.cshtml" />
@@ -1237,6 +1237,7 @@
     <Content Include="Views\BackEnd\_FormCreateUsers.cshtml" />
     <Content Include="Views\BackEnd\_TableUsers.cshtml" />
     <Content Include="Views\BackEnd\_FormEditUser.cshtml" />
+    <Content Include="Views\BackEnd\_ModalUserDetails.cshtml" />
     <None Include="Web.uat.netdroix.com.co.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -1264,7 +1265,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Messages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

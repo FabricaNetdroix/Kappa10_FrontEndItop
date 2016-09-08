@@ -1,0 +1,58 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="myModalUD" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Información del usuario</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblUserDetails">
+                    <tr>
+                        <th>Alias:</th>
+                        <td><span id="sUAlias"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Perfil:</th>
+                        <td><span id="sURole"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Nombres:</th>
+                        <td><span id="sUFirstName"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Apellidos:</th>
+                        <td><span id="sULastName"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Correo electrónico:</th>
+                        <td><span id="sUEmail"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Área:</th>
+                        <td><span id="sUDepartment"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Estado:</th>
+                        <td><span id="sUStatus"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Observaciones:</th>
+                        <td><div id="sUNotes"></div></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #tblBagHoursDetails > tbody > tr > th {
+        width: 100px;
+        vertical-align: top;
+    }
+</style>
+

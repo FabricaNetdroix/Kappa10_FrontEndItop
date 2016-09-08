@@ -22,7 +22,7 @@ namespace Tier.Gui {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Messages {
+    public class Messages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Tier.Gui {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tier.Gui.Messages", typeof(Messages).Assembly);
@@ -51,7 +51,7 @@ namespace Tier.Gui {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to No se ha superado la validación de seguridad Captcha..
         /// </summary>
-        internal static string CaptchaValidationFailure {
+        public static string CaptchaValidationFailure {
             get {
                 return ResourceManager.GetString("CaptchaValidationFailure", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Los datos solicitados no están correctamente diligenciados..
         /// </summary>
-        internal static string InvalidForm {
+        public static string InvalidForm {
             get {
                 return ResourceManager.GetString("InvalidForm", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to La solicitud no puedo ser procesada correctamente..
         /// </summary>
-        internal static string NotificationTextFailure {
+        public static string NotificationTextFailure {
             get {
                 return ResourceManager.GetString("NotificationTextFailure", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Solicitud procesada correctamente..
         /// </summary>
-        internal static string NotificationTextSuccess {
+        public static string NotificationTextSuccess {
             get {
                 return ResourceManager.GetString("NotificationTextSuccess", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Hay advertencias para la solicitud..
         /// </summary>
-        internal static string NotificationTextWarning {
+        public static string NotificationTextWarning {
             get {
                 return ResourceManager.GetString("NotificationTextWarning", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Fallido.
         /// </summary>
-        internal static string NotificationTitleError {
+        public static string NotificationTitleError {
             get {
                 return ResourceManager.GetString("NotificationTitleError", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Exitoso.
         /// </summary>
-        internal static string NotificationTitleSuccess {
+        public static string NotificationTitleSuccess {
             get {
                 return ResourceManager.GetString("NotificationTitleSuccess", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Advertencia.
         /// </summary>
-        internal static string NotificationTitleWarning {
+        public static string NotificationTitleWarning {
             get {
                 return ResourceManager.GetString("NotificationTitleWarning", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Administrador.
         /// </summary>
-        internal static string RoleDisplayTextAdministrator {
+        public static string RoleDisplayTextAdministrator {
             get {
                 return ResourceManager.GetString("RoleDisplayTextAdministrator", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Cliente.
         /// </summary>
-        internal static string RoleDisplayTextCostumer {
+        public static string RoleDisplayTextCostumer {
             get {
                 return ResourceManager.GetString("RoleDisplayTextCostumer", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Comercial.
         /// </summary>
-        internal static string RoleDisplayTextVendor {
+        public static string RoleDisplayTextVendor {
             get {
                 return ResourceManager.GetString("RoleDisplayTextVendor", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to El contrato seleccionado ya tiene una bolsa de horas creada. No es posible continuar..
         /// </summary>
-        internal static string UniqueContractConstraint {
+        public static string UniqueContractConstraint {
             get {
                 return ResourceManager.GetString("UniqueContractConstraint", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Perfil de usuario desconocido.
         /// </summary>
-        internal static string UnknownProfile {
+        public static string UnknownProfile {
             get {
                 return ResourceManager.GetString("UnknownProfile", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Usuario o clave inválida..
         /// </summary>
-        internal static string UserAutenticationFailure {
+        public static string UserAutenticationFailure {
             get {
                 return ResourceManager.GetString("UserAutenticationFailure", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Activo.
         /// </summary>
-        internal static string UserStatusDisplayTextActive {
+        public static string UserStatusDisplayTextActive {
             get {
                 return ResourceManager.GetString("UserStatusDisplayTextActive", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace Tier.Gui {
         /// <summary>
         ///   Looks up a localized string similar to Inactivo.
         /// </summary>
-        internal static string UserStatusDisplayTextInactive {
+        public static string UserStatusDisplayTextInactive {
             get {
                 return ResourceManager.GetString("UserStatusDisplayTextInactive", resourceCulture);
             }

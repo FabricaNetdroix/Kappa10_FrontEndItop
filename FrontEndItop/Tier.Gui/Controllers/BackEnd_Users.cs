@@ -9,7 +9,7 @@ namespace Tier.Gui.Controllers
 {
     public partial class BackEndController : BaseController
     {
-        public ActionResult AdministratorUsers()
+        public ActionResult Users()
         {
             ViewBag.usersList = new Business.BFEi_Users().GetAllUsers();
             IList<KeyValuePair<byte, string>> lstRoles = Base.Utilities.GetRolesList().Where(ee => ee.Value != "Cliente").ToList();
@@ -165,7 +165,9 @@ namespace Tier.Gui.Controllers
 
             obj.last_user_update = 1;
 
-            if (new Business.BFEi_Users().DeleteUser(obj))
+            bool result = new Business.BFEi_Users().DeleteUser(obj);
+
+            if (result)
             {
                 return Json(new
                 {
@@ -187,7 +189,6 @@ namespace Tier.Gui.Controllers
             }
         }
 
-
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetUserById(int id)
         {
@@ -195,6 +196,5 @@ namespace Tier.Gui.Controllers
 
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

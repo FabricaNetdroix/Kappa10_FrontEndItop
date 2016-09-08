@@ -109,7 +109,9 @@ namespace Tier.Gui.Controllers
 
             obj.last_user_update = 1;
 
-            if (new Business.BFEi_BagHours().DeleteBagHours(obj))
+            bool result = new Business.BFEi_BagHours().DeleteBagHours(obj);
+
+            if (result)
             {
                 return Json(new
                 {

@@ -40,6 +40,9 @@
     </div>
 </div>
 <!-- /.row (main row) -->
+<!-- modal detalle de usuario -->
+@Html.Partial("_ModalUserDetails")
+
 <script>
     function NotifyFailureAjax(data) {
         new PNotify({
@@ -147,4 +150,61 @@
         NotifyFailureAjax(data);
         console.log(data.responseText);
     }
+
+    $('#myModalUD').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var uId = button.data('idu') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+        $.get("@Url.Action("GetUserById", "BackEnd")", { id: uId }, function (data) {
+            $("#sUAlias").text(data.alias);
+
+            switch (data.role) {
+                case 2:
+                    $("#sURole").html("<small class=\"label bg-gray\">" + "@Tier.Gui.Messages.RoleDisplayTextAdministrator" + "</small>");
+                    break;
+                case 1:
+                    $("#sURole").html("<small class=\"label bg-gray\">" + "@Tier.Gui.Messages.RoleDisplayTextVendor" + "</small>");
+                    break;
+                default:
+                    $("#sURole").html("<small class=\"label bg-gray\">N/A</small>");
+                    break;
+            }
+
+            $("#sUFirstName").text(data.first_name);
+            $("#sULastName").text(data.last_name);
+            $("#sUEmail").text(data.email);
+            $("#sUDepartment").text(data.department);
+
+            switch (data.status) {
+                case 4:
+                    $("#sUStatus").html("<small class=\"label bg-aqua\">Activo</small>");
+                    break;
+                case 5:
+                    $("#sUStatus").html("<small class=\"label bg-red\">Inactivo</small>");
+                    break;
+                default:
+                    $("#sUStatus").html("<small class=\"label bg-gray\">N/A</small>");
+                    break;
+            }
+
+            $("#sUNotes").text(data.notes);
+        })
+        .fail(function (ex) {
+            NotifyFailureAjax(ex);
+            console.log(ex.responseText);
+        });
+    });
+
+    $('#myModalUD').on('hide.bs.modal', function (event) {
+        $("#sUAlias").text("-");
+        $("#sURole").text("-");
+        $("#sUFirstName").text("-");
+        $("#sULastName").text("-");
+        $("#sUEmail").text("-");
+        $("#sUDepartment").text("-");
+        $("#sUStatus").text("-");
+        $("#sUNotes").text("-");
+    });
 </script>
