@@ -61,26 +61,7 @@ namespace Tier.Gui.Controllers
 
                 bool result = new Business.BFEi_BagHours().CreateBagHours(obj);
 
-                if (result)
-                {
-                    return Json(new
-                    {
-                        result = true,
-                        notificationMessage = Messages.NotificationTextSuccess,
-                        notificationType = Enumerations.NotificationTypes.success.ToString(),
-                        notificationTitle = Messages.NotificationTitleSuccess
-                    });
-                }
-                else
-                {
-                    return Json(new
-                    {
-                        result = false,
-                        notificationMessage = Messages.NotificationTextFailure,
-                        notificationType = Enumerations.NotificationTypes.error.ToString(),
-                        notificationTitle = Messages.NotificationTitleError
-                    });
-                }
+                return GenerateJsonResult(result);
             }
             else
             {
@@ -111,26 +92,7 @@ namespace Tier.Gui.Controllers
 
             bool result = new Business.BFEi_BagHours().DeleteBagHours(obj);
 
-            if (result)
-            {
-                return Json(new
-                {
-                    result = true,
-                    notificationMessage = Messages.NotificationTextSuccess,
-                    notificationType = Enumerations.NotificationTypes.success.ToString(),
-                    notificationTitle = Messages.NotificationTitleSuccess
-                });
-            }
-            else
-            {
-                return Json(new
-                {
-                    result = false,
-                    notificationMessage = Messages.NotificationTextFailure,
-                    notificationType = Enumerations.NotificationTypes.error.ToString(),
-                    notificationTitle = Messages.NotificationTitleError
-                });
-            }
+            return GenerateJsonResult(result);
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
@@ -198,26 +160,7 @@ namespace Tier.Gui.Controllers
 
             bool result = new Business.BFEi_BagHours().UpdateBagHours(objDB);
 
-            if (result)
-            {
-                return Json(new
-                {
-                    result = true,
-                    notificationMessage = Messages.NotificationTextSuccess,
-                    notificationType = Enumerations.NotificationTypes.success.ToString(),
-                    notificationTitle = Messages.NotificationTitleSuccess
-                });
-            }
-            else
-            {
-                return Json(new
-                {
-                    result = false,
-                    notificationMessage = Messages.NotificationTextFailure,
-                    notificationType = Enumerations.NotificationTypes.error.ToString(),
-                    notificationTitle = Messages.NotificationTitleError
-                });
-            }
+            return GenerateJsonResult(result);
         }
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Tier.Gui.Base;
 
 namespace Tier.Gui.Controllers
 {
@@ -59,6 +60,36 @@ namespace Tier.Gui.Controllers
         {
             TempData["MostrarNotificacion"] = new HtmlString("{" + string.Format("\"notificationMessage\":\"{0}\",\"notificationType\":\"{1}\",\"notificationTitle\":\"{2}\"", Mensaje, Tipo, Titulo) + "}");
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected JsonResult GenerateJsonResult(bool result)
+        {
+            if (result)
+            {
+                return Json(new
+                {
+                    result = true,
+                    notificationMessage = Messages.NotificationTextSuccess,
+                    notificationType = Enumerations.NotificationTypes.success.ToString(),
+                    notificationTitle = Messages.NotificationTitleSuccess
+                });
+            }
+            else
+            {
+                return Json(new
+                {
+                    result = false,
+                    notificationMessage = Messages.NotificationTextFailure,
+                    notificationType = Enumerations.NotificationTypes.error.ToString(),
+                    notificationTitle = Messages.NotificationTitleError
+                });
+            }
+        }
+
     }
 
     /// <summary>
