@@ -1,0 +1,63 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="myModalND" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Información de la notificación</h4>
+            </div>
+            <div class="modal-body">
+                <table id="tblNotificationDetails">
+                    <tr>
+                        <th>ID:</th>
+                        <td><span id="sNId"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Destinatarios:</th>
+                        <td><span id="sNRecipients"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Regla F. vigencia:</th>
+                        <td><span id="sNDate_rule"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Regla % Horas:</th>
+                        <td><span id="sNHours_rule"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Observaciones:</th>
+                        <td><span id="sNNotes"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Estado:</th>
+                        <td><span id="sNStatus"></span></td>
+                    </tr>
+                </table>
+                <br />
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Plantilla de correo</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="mailbox-read-message" id="divNotificationHtmlTemplate">
+
+                        </div>
+                        <!-- /.mailbox-read-message -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #tblNotificationDetails > tbody > tr > th {
+        width: 150px;
+        vertical-align: top;
+    }
+</style>
+

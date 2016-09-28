@@ -22,7 +22,8 @@ BEGIN
     
     elseif p_accion = 4 then
     begin -- Delete
-    
+		declare exit handler for 1451 ...;
+		
     end;
     
     end if;

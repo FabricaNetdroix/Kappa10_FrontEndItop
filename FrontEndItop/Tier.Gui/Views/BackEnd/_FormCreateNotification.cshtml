@@ -1,0 +1,124 @@
+﻿@model Tier.Dto.FEi_Notification
+
+@using (Ajax.BeginForm("SaveNotification", "BackEnd", null, new AjaxOptions() { HttpMethod = "POST", OnFailure = "SaveNotificationFail", OnSuccess = "SaveNotificationSuccess", Confirm = "Confirma que desea crear la notificación?" }, new { id = "frmCreate" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.recipients)
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.recipients, new { data_role = "tagsinput", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.recipients)
+    </div>
+    <!-- /.form-group -->
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.date_rule)
+                @Html.TextBoxFor(m => m.date_rule, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.date_rule)
+            </div>
+            <!-- /.form-group -->
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.hours_rule)
+                @Html.TextBoxFor(m => m.hours_rule, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.hours_rule)
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        <div class="form-group">
+            @Html.LabelFor(m => m.notes)
+            @Html.TextAreaFor(m => m.notes, new { @class = "form-control" })
+        </div>
+    </div>
+    <!-- /.form-group -->
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <button type="submit" class="btn btn-primary" onclick="return ValidateNotificationForm();">Guardar</button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalHtmlT">Plantilla</button>
+        <button type="reset" class="btn btn-default pull-right" id="btnResetNotificationForm" onclick="ResetCustomControlsNotificationForm();">Limpiar</button>
+    </div>
+    <!-- /.box-footer -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModalHtmlT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="width: 700px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Diseñador de plantilla de correo</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.TextAreaFor(m => m.html_template)
+                    Variables disponibles:<br />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[NotificationRuleDate]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[NotificationRuleHours]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[BagHoursId]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[BagHoursOrganizationName]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[BagHoursContractName]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[BagHoursContractStartDate]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[BagHoursContractEndDate]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[BagHoursQuantity]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[BagHoursIsWarranty]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[BagHoursNotes]]" />
+                    <input type="button" class="btn btn-primary btn-xs" onclick="InsertVariablePlaceHolder(this);" value="[[BagHoursStatus]]" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="CKEDITOR.instances['html_template'].updateElement();">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    var editor = CKEDITOR.instances['html_template'];
+    if (editor) { CKEDITOR.instances['html_template'].destroy(true); }
+    CKEDITOR.replace('html_template', {
+        extraPlugins: 'placeholder'
+    });
+
+    $('#recipients').tagsinput({
+        allowDuplicates: false,
+        maxTags: 10,
+        maxChars: 255,
+        trimValue: true,
+        tagClass: 'label label-success',
+        cancelConfirmKeysOnEmpty: false,
+        onTagExists: function (item, $tag) {
+            new PNotify({
+                title: 'Notificación',
+                text: 'El destinatario de correo ya ha sido agregado',
+                type: 'notice',
+                hide: true
+            });
+        }
+    });
+
+    $('#recipients').on('beforeItemAdd', function (event) {
+        var tag = event.item;
+        // Do some processing here
+        if (!event.options || !event.options.preventPost) {
+            var re = /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (!re.test(tag)) {
+                event.cancel = true;
+                new PNotify({
+                    title: 'Notificación',
+                    text: 'Formato de correo inválido',
+                    type: 'notice',
+                    hide: true
+                });
+            }
+        }
+    });
+
+    var $form = $("#frmCreate");
+    $.validator.unobtrusive.parse($form);
+</script>

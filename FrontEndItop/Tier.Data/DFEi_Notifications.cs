@@ -7,38 +7,35 @@ using System.Threading.Tasks;
 
 namespace Tier.Data
 {
-    public class DFEi_User : DataParent<Dto.FEi_User>
+    public class DFEi_Notifications : DataParent<Dto.FEi_Notification>
     {
         #region [Constructors]
-        public DFEi_User()
+        public DFEi_Notifications()
             : base() { }
 
-        public DFEi_User(string ConnectionStringName)
+        public DFEi_Notifications(string ConnectionStringName)
             : base(ConnectionStringName) { }
         #endregion
 
-        public override void AssingParametersValues(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.FEi_User obj)
+        public override void AssingParametersValues(MySql.Data.MySqlClient.MySqlCommand cmd, Dto.FEi_Notification obj)
         {
             cmd.Parameters.AddRange(new MySql.Data.MySqlClient.MySqlParameter[] {
                 new MySql.Data.MySqlClient.MySqlParameter("p_id", obj.id),
-                new MySql.Data.MySqlClient.MySqlParameter("p_alias", obj.alias),
-                new MySql.Data.MySqlClient.MySqlParameter("p_password", obj.password),
-                new MySql.Data.MySqlClient.MySqlParameter("p_role", obj.role),
-                new MySql.Data.MySqlClient.MySqlParameter("p_first_name", obj.first_name),
-                new MySql.Data.MySqlClient.MySqlParameter("p_last_name", obj.last_name),
-                new MySql.Data.MySqlClient.MySqlParameter("p_email", obj.email),
-                new MySql.Data.MySqlClient.MySqlParameter("p_department", obj.department),
-                new MySql.Data.MySqlClient.MySqlParameter("p_status", obj.status),
+                new MySql.Data.MySqlClient.MySqlParameter("p_recipients", obj.recipients),
+                new MySql.Data.MySqlClient.MySqlParameter("p_date_rule", obj.date_rule),
+                new MySql.Data.MySqlClient.MySqlParameter("p_hours_rule", obj.hours_rule),
+                new MySql.Data.MySqlClient.MySqlParameter("p_html_template", obj.html_template),
                 new MySql.Data.MySqlClient.MySqlParameter("p_notes", obj.notes),
+                new MySql.Data.MySqlClient.MySqlParameter("p_status", obj.status),
                 new MySql.Data.MySqlClient.MySqlParameter("p_last_user_update", obj.last_user_update),
             });
         }
 
-        public override IList<Dto.FEi_User> RetrieveFiltered(Dto.FEi_User obj)
+        public override IList<Dto.FEi_Notification> RetrieveFiltered(Dto.FEi_Notification obj)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
-                cmd.CommandText = base.GetProcedureNameWithSchema("usp_security_users");
+                cmd.CommandText = base.GetProcedureNameWithSchema("usp_core_notifications");
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("p_accion", StoreProcedureActions.Select));
@@ -46,17 +43,17 @@ namespace Tier.Data
 
                 using (IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {
-                    return CastObjetos.IDataReaderToList<Dto.FEi_User>(reader);
+                    return CastObjetos.IDataReaderToList<Dto.FEi_Notification>(reader);
                 }
             }
         }
 
-        public override bool Insert(Dto.FEi_User obj)
+        public override bool Insert(Dto.FEi_Notification obj)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = base.GetProcedureNameWithSchema("usp_security_users");
+                cmd.CommandText = base.GetProcedureNameWithSchema("usp_core_notifications");
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("p_accion", StoreProcedureActions.Insert));
                 this.AssingParametersValues(cmd, obj);
@@ -67,17 +64,17 @@ namespace Tier.Data
             }
         }
 
-        public override bool Insert(Dto.FEi_User obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public override bool Insert(Dto.FEi_Notification obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             throw new NotImplementedException();
         }
 
-        public override bool Update(Dto.FEi_User obj)
+        public override bool Update(Dto.FEi_Notification obj)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = base.GetProcedureNameWithSchema("usp_security_users");
+                cmd.CommandText = base.GetProcedureNameWithSchema("usp_core_notifications");
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("p_accion", StoreProcedureActions.Update));
                 this.AssingParametersValues(cmd, obj);
@@ -88,17 +85,17 @@ namespace Tier.Data
             }
         }
 
-        public override bool Update(Dto.FEi_User obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public override bool Update(Dto.FEi_Notification obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             throw new NotImplementedException();
         }
 
-        public override bool Delete(Dto.FEi_User obj)
+        public override bool Delete(Dto.FEi_Notification obj)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = base.GetProcedureNameWithSchema("usp_security_users");
+                cmd.CommandText = base.GetProcedureNameWithSchema("usp_core_notifications");
 
                 cmd.Parameters.Add(new MySql.Data.MySqlClient.MySqlParameter("p_accion", StoreProcedureActions.Delete));
                 this.AssingParametersValues(cmd, obj);
@@ -109,7 +106,7 @@ namespace Tier.Data
             }
         }
 
-        public override bool Delete(Dto.FEi_User obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
+        public override bool Delete(Dto.FEi_Notification obj, MySql.Data.MySqlClient.MySqlTransaction objTrans)
         {
             throw new NotImplementedException();
         }

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Tier.Dto.FEi_Notification>
+
+<table id="tblNotifications">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.recipients)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date_rule)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hours_rule)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.recipients)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_rule) día(s)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hours_rule) %
+                </td>
+                <td>
+                    @{Tier.Dto.NotificationStatus eStatus;
+                    Enum.TryParse(item.status.Value.ToString(), out eStatus);
+                    }
+                    @switch (eStatus)
+                    {
+                        case Tier.Dto.NotificationStatus.Active:
+                            <text><small class="label bg-aqua">Activo</small></text>
+                            break;
+                        case Tier.Dto.NotificationStatus.Inactive:
+                        <text><small class="label bg-red">Inactivo</small></text>
+                            break;
+                        default:
+                        <text><small class="label bg-gray">N/A</small></text>
+                            break;
+                    }
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalND" data-idbh="@item.id">Ver</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Ajax.ActionLink("Editar", "EditNotification", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divNotificationForm", InsertionMode = InsertionMode.Replace, OnFailure = "EditNotificationFail" }, null)</li>
+                            <li class="divider"></li>
+                            <li>@Ajax.ActionLink("Eliminar", "DeleteNotification", "BackEnd", new { id = item.id }, new AjaxOptions() { HttpMethod = "POST", OnSuccess = "DeleteNotificationSuccess", OnFailure = "DeleteNotificationFail", Confirm = "Desea eliminar la notificación?" }, null)</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    #tblNotifications > thead > tr > th, #tblNotifications > tbody > tr > td {
+        vertical-align: middle;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('#tblNotifications').DataTable();
+    });
+</script>

@@ -19,6 +19,12 @@ namespace Tier.Dto
         Inactive = 5
     }
 
+    public enum NotificationStatus : short
+    {
+        Active = 6,
+        Inactive = 7
+    }
+
     public enum UserTypes : byte
     {
         Costumer = 0,
