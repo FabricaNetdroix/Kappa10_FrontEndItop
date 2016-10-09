@@ -45,7 +45,7 @@
 
 <script>
     function InsertVariablePlaceHolder(control) {
-        CKEDITOR.instances['html_template'].insertText($(control).val());
+        CKEDITOR.instances['html_template'].insertText($(control).data("placeholder"));
     }
 
     function NotifyFailureAjax(data) {
