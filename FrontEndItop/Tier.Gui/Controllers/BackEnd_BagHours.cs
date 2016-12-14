@@ -20,6 +20,8 @@ namespace Tier.Gui.Controllers
             ViewBag.organization_id = new SelectList(lstOrgs, "Key", "Value");
             ViewBag.contract_id = new SelectList(new List<KeyValuePair<int, string>>(), "Key", "Value");
 
+            ViewBag.status = new SelectList(Utilities.GetBagHoursStatusList(), "Key", "Value");
+
             ViewBag.bagHoursList = new Business.BFEi_BagHours().GetAllBagHours();
 
             return View(new Dto.FEi_BagHours());
@@ -57,7 +59,6 @@ namespace Tier.Gui.Controllers
                 obj.contract_end = objIPC.end_date;
 
                 obj.last_user_update = 1;
-                obj.status = (short)Dto.BagHoursStatus.Active;
 
                 bool result = new Business.BFEi_BagHours().CreateBagHours(obj);
 
@@ -144,6 +145,8 @@ namespace Tier.Gui.Controllers
             ViewBag.organization_id = new SelectList(lstOrgs, "Key", "Value", obj.organization_id);
             ViewBag.contract_id = new SelectList(lstContracts.Where(ee => ee.org_id == obj.organization_id).ToList(), "id", "name", obj.contract_id);
 
+            ViewBag.status = new SelectList(Utilities.GetBagHoursStatusList(), "Key", "Value", obj.status);
+
             return PartialView("_FormEditBagHours", obj);
         }
 
@@ -156,7 +159,8 @@ namespace Tier.Gui.Controllers
             objDB.quantity = obj.quantity;
             objDB.notes = obj.notes;
             objDB.is_warranty = obj.is_warranty;
-            obj.last_user_update = 1;
+            objDB.last_user_update = 1;
+            objDB.status = obj.status;
 
             bool result = new Business.BFEi_BagHours().UpdateBagHours(objDB);
 
@@ -174,6 +178,8 @@ namespace Tier.Gui.Controllers
 
             ViewBag.organization_id = new SelectList(lstOrgs, "Key", "Value");
             ViewBag.contract_id = new SelectList(new List<KeyValuePair<int, string>>(), "Key", "Value");
+
+            ViewBag.status = new SelectList(Utilities.GetBagHoursStatusList(), "Key", "Value");
 
             return PartialView("_FormCreateBagHours");
         }

@@ -44,13 +44,16 @@
                     @switch (eStatus)
                     {
                         case Tier.Dto.BagHoursStatus.Active:
-                            <text><small class="label bg-aqua">Activo</small></text>
+                            <text><small class="label bg-aqua">@Tier.Gui.Messages.BagHoursStatusDisplayTextActive</small></text>
                             break;
                         case Tier.Dto.BagHoursStatus.Notified:
-                        <text><small class="label bg-orange">Notificada</small></text>
+                        <text><small class="label bg-orange">@Tier.Gui.Messages.BagHoursStatusDisplayTextNotified</small></text>
                             break;
                         case Tier.Dto.BagHoursStatus.Inactive:
-                        <text><small class="label bg-red">Inactivo</small></text>
+                        <text><small class="label bg-red">@Tier.Gui.Messages.BagHoursStatusDisplayTextInactive</small></text>
+                            break;
+                        case Tier.Dto.BagHoursStatus.Implementacion:
+                        <text><small class="label bg-purple">@Tier.Gui.Messages.BagHoursStatusDisplayTextImplementation</small></text>
                             break;
                         default:
                         <text><small class="label bg-gray">N/A</small></text>

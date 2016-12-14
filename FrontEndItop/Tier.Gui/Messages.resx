@@ -117,6 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BagHoursStatusDisplayTextActive" xml:space="preserve">
+    <value>Activa</value>
+    <comment>Texto que se muestra para el estado activa de las bolsas de horas</comment>
+  </data>
+  <data name="BagHoursStatusDisplayTextImplementation" xml:space="preserve">
+    <value>En Implementación</value>
+    <comment>Texto que se muestra para el estado en eimplementación de las bolsas de horas</comment>
+  </data>
+  <data name="BagHoursStatusDisplayTextInactive" xml:space="preserve">
+    <value>Inactiva</value>
+    <comment>Texto que se muestra para el estado inactiva de las bolsas de horas</comment>
+  </data>
+  <data name="BagHoursStatusDisplayTextNotified" xml:space="preserve">
+    <value>Notificada</value>
+    <comment>Texto que se muestra para el estado notificada de las bolsas de horas</comment>
+  </data>
   <data name="CaptchaValidationFailure" xml:space="preserve">
     <value>No se ha superado la validación de seguridad Captcha.</value>
     <comment>Mensaje que se muestra en el inicio de sesión al no superar la validación Captcha.</comment>

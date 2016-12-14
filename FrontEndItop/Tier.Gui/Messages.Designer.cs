@@ -61,6 +61,42 @@ namespace Tier.Gui {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activa.
+        /// </summary>
+        public static string BagHoursStatusDisplayTextActive {
+            get {
+                return ResourceManager.GetString("BagHoursStatusDisplayTextActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to En Implementación.
+        /// </summary>
+        public static string BagHoursStatusDisplayTextImplementation {
+            get {
+                return ResourceManager.GetString("BagHoursStatusDisplayTextImplementation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactiva.
+        /// </summary>
+        public static string BagHoursStatusDisplayTextInactive {
+            get {
+                return ResourceManager.GetString("BagHoursStatusDisplayTextInactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notificada.
+        /// </summary>
+        public static string BagHoursStatusDisplayTextNotified {
+            get {
+                return ResourceManager.GetString("BagHoursStatusDisplayTextNotified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se ha superado la validación de seguridad Captcha..
         /// </summary>
         public static string CaptchaValidationFailure {

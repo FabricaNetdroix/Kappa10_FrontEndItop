@@ -173,13 +173,16 @@
 
             switch (data.status) {
                 case 1:
-                    $("#sBHStatus").html("<small class=\"label bg-aqua\">Activo</small>");
+                    $("#sBHStatus").html("<small class=\"label bg-purple\">@Tier.Gui.Messages.BagHoursStatusDisplayTextImplementation</small>");
                     break;
                 case 2:
-                    $("#sBHStatus").html("<small class=\"label bg-orange\">Notificada</small>");
+                    $("#sBHStatus").html("<small class=\"label bg-aqua\">@Tier.Gui.Messages.BagHoursStatusDisplayTextActive</small>");
                     break;
                 case 3:
-                    $("#sBHStatus").html("<small class=\"label bg-red\">Inactivo</small>");
+                    $("#sBHStatus").html("<small class=\"label bg-orange\">@Tier.Gui.Messages.BagHoursStatusDisplayTextNotified</small>");
+                    break;
+                case 4:
+                    $("#sBHStatus").html("<small class=\"label bg-red\">@Tier.Gui.Messages.BagHoursStatusDisplayTextInactive</small>");
                     break;
                 default:
                     $("#sBHStatus").html("<small class=\"label bg-gray\">N/A</small>");

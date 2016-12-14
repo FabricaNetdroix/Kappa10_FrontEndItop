@@ -8,21 +8,22 @@ namespace Tier.Dto
 {
     public enum BagHoursStatus : short
     {
-        Active = 1,
-        Notified = 2,
-        Inactive = 3
+        Implementacion = 1,
+        Active = 2,
+        Notified = 3,
+        Inactive = 4
     }
 
     public enum UserStatus : short
     {
-        Active = 4,
-        Inactive = 5
+        Active = 5,
+        Inactive = 6
     }
 
     public enum NotificationStatus : short
     {
-        Active = 6,
-        Inactive = 7
+        Active = 7,
+        Inactive = 8
     }
 
     public enum UserTypes : byte

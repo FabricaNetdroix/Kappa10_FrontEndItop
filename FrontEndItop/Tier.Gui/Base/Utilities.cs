@@ -23,5 +23,15 @@ namespace Tier.Gui.Base
                 new KeyValuePair<short, string>((short)Dto.UserStatus.Inactive, Messages.UserStatusDisplayTextInactive)
             };
         }
+
+        public static IList<KeyValuePair<short, string>> GetBagHoursStatusList()
+        {
+            return new List<KeyValuePair<short, string>>() { 
+                new KeyValuePair<short, string>((short)Dto.BagHoursStatus.Implementacion, Messages.BagHoursStatusDisplayTextImplementation), 
+                new KeyValuePair<short, string>((short)Dto.BagHoursStatus.Active, Messages.BagHoursStatusDisplayTextActive), 
+                new KeyValuePair<short, string>((short)Dto.BagHoursStatus.Notified, Messages.BagHoursStatusDisplayTextNotified), 
+                new KeyValuePair<short, string>((short)Dto.BagHoursStatus.Inactive, Messages.BagHoursStatusDisplayTextInactive)
+            };
+        }
     }
 }
