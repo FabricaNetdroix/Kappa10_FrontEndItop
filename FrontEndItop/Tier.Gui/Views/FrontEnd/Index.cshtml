@@ -6,95 +6,14 @@
 <div class="box box-solid">
     <div class="box-header with-border">
         <i class="fa fa-info"></i>
-        <h3 class="box-title">Leyenda</h3>
+        <h3 class="box-title">Información de contrato y bolsa de horas</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        <span class="label label-primary">Números de caso que inician con <wbr>R-... son Requerimientos</span>
-        <span class="label label-primary">Números de caso que inician con <wbr>I-... son Incidentes</span>
-    </div>
-    <!-- /.box-body -->
-</div>
-
-<div class="nav-tabs-custom">
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#sop" data-toggle="tab">Horas Soporte</a></li>
-    </ul>
-    <div class="tab-content">
-        <!-- /tab-pane -->
-        <div class="active tab-pane" id="sop">
-            <!-- Info boxes -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <!-- Apply any bg-* class to to the icon to color it -->
-                        <span class="info-box-icon bg-green"><i class="fa fa-chevron-circle-up"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Disponibles</span>
-                            <span class="info-box-number">750</span>
-                        </div><!-- /.info-box-content -->
-                    </div><!-- /.info-box -->
-                </div>
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <!-- Apply any bg-* class to to the icon to color it -->
-                        <span class="info-box-icon bg-yellow"><i class="fa fa-chevron-circle-down"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Consumidas</span>
-                            <span class="info-box-number">250</span>
-                        </div><!-- /.info-box-content -->
-                    </div><!-- /.info-box -->
-                </div>
-                <div class="col-md-4">
-                    <div class="info-box">
-                        <!-- Apply any bg-* class to to the icon to color it -->
-                        <span class="info-box-icon bg-aqua"><i class="fa fa-chevron-circle-right"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Contratadas</span>
-                            <span class="info-box-number">1,000</span>
-                        </div><!-- /.info-box-content -->
-                    </div><!-- /.info-box -->
-                </div>
-            </div>
-            <!-- /.row -->
-            <div class="row" style="width:90%; margin:0 auto">
-                <br />
-                @Html.Partial("_TableBagHours", null)
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.tab-pane -->
-    </div>
-    <!-- /.tab-content -->
-</div>
-<!-- /.nav-tabs-custom -->
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Detalle de caso</h4>
-            </div>
-            <div class="modal-body">
-                <div class="box box-info">
-                    <div class="box-header">
-                        <h3 class="box-title">Cargando información</h3>
-                    </div>
-                    <div class="box-body">
-                        Recuperando información del caso
-                    </div>
-                    <!-- /.box-body -->
-                    <!-- Loading (remove the following to stop the loading)-->
-                    <div class="overlay">
-                        <i class="fa fa-refresh fa-spin"></i>
-                    </div>
-                    <!-- end loading -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
-            </div>
+        <div style="width:256px; margin:0 auto"><img src="@Url.Content("~/dist/img/document-256x256.png")" alt="Sin detalle de contrato" /></div>
+        <div class="alert alert-info alert-dismissible">
+            <h4><i class="icon fa fa-info"></i> Información!</h4>
+            Por favor seleccione un contrato de la lista para visualizar los detalles del mismo.
         </div>
     </div>
 </div>

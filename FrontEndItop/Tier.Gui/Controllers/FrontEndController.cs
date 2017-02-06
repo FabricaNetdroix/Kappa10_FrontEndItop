@@ -12,7 +12,17 @@ namespace Tier.Gui.Controllers
         // GET: /FrontEnd/
         public ActionResult Index()
         {
+            // Recuperamos los contratos a los que está asociado el usuario.
+            ViewBag.lstContratos = new Business.IP_General().GetProductionContractsByLogin(base.CurrentUser.alias);
+
             return View();
         }
-	}
+
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public PartialViewResult DetalleConsumo(int id)
+        {
+            ViewBag.BagHours = new Business.BFEi_BagHours().GetBagHoursByContractId(id);
+            return PartialView("_ConsumptionDetail");
+        }
+    }
 }

@@ -304,11 +304,6 @@
     <Content Include="dist\css\skins\_all-skins.css" />
     <Content Include="dist\css\skins\_all-skins.min.css" />
     <Content Include="dist\img\app-logo.png" />
-    <Content Include="dist\img\avatar.png" />
-    <Content Include="dist\img\avatar04.png" />
-    <Content Include="dist\img\avatar2.png" />
-    <Content Include="dist\img\avatar3.png" />
-    <Content Include="dist\img\avatar5.png" />
     <Content Include="dist\img\boxed-bg.jpg" />
     <Content Include="dist\img\boxed-bg.png" />
     <Content Include="dist\img\building-128x128.png" />
@@ -321,20 +316,11 @@
     <Content Include="dist\img\credit\paypal2.png" />
     <Content Include="dist\img\credit\visa.png" />
     <Content Include="dist\img\default-50x50.gif" />
+    <Content Include="dist\img\document-256x256.png" />
+    <Content Include="dist\img\gearwheel-256x256.png" />
     <Content Include="dist\img\icons.png" />
-    <Content Include="dist\img\photo1.png" />
-    <Content Include="dist\img\photo2.png" />
-    <Content Include="dist\img\photo3.jpg" />
-    <Content Include="dist\img\photo4.jpg" />
     <Content Include="dist\img\profile-menu-128x128.png" />
-    <Content Include="dist\img\user1-128x128.jpg" />
-    <Content Include="dist\img\user2-160x160.jpg" />
-    <Content Include="dist\img\user3-128x128.jpg" />
-    <Content Include="dist\img\user4-128x128.jpg" />
-    <Content Include="dist\img\user5-128x128.jpg" />
-    <Content Include="dist\img\user6-128x128.jpg" />
-    <Content Include="dist\img\user7-128x128.jpg" />
-    <Content Include="dist\img\user8-128x128.jpg" />
+    <Content Include="dist\img\redspotlight-256x256.png" />
     <Content Include="dist\js\app.js" />
     <Content Include="dist\js\app.min.js" />
     <Content Include="dist\js\demo.js" />
@@ -1365,6 +1351,8 @@
     <Content Include="Views\BackEnd\_TableNotifications.cshtml" />
     <Content Include="Views\BackEnd\_ModalNotificationDetails.cshtml" />
     <Content Include="Views\BackEnd\_FormEditNotification.cshtml" />
+    <Content Include="Views\Shared\_ClientContractsList.cshtml" />
+    <Content Include="Views\FrontEnd\_ConsumptionDetail.cshtml" />
     <None Include="Web.uat.netdroix.com.co.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -1410,7 +1398,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61864</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

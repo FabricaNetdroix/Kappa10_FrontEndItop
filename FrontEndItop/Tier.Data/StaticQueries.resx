@@ -118,29 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="itop_platform_get_contracts" xml:space="preserve">
-    <value>select `_itopview_contract`.`id`,
+    <value>SELECT 
+    `_itopview_contract`.`id`,
     `_itopview_contract`.`name`,
     `_itopview_contract`.`org_id`,
     `_itopview_contract`.`organization_name`,
     `_itopview_contract`.`description`,
     `_itopview_contract`.`start_date`,
     `_itopview_contract`.`end_date`,
-    -- `_itopview_contract`.`cost`,
-    -- `_itopview_contract`.`cost_currency`,
-    -- `_itopview_contract`.`contracttype_id`,
-    -- `_itopview_contract`.`contracttype_name`,
-    -- `_itopview_contract`.`billing_frequency`,
-    -- `_itopview_contract`.`cost_unit`,
     `_itopview_contract`.`provider_id`,
     `_itopview_contract`.`provider_name`
-    -- `_itopview_contract`.`status`,
-    -- `_itopview_contract`.`finalclass`,
-    -- `_itopview_contract`.`friendlyname`,
-    -- `_itopview_contract`.`org_id_friendlyname`,
-    -- `_itopview_contract`.`contracttype_id_friendlyname`,
-    -- `_itopview_contract`.`provider_id_friendlyname`
-from `[&lt;SCHEMA&gt;]`.`_itopview_contract`
-where `status` = 'production' and contracttype_id = 39 and provider_id_friendlyname = 'KAPPA10 LTDA';</value>
+FROM
+    `{0}`.`_itopview_contract`
+WHERE
+    `{0}`.`_itopview_contract`.`status` = 'production'
+        AND `{0}`.`_itopview_contract`.`contracttype_id` = 39
+        AND `{0}`.`_itopview_contract`.`provider_id_friendlyname` = 'KAPPA10 LTDA';</value>
     <comment>Consulta que se envia para recuperar los contratos para la creación de bolsas de horas.</comment>
+  </data>
+  <data name="itop_platform_get_userbylogin" xml:space="preserve">
+    <value>SELECT 
+    `_itopview_contract`.`id`,
+    `_itopview_contract`.`name`,
+    `_itopview_contract`.`org_id`,
+    `_itopview_contract`.`organization_name`,
+    `_itopview_contract`.`description`,
+    `_itopview_contract`.`start_date`,
+    `_itopview_contract`.`end_date`,
+    `_itopview_contract`.`provider_id`,
+    `_itopview_contract`.`provider_name`
+FROM
+    `{0}`.`_itoppriv_user`
+        INNER JOIN
+    `{0}`.`_itoplnkcontacttocontract` ON `_itoppriv_user`.`contactid` = `_itoplnkcontacttocontract`.`contact_id`
+        INNER JOIN
+    `{0}`.`_itopview_contract` ON `_itoplnkcontacttocontract`.`contract_id` = `_itopview_contract`.`id`
+        INNER JOIN
+    `{0}`.`_itoporganization` ON `_itopview_contract`.`org_id` = `_itoporganization`.`id`
+WHERE
+    `{0}`.`_itoppriv_user`.`login` = '{1}'
+        AND `{0}`.`_itopview_contract`.`status` = 'production'
+        AND `{0}`.`_itoppriv_user`.`finalclass` ='UserLocal';</value>
   </data>
 </root>

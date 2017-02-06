@@ -61,7 +61,21 @@ namespace Tier.Data
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.CommandText = StaticQueries.itop_platform_get_contracts.Replace("[<SCHEMA>]", base.iTopPlatformSchema);
+                cmd.CommandText = string.Format(StaticQueries.itop_platform_get_contracts, base.iTopPlatformSchema);
+
+                using (System.Data.IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    return CastObjetos.IDataReaderToList<Dto.IP_Contract>(reader);
+                }
+            }
+        }
+
+        public IList<Dto.IP_Contract> GetProductionContractsByLogin(string userAlias)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = string.Format(StaticQueries.itop_platform_get_userbylogin, base.iTopPlatformSchema, userAlias);
 
                 using (System.Data.IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {

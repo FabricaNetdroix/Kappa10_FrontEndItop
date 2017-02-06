@@ -61,23 +61,48 @@ namespace Tier.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to select `_itopview_contract`.`id`,
+        ///   Looks up a localized string similar to SELECT 
+        ///    `_itopview_contract`.`id`,
         ///    `_itopview_contract`.`name`,
         ///    `_itopview_contract`.`org_id`,
         ///    `_itopview_contract`.`organization_name`,
         ///    `_itopview_contract`.`description`,
         ///    `_itopview_contract`.`start_date`,
         ///    `_itopview_contract`.`end_date`,
-        ///    -- `_itopview_contract`.`cost`,
-        ///    -- `_itopview_contract`.`cost_currency`,
-        ///    -- `_itopview_contract`.`contracttype_id`,
-        ///    -- `_itopview_contract`.`contracttype_name`,
-        ///    -- `_itopview_contract`.`billing_frequency`,
-        ///    -- `_itopview_cont [rest of string was truncated]&quot;;.
+        ///    `_itopview_contract`.`provider_id`,
+        ///    `_itopview_contract`.`provider_name`
+        ///FROM
+        ///    `{0}`.`_itopview_contract`
+        ///WHERE
+        ///    `{0}`.`_itopview_contract`.`status` = &apos;production&apos;
+        ///        AND `{0}`.`_itopview_contract`.`contracttype_id` = 39
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string itop_platform_get_contracts {
             get {
                 return ResourceManager.GetString("itop_platform_get_contracts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///    `_itopview_contract`.`id`,
+        ///    `_itopview_contract`.`name`,
+        ///    `_itopview_contract`.`org_id`,
+        ///    `_itopview_contract`.`organization_name`,
+        ///    `_itopview_contract`.`description`,
+        ///    `_itopview_contract`.`start_date`,
+        ///    `_itopview_contract`.`end_date`,
+        ///    `_itopview_contract`.`provider_id`,
+        ///    `_itopview_contract`.`provider_name`
+        ///FROM
+        ///    `{0}`.`_itoppriv_user`
+        ///        INNER JOIN
+        ///    `{0}`.`_itoplnkcontacttocontract` ON `_itoppriv_user`.`contactid` = `_itoplnkcontacttocontract`.`contact_id [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string itop_platform_get_userbylogin {
+            get {
+                return ResourceManager.GetString("itop_platform_get_userbylogin", resourceCulture);
             }
         }
     }

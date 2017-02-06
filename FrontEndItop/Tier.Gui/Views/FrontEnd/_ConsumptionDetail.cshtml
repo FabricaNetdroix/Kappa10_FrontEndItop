@@ -1,0 +1,166 @@
+﻿@{
+    Tier.Dto.FEi_BagHours bh = (Tier.Dto.FEi_BagHours)ViewBag.BagHours;
+    string vigenciaBH = (bh != null ? string.Format("{0:dd-MMM-yy} hasta {1:dd-MMM-yy}", bh.contract_start.Value, bh.contract_end.Value) : string.Empty);
+}
+@if (bh != null)
+{
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <i class="fa fa-info"></i>
+            <h3 class="box-title">Información de contrato y bolsa de horas</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">ID:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputBagHoursId" placeholder="ID" value="@bh.id" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Vigencia:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputValidity" placeholder="Vigencia" value="@vigenciaBH" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Contrato:</label>
+
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputContractName" placeholder="Contrato" value="@bh.contract_name" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Estado:</label>
+                        <div class="col-sm-10">
+                            @switch (bh.status)
+                            {
+                                case 1:
+                                    <small class="label bg-purple">@Tier.Gui.Messages.BagHoursStatusDisplayTextImplementation</small>
+                                    break;
+                                case 2:
+                                <small class="label bg-aqua">@Tier.Gui.Messages.BagHoursStatusDisplayTextActive</small>
+                                    break;
+                                case 3:
+                                <small class="label bg-orange">@Tier.Gui.Messages.BagHoursStatusDisplayTextNotified</small>
+                                    break;
+                                case 4:
+                                <small class="label bg-red">@Tier.Gui.Messages.BagHoursStatusDisplayTextInactive</small>
+                                    break;
+                                default:
+                                <small class="label bg-gray">N/A</small>
+                                    break;
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+    if (bh.status != (short)Tier.Dto.BagHoursStatus.Implementacion)
+    {
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#sop" data-toggle="tab">Horas Soporte</a></li>
+            </ul>
+            <div class="tab-content">
+                <!-- /tab-pane -->
+                <div class="active tab-pane" id="sop">
+                    <!-- Info boxes -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="info-box">
+                                <!-- Apply any bg-* class to to the icon to color it -->
+                                <span class="info-box-icon bg-green"><i class="fa fa-chevron-circle-up"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Disponibles</span>
+                                    <span class="info-box-number">750</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-box">
+                                <!-- Apply any bg-* class to to the icon to color it -->
+                                <span class="info-box-icon bg-yellow"><i class="fa fa-chevron-circle-down"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Consumidas</span>
+                                    <span class="info-box-number">250</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-box">
+                                <!-- Apply any bg-* class to to the icon to color it -->
+                                <span class="info-box-icon bg-aqua"><i class="fa fa-chevron-circle-right"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Contratadas</span>
+                                    <span class="info-box-number">@string.Format("{0:N0}", bh.quantity)</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="row" style="width:90%; margin:0 auto">
+                        <br />
+                        @Html.Partial("_TableBagHours", null)
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+    }
+    else
+    {
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#sop" data-toggle="tab">Horas Soporte</a></li>
+            </ul>
+            <div class="tab-content">
+                <!-- /tab-pane -->
+                <div style="width:256px; margin:0 auto"><img src="@Url.Content("~/dist/img/gearwheel-256x256.png")" alt="Sin detalle de contrato" /></div>
+                <div class="alert alert-info alert-dismissible">
+                    <h4><i class="icon fa fa-info"></i> Información!</h4>
+                    Estamos ejecutando las actividades de implementación. Pronto podrá visualizar los casos solicitados.
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+    }
+            <!-- /.nav-tabs-custom -->
+}
+else
+{
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <i class="fa fa-info"></i>
+            <h3 class="box-title">Información de contrato y bolsa de horas</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div style="width:256px; margin:0 auto"><img src="@Url.Content("~/dist/img/redspotlight-256x256.png")" alt="Sin detalle de contrato" /></div>
+            <div class="alert alert-warning alert-dismissible">
+                <h4><i class="icon fa fa-warning"></i> Atención!</h4>
+                No se ha configurado una bolda de horas asociada al contrato seleccinado.
+                Por favor comuniquese con nuestro departamento comercial.
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+}
