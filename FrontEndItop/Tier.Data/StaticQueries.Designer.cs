@@ -62,21 +62,20 @@ namespace Tier.Data {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT 
-        ///    `_itopview_contract`.`id`,
-        ///    `_itopview_contract`.`name`,
-        ///    `_itopview_contract`.`org_id`,
-        ///    `_itopview_contract`.`organization_name`,
-        ///    `_itopview_contract`.`description`,
-        ///    `_itopview_contract`.`start_date`,
-        ///    `_itopview_contract`.`end_date`,
-        ///    `_itopview_contract`.`provider_id`,
-        ///    `_itopview_contract`.`provider_name`
+        ///    `{0}`.`_itopview_contract`.`id`,
+        ///    `{0}`.`_itopview_contract`.`name`,
+        ///    `{0}`.`_itopview_contract`.`org_id`,
+        ///    `{0}`.`_itopview_contract`.`organization_name`,
+        ///    `{0}`.`_itopview_contract`.`description`,
+        ///    `{0}`.`_itopview_contract`.`start_date`,
+        ///    `{0}`.`_itopview_contract`.`end_date`,
+        ///    `{0}`.`_itopview_contract`.`provider_id`,
+        ///    `{0}`.`_itopview_contract`.`provider_name`
         ///FROM
         ///    `{0}`.`_itopview_contract`
         ///WHERE
         ///    `{0}`.`_itopview_contract`.`status` = &apos;production&apos;
-        ///        AND `{0}`.`_itopview_contract`.`contracttype_id` = 39
-        ///    [rest of string was truncated]&quot;;.
+        ///        AND [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string itop_platform_get_contracts {
             get {
@@ -86,19 +85,40 @@ namespace Tier.Data {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT 
-        ///    `_itopview_contract`.`id`,
-        ///    `_itopview_contract`.`name`,
-        ///    `_itopview_contract`.`org_id`,
-        ///    `_itopview_contract`.`organization_name`,
-        ///    `_itopview_contract`.`description`,
-        ///    `_itopview_contract`.`start_date`,
-        ///    `_itopview_contract`.`end_date`,
-        ///    `_itopview_contract`.`provider_id`,
-        ///    `_itopview_contract`.`provider_name`
+        ///    `{0}`.`_itopview_ticket`.`id`,
+        ///    `{0}`.`_itopview_ticket`.`ref`,
+        ///    `{0}`.`_itopview_ticket`.`description`,
+        ///    `{0}`.`_itopview_ticket`.`start_date`,
+        ///    `{0}`.`_itopview_ticket`.`end_date`,
+        ///    `{0}`.`_itopview_ticket`.`close_date` 
+        ///FROM
+        ///    `{0}`.`_itopview_ticket`
+        ///        INNER JOIN
+        ///    `{0}`.`_itoplnkfunctionalcitoticket` ON `{0}`.`_itopview_ticket`.`id` = `{0}`.`_itoplnkfunctionalcitoticket`.`ticket_id`
+        ///        INNER JOIN
+        ///    `{0}`.`_itoplnkcustomercontracttofunctionalci` ON `{0}`.`_ito [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string itop_platform_get_ticketsbycontractid {
+            get {
+                return ResourceManager.GetString("itop_platform_get_ticketsbycontractid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT 
+        ///    `{0}`.`_itopview_contract`.`id`,
+        ///    `{0}`.`_itopview_contract`.`name`,
+        ///    `{0}`.`_itopview_contract`.`org_id`,
+        ///    `{0}`.`_itopview_contract`.`organization_name`,
+        ///    `{0}`.`_itopview_contract`.`description`,
+        ///    `{0}`.`_itopview_contract`.`start_date`,
+        ///    `{0}`.`_itopview_contract`.`end_date`,
+        ///    `{0}`.`_itopview_contract`.`provider_id`,
+        ///    `{0}`.`_itopview_contract`.`provider_name`
         ///FROM
         ///    `{0}`.`_itoppriv_user`
         ///        INNER JOIN
-        ///    `{0}`.`_itoplnkcontacttocontract` ON `_itoppriv_user`.`contactid` = `_itoplnkcontacttocontract`.`contact_id [rest of string was truncated]&quot;;.
+        ///    `{0}`.`_itoplnkcontacttocontract` ON `{0}`.`_itoppriv [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string itop_platform_get_userbylogin {
             get {

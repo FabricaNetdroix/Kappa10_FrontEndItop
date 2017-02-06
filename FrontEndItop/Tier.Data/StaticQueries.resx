@@ -119,15 +119,15 @@
   </resheader>
   <data name="itop_platform_get_contracts" xml:space="preserve">
     <value>SELECT 
-    `_itopview_contract`.`id`,
-    `_itopview_contract`.`name`,
-    `_itopview_contract`.`org_id`,
-    `_itopview_contract`.`organization_name`,
-    `_itopview_contract`.`description`,
-    `_itopview_contract`.`start_date`,
-    `_itopview_contract`.`end_date`,
-    `_itopview_contract`.`provider_id`,
-    `_itopview_contract`.`provider_name`
+    `{0}`.`_itopview_contract`.`id`,
+    `{0}`.`_itopview_contract`.`name`,
+    `{0}`.`_itopview_contract`.`org_id`,
+    `{0}`.`_itopview_contract`.`organization_name`,
+    `{0}`.`_itopview_contract`.`description`,
+    `{0}`.`_itopview_contract`.`start_date`,
+    `{0}`.`_itopview_contract`.`end_date`,
+    `{0}`.`_itopview_contract`.`provider_id`,
+    `{0}`.`_itopview_contract`.`provider_name`
 FROM
     `{0}`.`_itopview_contract`
 WHERE
@@ -136,28 +136,46 @@ WHERE
         AND `{0}`.`_itopview_contract`.`provider_id_friendlyname` = 'KAPPA10 LTDA';</value>
     <comment>Consulta que se envia para recuperar los contratos para la creación de bolsas de horas.</comment>
   </data>
+  <data name="itop_platform_get_ticketsbycontractid" xml:space="preserve">
+    <value>SELECT 
+    `{0}`.`_itopview_ticket`.`id`,
+    `{0}`.`_itopview_ticket`.`ref`,
+    `{0}`.`_itopview_ticket`.`description`,
+    `{0}`.`_itopview_ticket`.`start_date`,
+    `{0}`.`_itopview_ticket`.`end_date`,
+    `{0}`.`_itopview_ticket`.`close_date` 
+FROM
+    `{0}`.`_itopview_ticket`
+        INNER JOIN
+    `{0}`.`_itoplnkfunctionalcitoticket` ON `{0}`.`_itopview_ticket`.`id` = `{0}`.`_itoplnkfunctionalcitoticket`.`ticket_id`
+        INNER JOIN
+    `{0}`.`_itoplnkcustomercontracttofunctionalci` ON `{0}`.`_itoplnkfunctionalcitoticket`.`functionalci_id` = `{0}`.`_itoplnkcustomercontracttofunctionalci`.`functionalci_id`
+WHERE
+    `{0}`.`_itoplnkcustomercontracttofunctionalci`.`customercontract_id` = {1}</value>
+    <comment>Consulta que se envia para recuperar los tickets que se computarán y mostraran en el resument de cuenta del usuario final.</comment>
+  </data>
   <data name="itop_platform_get_userbylogin" xml:space="preserve">
     <value>SELECT 
-    `_itopview_contract`.`id`,
-    `_itopview_contract`.`name`,
-    `_itopview_contract`.`org_id`,
-    `_itopview_contract`.`organization_name`,
-    `_itopview_contract`.`description`,
-    `_itopview_contract`.`start_date`,
-    `_itopview_contract`.`end_date`,
-    `_itopview_contract`.`provider_id`,
-    `_itopview_contract`.`provider_name`
+    `{0}`.`_itopview_contract`.`id`,
+    `{0}`.`_itopview_contract`.`name`,
+    `{0}`.`_itopview_contract`.`org_id`,
+    `{0}`.`_itopview_contract`.`organization_name`,
+    `{0}`.`_itopview_contract`.`description`,
+    `{0}`.`_itopview_contract`.`start_date`,
+    `{0}`.`_itopview_contract`.`end_date`,
+    `{0}`.`_itopview_contract`.`provider_id`,
+    `{0}`.`_itopview_contract`.`provider_name`
 FROM
     `{0}`.`_itoppriv_user`
         INNER JOIN
-    `{0}`.`_itoplnkcontacttocontract` ON `_itoppriv_user`.`contactid` = `_itoplnkcontacttocontract`.`contact_id`
+    `{0}`.`_itoplnkcontacttocontract` ON `{0}`.`_itoppriv_user`.`contactid` = `{0}`.`_itoplnkcontacttocontract`.`contact_id`
         INNER JOIN
-    `{0}`.`_itopview_contract` ON `_itoplnkcontacttocontract`.`contract_id` = `_itopview_contract`.`id`
+    `{0}`.`_itopview_contract` ON `{0}`.`_itoplnkcontacttocontract`.`contract_id` = `{0}`.`_itopview_contract`.`id`
         INNER JOIN
-    `{0}`.`_itoporganization` ON `_itopview_contract`.`org_id` = `_itoporganization`.`id`
+    `{0}`.`_itoporganization` ON `{0}`.`_itopview_contract`.`org_id` = `{0}`.`_itoporganization`.`id`
 WHERE
     `{0}`.`_itoppriv_user`.`login` = '{1}'
-        AND `{0}`.`_itopview_contract`.`status` = 'production'
-        AND `{0}`.`_itoppriv_user`.`finalclass` ='UserLocal';</value>
+        AND `{0}`.`_itopview_contract`.`status` = 'production';</value>
+    <comment>Consulta que se envia para recuperar los contratos asociados al usuario que se autentica a la aplicación como usuario final.</comment>
   </data>
 </root>

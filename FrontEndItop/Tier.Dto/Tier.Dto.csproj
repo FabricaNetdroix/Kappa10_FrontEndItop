@@ -48,6 +48,7 @@
     <Compile Include="FEi_Notification.cs" />
     <Compile Include="FEi_User.cs" />
     <Compile Include="IP_Contract.cs" />
+    <Compile Include="IP_Tickets.cs" />
     <Compile Include="ItopPlatform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

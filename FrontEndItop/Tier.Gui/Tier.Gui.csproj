@@ -1326,7 +1326,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_Layout_Back.cshtml" />
     <Content Include="Views\FrontEnd\Index.cshtml" />
-    <Content Include="Views\FrontEnd\_TableBagHours.cshtml" />
+    <Content Include="Views\FrontEnd\_TableTicketsBagHours.cshtml" />
     <Content Include="Views\BackEnd\Index.cshtml" />
     <Content Include="Views\BackEnd\BagHours.cshtml" />
     <Content Include="Views\BackEnd\_FormCreateBagHours.cshtml" />

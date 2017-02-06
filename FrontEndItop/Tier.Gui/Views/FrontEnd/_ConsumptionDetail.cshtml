@@ -88,7 +88,7 @@
                                 <span class="info-box-icon bg-green"><i class="fa fa-chevron-circle-up"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Disponibles</span>
-                                    <span class="info-box-number">750</span>
+                                    <span class="info-box-number">@string.Format("{0:N0}", ViewBag.IndicadorHorasDisponibles)</span>
                                 </div><!-- /.info-box-content -->
                             </div><!-- /.info-box -->
                         </div>
@@ -98,7 +98,7 @@
                                 <span class="info-box-icon bg-yellow"><i class="fa fa-chevron-circle-down"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Consumidas</span>
-                                    <span class="info-box-number">250</span>
+                                    <span class="info-box-number">@string.Format("{0:N0}", ViewBag.IndicadorHorasConsumidas)</span>
                                 </div><!-- /.info-box-content -->
                             </div><!-- /.info-box -->
                         </div>
@@ -108,7 +108,7 @@
                                 <span class="info-box-icon bg-aqua"><i class="fa fa-chevron-circle-right"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Contratadas</span>
-                                    <span class="info-box-number">@string.Format("{0:N0}", bh.quantity)</span>
+                                    <span class="info-box-number">@string.Format("{0:N0}", ViewBag.IndicadorHorasContratadas)</span>
                                 </div><!-- /.info-box-content -->
                             </div><!-- /.info-box -->
                         </div>
@@ -116,7 +116,7 @@
                     <!-- /.row -->
                     <div class="row" style="width:90%; margin:0 auto">
                         <br />
-                        @Html.Partial("_TableBagHours", null)
+                        @Html.Partial("_TableTicketsBagHours", (IList<Tier.Dto.IP_Tickets>)ViewBag.Tickets)
                     </div>
                     <!-- /.row -->
                 </div>

@@ -83,5 +83,19 @@ namespace Tier.Data
                 }
             }
         }
+
+        public IList<Dto.IP_Tickets> GetTicketsByContractId(int contractId)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = string.Format(StaticQueries.itop_platform_get_ticketsbycontractid, base.iTopPlatformSchema, contractId);
+
+                using (System.Data.IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    return CastObjetos.IDataReaderToList<Dto.IP_Tickets>(reader);
+                }
+            }
+        }
     }
 }
