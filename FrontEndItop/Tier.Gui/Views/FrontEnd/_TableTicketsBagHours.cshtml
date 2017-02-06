@@ -2,37 +2,43 @@
 
 @if (Model.Count > 0)
 {
-    <table id="tblBagHours">
-        <thead>
-            <tr>
-                <th>Caso</th>
-                <th class="hidden-xs">Descripción</th>
-                <th class="hidden-xs">Inició</th>
-                <th class="hidden-xs">Terminió</th>
-                <th class="hidden-xs">Cerró</th>
-                <th>TOTAL HORAS </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Tier.Dto.IP_Tickets item in Model)
-            {
+    <div class="row">
+        <span class="label label-primary">Números de caso que inician con <wbr>R-... son Requerimientos</span>
+        <span class="label label-primary">Números de caso que inician con <wbr>I-... son Incidentes</span>
+    </div>
+    <div class="row">
+        <table id="tblBagHours">
+            <thead>
                 <tr>
-                    <td><a href="#" data-toggle="modal" data-target="#modalDetalleCaso">@item.reference</a></td>
-                    <td class="hidden-xs">@item.description</td>
-                    <td class="hidden-xs">@item.start_date</td>
-                    <td class="hidden-xs">@item.end_date</td>
-                    <td class="hidden-xs">@item.close_date</td>
-                    <td class="hidden-xs">@string.Format("{0:N1}", item.elapsedtime)</td>
+                    <th>Caso</th>
+                    <th class="hidden-xs">Descripción</th>
+                    <th class="hidden-xs">Inició</th>
+                    <th class="hidden-xs">Terminió</th>
+                    <th class="hidden-xs">Cerró</th>
+                    <th>TOTAL HORAS </th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (Tier.Dto.IP_Tickets item in Model)
+                {
+                    <tr>
+                        <td><a href="#" data-toggle="modal" data-target="#modalDetalleCaso">@item.reference</a></td>
+                        <td class="hidden-xs">@item.description</td>
+                        <td class="hidden-xs">@item.start_date</td>
+                        <td class="hidden-xs">@item.end_date</td>
+                        <td class="hidden-xs">@item.close_date</td>
+                        <td class="hidden-xs">@string.Format("{0:N1}", item.elapsedtime)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-    <script>
-        $(document).ready(function () {
-            $('#tblBagHours').DataTable();
-        });
-    </script>
+        <script>
+            $(document).ready(function () {
+                $('#tblBagHours').DataTable();
+            });
+        </script>
+    </div>
 }
 else
 {

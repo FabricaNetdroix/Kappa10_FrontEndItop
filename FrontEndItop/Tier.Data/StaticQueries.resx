@@ -169,7 +169,7 @@ FROM
     `{0}`.`_itoppriv_user`
         INNER JOIN
     `{0}`.`_itoplnkcontacttocontract` ON `{0}`.`_itoppriv_user`.`contactid` = `{0}`.`_itoplnkcontacttocontract`.`contact_id`
-        INNER JOIN
+  and `_itoppriv_user`.`finalclass` = 'UserLocal'        INNER JOIN
     `{0}`.`_itopview_contract` ON `{0}`.`_itoplnkcontacttocontract`.`contract_id` = `{0}`.`_itopview_contract`.`id`
         INNER JOIN
     `{0}`.`_itoporganization` ON `{0}`.`_itopview_contract`.`org_id` = `{0}`.`_itoporganization`.`id`
