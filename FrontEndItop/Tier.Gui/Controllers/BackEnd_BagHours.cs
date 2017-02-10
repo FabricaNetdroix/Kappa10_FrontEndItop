@@ -56,6 +56,8 @@ namespace Tier.Gui.Controllers
                 obj.organization_name = objIPC.organization_name;
                 obj.contract_start = objIPC.start_date;
                 obj.contract_end = objIPC.end_date;
+                obj.contract_description = objIPC.description;
+                obj.contract_services = objIPC.services;
 
                 obj.last_user_update = 1;
 

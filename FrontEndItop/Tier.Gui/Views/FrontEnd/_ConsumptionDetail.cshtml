@@ -14,19 +14,19 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">ID:</label>
+                        <label for="inputContractName" class="col-sm-2 control-label">Contrato:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputBagHoursId" placeholder="ID" value="@bh.id" disabled>
+                            <input type="text" class="form-control" id="inputContractName" placeholder="Contrato" value="@bh.contract_name" readonly="readonly">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Vigencia:</label>
+                        <label for="inputValidity" class="col-sm-2 control-label">Vigencia:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputValidity" placeholder="Vigencia" value="@vigenciaBH" disabled>
+                            <input type="text" class="form-control" id="inputValidity" placeholder="Vigencia" value="@vigenciaBH" readonly="readonly">
                         </div>
                     </div>
                 </div>
@@ -34,13 +34,24 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Contrato:</label>
+                        <label for="inputContractDescription" class="col-sm-2 control-label">Descripción:</label>
 
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputContractName" placeholder="Contrato" value="@bh.contract_name" disabled>
+                            <input type="text" class="form-control" id="inputContractDescription" placeholder="Descripción" value="@bh.contract_description" readonly="readonly">
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputContractServices" class="col-sm-2 control-label">Servicios:</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputContractServices" placeholder="Servicios contratados" value="@bh.contract_services" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Estado:</label>
@@ -48,19 +59,19 @@
                             @switch (bh.status)
                             {
                                 case 1:
-                                    <small class="label bg-purple">@Tier.Gui.Messages.BagHoursStatusDisplayTextImplementation</small>
+                            <small class="label bg-purple">@Tier.Gui.Messages.BagHoursStatusDisplayTextImplementation</small>
                                     break;
                                 case 2:
-                                <small class="label bg-aqua">@Tier.Gui.Messages.BagHoursStatusDisplayTextActive</small>
+                            <small class="label bg-aqua">@Tier.Gui.Messages.BagHoursStatusDisplayTextActive</small>
                                     break;
                                 case 3:
-                                <small class="label bg-orange">@Tier.Gui.Messages.BagHoursStatusDisplayTextNotified</small>
+                            <small class="label bg-orange">@Tier.Gui.Messages.BagHoursStatusDisplayTextNotified</small>
                                     break;
                                 case 4:
-                                <small class="label bg-red">@Tier.Gui.Messages.BagHoursStatusDisplayTextInactive</small>
+                            <small class="label bg-red">@Tier.Gui.Messages.BagHoursStatusDisplayTextInactive</small>
                                     break;
                                 default:
-                                <small class="label bg-gray">N/A</small>
+                            <small class="label bg-gray">N/A</small>
                                     break;
                             }
                         </div>
