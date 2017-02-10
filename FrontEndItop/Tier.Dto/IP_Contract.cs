@@ -24,6 +24,9 @@ namespace Tier.Dto
         [Column(Name = "description")]
         public string description { get; set; }
 
+        [Column(Name = "services")]
+        public string services { get; set; }
+
         [Column(Name = "start_date")]
         public Nullable<DateTime> start_date { get; set; }
 

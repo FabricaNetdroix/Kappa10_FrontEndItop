@@ -39,8 +39,7 @@ namespace Tier.Gui.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public JsonResult GetContractInfoById(int id)
         {
-            IList<Dto.IP_Contract> lstContracts = new Business.IP_General().GetProductionContracts();
-            Dto.IP_Contract obj = lstContracts.Where(ee => ee.id == id).FirstOrDefault();
+            Dto.IP_Contract obj = new Business.IP_General().GetProductionContractById(id);
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
 

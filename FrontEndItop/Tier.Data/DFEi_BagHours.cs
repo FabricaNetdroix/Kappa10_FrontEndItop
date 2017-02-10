@@ -27,6 +27,8 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("p_contract_name", obj.contract_name),
                 new MySql.Data.MySqlClient.MySqlParameter("p_contract_start", obj.contract_start),
                 new MySql.Data.MySqlClient.MySqlParameter("p_contract_end", obj.contract_end),
+                new MySql.Data.MySqlClient.MySqlParameter("p_contract_description", obj.contract_description),
+                new MySql.Data.MySqlClient.MySqlParameter("p_contract_services", obj.contract_services),
                 new MySql.Data.MySqlClient.MySqlParameter("p_quantity", obj.quantity),
                 new MySql.Data.MySqlClient.MySqlParameter("p_is_warranty", obj.is_warranty),
                 new MySql.Data.MySqlClient.MySqlParameter("p_notes", obj.notes),

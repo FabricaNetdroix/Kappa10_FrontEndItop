@@ -70,6 +70,20 @@ namespace Tier.Data
             }
         }
 
+        public Dto.IP_Contract GetProductionContractById(int id)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = string.Format(StaticQueries.itop_platform_get_contractbyid, base.iTopPlatformSchema, id);
+
+                using (System.Data.IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    return CastObjetos.IDataReaderToList<Dto.IP_Contract>(reader).FirstOrDefault();
+                }
+            }
+        }
+
         public IList<Dto.IP_Contract> GetProductionContractsByLogin(string userAlias)
         {
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())

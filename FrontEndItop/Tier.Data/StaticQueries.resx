@@ -117,23 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="itop_platform_get_contractbyid" xml:space="preserve">
+    <value>SELECT 
+    `db_9fbcd4_itopp`.`tblC`.`id`,
+    `db_9fbcd4_itopp`.`tblC`.`name`,
+    `db_9fbcd4_itopp`.`tblC`.`org_id`,
+    `db_9fbcd4_itopp`.`tblC`.`organization_name`,
+    `db_9fbcd4_itopp`.`tblC`.`description`,
+    GROUP_CONCAT(`db_9fbcd4_itopp`.`tblCS`.`service_id_friendlyname`,' (',`db_9fbcd4_itopp`.`tblCS`.`coveragewindow_id_friendlyname`,')' ORDER BY `db_9fbcd4_itopp`.`tblCS`.`service_id_friendlyname` DESC SEPARATOR ' + ') AS services,
+    `db_9fbcd4_itopp`.`tblC`.`start_date`,
+    `db_9fbcd4_itopp`.`tblC`.`end_date`,
+    `db_9fbcd4_itopp`.`tblC`.`provider_id`,
+    `db_9fbcd4_itopp`.`tblC`.`provider_name`
+FROM
+    `db_9fbcd4_itopp`.`_itopview_contract` `tblC`,
+    `db_9fbcd4_itopp`.`_itopview_lnkcustomercontracttoservice` `tblCS`
+WHERE
+    `db_9fbcd4_itopp`.`tblC`.`id` = `db_9fbcd4_itopp`.`tblCS`.`customercontract_id`
+        AND `db_9fbcd4_itopp`.`tblC`.`status` = 'production'
+        AND `db_9fbcd4_itopp`.`tblC`.`contracttype_id` = 39
+        AND `db_9fbcd4_itopp`.`tblC`.`provider_id_friendlyname` = 'KAPPA10 LTDA'
+        AND `db_9fbcd4_itopp`.`tblC`.`id` = {1}
+GROUP BY `db_9fbcd4_itopp`.`tblC`.`id`;</value>
+    <comment>Consulta que se envia para recuperar un contrato por su id.</comment>
+  </data>
   <data name="itop_platform_get_contracts" xml:space="preserve">
     <value>SELECT 
-    `{0}`.`_itopview_contract`.`id`,
-    `{0}`.`_itopview_contract`.`name`,
-    `{0}`.`_itopview_contract`.`org_id`,
-    `{0}`.`_itopview_contract`.`organization_name`,
-    `{0}`.`_itopview_contract`.`description`,
-    `{0}`.`_itopview_contract`.`start_date`,
-    `{0}`.`_itopview_contract`.`end_date`,
-    `{0}`.`_itopview_contract`.`provider_id`,
-    `{0}`.`_itopview_contract`.`provider_name`
+    `{0}`.`tblC`.`id`,
+    `{0}`.`tblC`.`name`,
+    `{0}`.`tblC`.`org_id`,
+    `{0}`.`tblC`.`organization_name`,
+    `{0}`.`tblC`.`description`,
+    GROUP_CONCAT(`{0}`.`tblCS`.`service_id_friendlyname`,' (',`{0}`.`tblCS`.`coveragewindow_id_friendlyname`,')' ORDER BY `{0}`.`tblCS`.`service_id_friendlyname` DESC SEPARATOR ' + ') AS services,
+    `{0}`.`tblC`.`start_date`,
+    `{0}`.`tblC`.`end_date`,
+    `{0}`.`tblC`.`provider_id`,
+    `{0}`.`tblC`.`provider_name`
 FROM
-    `{0}`.`_itopview_contract`
+    `{0}`.`_itopview_contract` `tblC`,
+    `{0}`.`_itopview_lnkcustomercontracttoservice` `tblCS`
 WHERE
-    `{0}`.`_itopview_contract`.`status` = 'production'
-        AND `{0}`.`_itopview_contract`.`contracttype_id` = 39
-        AND `{0}`.`_itopview_contract`.`provider_id_friendlyname` = 'KAPPA10 LTDA';</value>
+    `{0}`.`tblC`.`id` = `{0}`.`tblCS`.`customercontract_id`
+        AND `{0}`.`tblC`.`status` = 'production'
+        AND `{0}`.`tblC`.`contracttype_id` = 39
+        AND `{0}`.`tblC`.`provider_id_friendlyname` = 'KAPPA10 LTDA'
+GROUP BY `{0}`.`tblC`.`id`;</value>
     <comment>Consulta que se envia para recuperar los contratos para la creación de bolsas de horas.</comment>
   </data>
   <data name="itop_platform_get_ticketsbycontractid" xml:space="preserve">

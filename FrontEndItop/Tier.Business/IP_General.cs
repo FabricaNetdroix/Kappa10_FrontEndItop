@@ -13,6 +13,11 @@ namespace Tier.Business
             return new Data.DItopPlatform("iTopPlatformConnectionString").GetProductionContracts();
         }
 
+        public Dto.IP_Contract GetProductionContractById(int id)
+        {
+            return new Data.DItopPlatform("iTopPlatformConnectionString").GetProductionContractById(id);
+        }
+
         public IList<Dto.IP_Contract> GetProductionContractsByLogin(string userAlias)
         {
             return new Data.DItopPlatform("iTopPlatformConnectionString").GetProductionContractsByLogin(userAlias);

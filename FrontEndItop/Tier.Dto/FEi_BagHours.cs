@@ -39,6 +39,14 @@ namespace Tier.Dto
         [Column(Name = "contract_end")]
         public Nullable<DateTime> contract_end { get; set; }
 
+        [Display(Name = "Descripción")]
+        [Column(Name = "contract_description")]
+        public string contract_description { get; set; }
+
+        [Display(Name = "Servicios")]
+        [Column(Name = "contract_services")]
+        public string contract_services { get; set; }
+
         [Display(Name = "Horas")]
         [Required(ErrorMessage = "Dato requerido.")]
         [Range(1, short.MaxValue)]

@@ -72,6 +72,7 @@
 
             $("#sContractProvider").text(data.provider_name);
             $("#sContractDescription").text(data.description);
+            $("#sContractServices").text(data.services);
         })
         .fail(function (ex) {
             NotifyFailureAjax(ex);
@@ -82,10 +83,10 @@
     $('#myModalCD').on('hide.bs.modal', function (e) {
         $("#sContractNumber").text("-");
         $("#sContractName").text("-");
+        $("#sContractTerm").text("-");
+        $("#sContractProvider").text("-");
         $("#sContractDescription").text("-");
-        $("#sContractNumber").text("-");
-        $("#sContractName").text("-");
-        $("#sContractDescription").text("-");
+        $("#sContractServices").text("-");
     });
 
     function SaveBagHoursSuccess(data) {
