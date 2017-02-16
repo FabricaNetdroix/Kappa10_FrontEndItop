@@ -27,7 +27,7 @@ namespace Tier.Gui.Controllers
             ViewBag.Tickets = tks;
 
             var hContratadas = (bh != null ? bh.quantity : 0);
-            var hConsumidas = tks.Sum(ee => ee.elapsedtime);
+            var hConsumidas = tks.Sum(ee => ee.elapsedhours);
             var hDisponibles = hContratadas - hConsumidas;
 
             ViewBag.IndicadorHorasContratadas = hContratadas;
@@ -35,6 +35,12 @@ namespace Tier.Gui.Controllers
             ViewBag.IndicadorHorasDisponibles = hDisponibles;
 
             return PartialView("_ConsumptionDetail");
+        }
+
+        public PartialViewResult GetTicketInfoById(int id)
+        {
+            Dto.IP_Tickets objTk = new Business.IP_General().GetTicketById(id);
+            return PartialView("_ModalTicketDetail", objTk);
         }
     }
 }

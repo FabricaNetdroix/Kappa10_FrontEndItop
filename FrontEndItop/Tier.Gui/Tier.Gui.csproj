@@ -1353,6 +1353,7 @@
     <Content Include="Views\BackEnd\_FormEditNotification.cshtml" />
     <Content Include="Views\Shared\_ClientContractsList.cshtml" />
     <Content Include="Views\FrontEnd\_ConsumptionDetail.cshtml" />
+    <Content Include="Views\FrontEnd\_ModalTicketDetail.cshtml" />
     <None Include="Web.uat.netdroix.com.co.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

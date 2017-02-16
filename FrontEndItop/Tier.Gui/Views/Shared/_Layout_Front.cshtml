@@ -128,8 +128,9 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Detalle de caso</h4>
+                <input type="hidden" id="hfdCurrentTicketDetailId" />
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="divDetalleCasoModal">
                 <div class="box box-info">
                     <div class="box-header">
                         <h3 class="box-title">Cargando información</h3>
@@ -151,7 +152,25 @@
         </div>
     </div>
 </div>
+<script>
+    $('#modalDetalleCaso').on('show.bs.modal', function (e) {
+        $("#divDetalleCasoModal").html('<div class="box box-info"><div class="box-header"><h3 class="box-title">Cargando información</h3></div><div class="box-body">Recuperando información del caso</div><!-- /.box-body --><!-- Loading (remove the following to stop the loading)--><div class="overlay"><i class="fa fa-refresh fa-spin"></i></div><!-- end loading --></div>');
+        var idTicket = $("#hfdCurrentTicketDetailId").val();
 
+        $.get("@Url.Action("GetTicketInfoById", "FrontEnd")", { id: idTicket }, function (data) {
+            $("#divDetalleCasoModal").empty();
+            $("#divDetalleCasoModal").html(data);
+        })
+        .fail(function (ex) {
+            NotifyFailureAjax(ex);
+            console.log(ex.responseText);
+        });
+    });
+
+    $('#modalDetalleCaso').on('hide.bs.modal', function (e) {
+
+    });
+</script>
 <script>
     $(document).ready(function () {
         $(".wrapper").height = screen.height;

@@ -111,5 +111,19 @@ namespace Tier.Data
                 }
             }
         }
+
+        public Dto.IP_Tickets GetTicketById(int ticketId)
+        {
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
+            {
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = string.Format(StaticQueries.itop_platform_get_ticketbyid, base.iTopPlatformSchema, ticketId);
+
+                using (System.Data.IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
+                {
+                    return CastObjetos.IDataReaderToList<Dto.IP_Tickets>(reader).FirstOrDefault();
+                }
+            }
+        }
     }
 }

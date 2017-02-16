@@ -99,19 +99,38 @@ namespace Tier.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT 
+        ///   Looks up a localized string similar to SELECT DISTINCT
         ///    `{0}`.`_itopview_ticket`.`id`,
         ///    `{0}`.`_itopview_ticket`.`ref`,
+        ///	`{0}`.`_itopview_ticket`.`title`,
         ///    `{0}`.`_itopview_ticket`.`description`,
+        ///    `{0}`.`_itopview_ticket`.`caller_id_friendlyname`,
+        ///    `{0}`.`_itopview_ticket`.`agent_id_friendlyname`,
+        ///    `{0}`.`_itopview_lnkfunctionalcitoticket`.`functionalci_id_friendlyname`,
         ///    `{0}`.`_itopview_ticket`.`start_date`,
-        ///    `{0}`.`_itopview_ticket`.`end_date`,
-        ///    `{0}`.`_itopview_ticket`.`close_date` 
-        ///FROM
-        ///    `{0}`.`_itopview_ticket`
-        ///        INNER JOIN
-        ///    `{0}`.`_itoplnkfunctionalcitoticket` ON `{0}`.`_itopview_ticket`.`id` = `{0}`.`_itoplnkfunctionalcitoticket`.`ticket_id`
-        ///        INNER JOIN
-        ///    `{0}`.`_itoplnkcustomercontracttofunctionalci` ON `{0}`.`_ito [rest of string was truncated]&quot;;.
+        ///    `{0}`.`_itopticket_request`.`assignment_date`,
+        ///    `{0}`.`_itopticket_request`.`resolution_date`,
+        ///    `{0}`.`_it [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string itop_platform_get_ticketbyid {
+            get {
+                return ResourceManager.GetString("itop_platform_get_ticketbyid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT
+        ///    `{0}`.`_itopview_ticket`.`id`,
+        ///    `{0}`.`_itopview_ticket`.`ref`,
+        ///	`{0}`.`_itopview_ticket`.`title`,
+        ///    `{0}`.`_itopview_ticket`.`description`,
+        ///    `{0}`.`_itopview_ticket`.`caller_id_friendlyname`,
+        ///    `{0}`.`_itopview_ticket`.`agent_id_friendlyname`,
+        ///    `{0}`.`_itopview_lnkfunctionalcitoticket`.`functionalci_id_friendlyname`,
+        ///    `{0}`.`_itopview_ticket`.`start_date`,
+        ///    `{0}`.`_itopticket_request`.`assignment_date`,
+        ///    `{0}`.`_itopticket_request`.`resolution_date`,
+        ///    `{0}`.`_itopticket_ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string itop_platform_get_ticketsbycontractid {
             get {

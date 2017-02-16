@@ -3,31 +3,28 @@
 @if (Model.Count > 0)
 {
     <div class="row">
-        <span class="label label-primary">Números de caso que inician con <wbr>R-... son Requerimientos</span>
-        <span class="label label-primary">Números de caso que inician con <wbr>I-... son Incidentes</span>
-    </div>
-    <div class="row">
         <table id="tblBagHours">
             <thead>
                 <tr>
                     <th>Caso</th>
                     <th class="hidden-xs">Descripción</th>
+                    <th>Estado (iTop)</th>
                     <th class="hidden-xs">Inició</th>
-                    <th class="hidden-xs">Terminió</th>
-                    <th class="hidden-xs">Cerró</th>
+                    @*<th class="hidden-xs">Asignado</th>*@
                     <th>TOTAL HORAS </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (Tier.Dto.IP_Tickets item in Model)
                 {
+                    string truncatedDescription = (item.description.Length > 100 ? item.description.Substring(0, 100) + "..." : item.description);
                     <tr>
-                        <td><a href="#" data-toggle="modal" data-target="#modalDetalleCaso">@item.reference</a></td>
-                        <td class="hidden-xs">@item.description</td>
-                        <td class="hidden-xs">@item.start_date</td>
-                        <td class="hidden-xs">@item.end_date</td>
-                        <td class="hidden-xs">@item.close_date</td>
-                        <td class="hidden-xs">@string.Format("{0:N1}", item.elapsedtime)</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDetalleCaso" onclick="javascript:$('#hfdCurrentTicketDetailId').val(@item.id);">@item.reference</button></td>
+                        <td class="hidden-xs" title="@item.description">@truncatedDescription</td>
+                        <td>@item.status</td>
+                        <td class="hidden-xs" title="@string.Format("{0:dd-MMM-yyyy hh:mm:ss}", item.start_date)">@string.Format("{0:dd-MMM-yyyy}", item.start_date)</td>
+                        @*<td class="hidden-xs" title="@string.Format("{0:dd-MMM-yyyy hh:mm:ss}", item.assignment_date)">@string.Format("{0:dd-MMM-yyyy}", item.assignment_date)</td>*@
+                        <td class="hidden-xs">@string.Format("{0:N1}", item.elapsedhours) horas</td>
                     </tr>
                 }
             </tbody>
@@ -38,6 +35,11 @@
                 $('#tblBagHours').DataTable();
             });
         </script>
+    </div>
+
+    <div class="row">
+        <span class="label label-primary">Números de caso que inician con <wbr>R-... son Requerimientos</span>
+        <span class="label label-primary">Números de caso que inician con <wbr>I-... son Incidentes</span>
     </div>
 }
 else
