@@ -1,0 +1,12 @@
+﻿@model Nullable<DateTime>
+
+@{
+    if (!Model.HasValue)
+    {
+        <span>--</span>
+    }
+    else
+    {
+        <span>@string.Format("{0:dd-MMM-yyyy}", Model.Value)</span>
+    }
+}

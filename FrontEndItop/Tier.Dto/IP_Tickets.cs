@@ -67,17 +67,18 @@ namespace Tier.Dto
         public string private_log { get; set; }
 
         [Column(Name = "time_spent")]
-        [Display(Name = "Tiempo total")]
+        [Display(Name = "Tiempo total (Seg)")]
         public Nullable<Double> time_spent { get; set; }
 
         [Column(Name = "cumulatedpending_timespent")]
-        [Display(Name = "Tiempo espera acumulado")]
+        [Display(Name = "Tiempo espera (Seg)")]
         public Nullable<Double> cumulatedpending_timespent { get; set; }
 
         [Column(Name = "effective_timespent")]
-        [Display(Name = "")]
+        [Display(Name = "Tiempo efectivo (Seg)")]
         public Nullable<Double> effective_timespent { get; set; }
 
+        [Display(Name = "Tiempo efectivo (Hrs)")]
         public Double elapsedhours
         {
             get

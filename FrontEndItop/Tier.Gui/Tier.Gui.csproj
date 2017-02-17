@@ -1354,6 +1354,8 @@
     <Content Include="Views\Shared\_ClientContractsList.cshtml" />
     <Content Include="Views\FrontEnd\_ConsumptionDetail.cshtml" />
     <Content Include="Views\FrontEnd\_ModalTicketDetail.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\FloatFixedPoint.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\FullDateTime.cshtml" />
     <None Include="Web.uat.netdroix.com.co.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

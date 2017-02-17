@@ -1,0 +1,12 @@
+﻿@model Nullable<Double>
+
+@{
+    if (!Model.HasValue)
+    {
+        <span>--</span>
+    }
+    else
+    {
+        <span>@string.Format("{0:F1}", Model.Value)</span>
+    }
+}

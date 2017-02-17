@@ -55,7 +55,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.start_date)
+            @Html.DisplayFor(model => model.start_date, "FullDateTime")
         </dd>
 
         <dt>
@@ -63,7 +63,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.assignment_date)
+            @Html.DisplayFor(model => model.assignment_date, "FullDateTime")
         </dd>
 
         <dt>
@@ -71,7 +71,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.resolution_date)
+            @Html.DisplayFor(model => model.resolution_date, "FullDateTime")
         </dd>
 
         <dt>
@@ -103,7 +103,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.time_spent)
+            @Html.DisplayFor(model => model.time_spent) &nbsp;Segundos
         </dd>
 
         <dt>
@@ -111,7 +111,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.cumulatedpending_timespent)
+            @Html.DisplayFor(model => model.cumulatedpending_timespent) &nbsp;Segundos
         </dd>
 
         <dt>
@@ -119,7 +119,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.elapsedhours)
+            @Html.DisplayFor(model => model.elapsedhours, "FloatFixedPoint") &nbsp;Hora(s)
         </dd>
 
     </dl>
