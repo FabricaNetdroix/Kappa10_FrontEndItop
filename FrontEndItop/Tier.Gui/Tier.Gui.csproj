@@ -168,8 +168,10 @@
     <Compile Include="Controllers\BackEnd_PreNotification.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\FrontEndController.cs" />
+    <Compile Include="Controllers\Security_ItopAuthentication.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\Security_Profile.cs" />
+    <Compile Include="Controllers\Security_ReCaptcha.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

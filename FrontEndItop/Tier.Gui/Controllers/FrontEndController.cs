@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Tier.Gui.Controllers
 {
-    public class FrontEndController : BaseController
+    public partial class FrontEndController : BaseController
     {
         //
         // GET: /FrontEnd/

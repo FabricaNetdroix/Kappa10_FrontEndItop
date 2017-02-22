@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -48,7 +47,7 @@ namespace Tier.Gui.Controllers
                     if (obj.UserType == (byte)Dto.UserTypes.Costumer)
                     {
                         // Validar usuario iTop
-                        if (true)
+                        if (ItopAuth.Validate(obj.UserAlias, obj.UserPassword))
                         {
                             base.CurrentUser = new Dto.FEi_User() { alias = obj.UserAlias, password = obj.UserPassword, role = obj.UserType };
                             return RedirectToAction("Index", "FrontEnd");
@@ -106,46 +105,5 @@ namespace Tier.Gui.Controllers
                 return View(obj);
             }
         }
-    }
-
-    /// <summary>
-    /// Clase para la validación del captcha del servicio de Google reCaptcha.
-    /// </summary>
-    public class ReCaptchaClass
-    {
-        /// <summary>
-        /// Solicita la respuesta de la validación del captcha.
-        /// </summary>
-        /// <param name="EncodedResponse">Token "Recaptcha-Response" recibido en el Request</param>
-        /// <returns>Cadena de texto True o False recibida del servicio de Google</returns>
-        public static string Validate(string EncodedResponse)
-        {
-            var client = new System.Net.WebClient();
-
-            string PrivateKey = Base.ApplicationConfigurationManager.reCAPTCHA_SecretKey;
-
-            var GoogleReply = client.DownloadString(string.Format(Base.ApplicationConfigurationManager.reCAPTCHA_Url, PrivateKey, EncodedResponse));
-
-            var captchaResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ReCaptchaClass>(GoogleReply);
-
-            return captchaResponse.Success;
-        }
-
-        [JsonProperty("success")]
-        public string Success
-        {
-            get { return m_Success; }
-            set { m_Success = value; }
-        }
-
-        private string m_Success;
-        [JsonProperty("error-codes")]
-        public List<string> ErrorCodes
-        {
-            get { return m_ErrorCodes; }
-            set { m_ErrorCodes = value; }
-        }
-
-        private List<string> m_ErrorCodes;
     }
 }
