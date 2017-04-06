@@ -44,6 +44,9 @@ namespace Tier.Gui.Controllers
 
                 if (IsCaptchaValid)
                 {
+                    obj.UserAlias = Tier.Transverse.Utilities.GetStringFromBase64(obj.UserAlias);
+                    obj.UserPassword = Tier.Transverse.Utilities.GetStringFromBase64(obj.UserPassword);
+
                     if (obj.UserType == (byte)Dto.UserTypes.Costumer)
                     {
                         // Validar usuario iTop
@@ -93,16 +96,14 @@ namespace Tier.Gui.Controllers
                 {
                     // Validación Captcha no superada
                     base.RegistrarNotificación(Messages.CaptchaValidationFailure, Base.Enumerations.NotificationTypes.error, Messages.NotificationTitleError);
-                    this.LoadFormLists();
-                    return View(obj);
+                    return RedirectToAction("LogIn", "Security");
                 }
             }
             else
             {
                 // Datos no diligenciados correctamente.
                 base.RegistrarNotificación(Messages.InvalidForm, Base.Enumerations.NotificationTypes.notice, Messages.NotificationTitleWarning);
-                this.LoadFormLists();
-                return View(obj);
+                return RedirectToAction("LogIn", "Security");
             }
         }
     }

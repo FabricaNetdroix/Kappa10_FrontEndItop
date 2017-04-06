@@ -1297,6 +1297,7 @@
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Assets\json\RolePermission.json" />
+    <None Include="Properties\PublishProfiles\Productive.Release.pubxml" />
     <None Include="Properties\PublishProfiles\uat.netdroix.com.co.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1381,6 +1382,10 @@
     <ProjectReference Include="..\Tier.Dto\Tier.Dto.csproj">
       <Project>{2527dc29-7161-4b30-9223-9cc428303545}</Project>
       <Name>Tier.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tier.Transverse\Tier.Transverse.csproj">
+      <Project>{9446ffa6-e927-440b-9fe8-bab9ad340a8d}</Project>
+      <Name>Tier.Transverse</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

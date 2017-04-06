@@ -71,7 +71,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" id="loginSubmit" name="loginSubmit">Ingresar</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -81,6 +81,12 @@
     </div>
     <!-- /.login-box -->
     <script>
+        $(function () {
+            $("#loginSubmit").click(function () {
+                $("#UserAlias").val(btoa($("#UserAlias").val()));
+                $("#UserPassword").val(btoa($("#UserPassword").val()));
+            });
+        });
         $(function () {
             $('input').iCheck({
                 checkboxClass: 'icheckbox_square-blue',
