@@ -42,8 +42,6 @@ namespace Tier.Gui.Controllers
         }
         protected override void OnException(ExceptionContext filterContext)
         {
-            System.Diagnostics.Debugger.Break();
-
             string modulo = Logs.GetControllerName(filterContext.Controller.ToString());
 
             Logs.Error(filterContext.Exception, modulo);

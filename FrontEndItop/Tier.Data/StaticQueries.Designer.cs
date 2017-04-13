@@ -62,14 +62,18 @@ namespace Tier.Data {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT 
-        ///    `db_9fbcd4_itopp`.`tblC`.`id`,
-        ///    `db_9fbcd4_itopp`.`tblC`.`name`,
-        ///    `db_9fbcd4_itopp`.`tblC`.`org_id`,
-        ///    `db_9fbcd4_itopp`.`tblC`.`organization_name`,
-        ///    `db_9fbcd4_itopp`.`tblC`.`description`,
-        ///    GROUP_CONCAT(`db_9fbcd4_itopp`.`tblCS`.`service_id_friendlyname`,&apos; (&apos;,`db_9fbcd4_itopp`.`tblCS`.`coveragewindow_id_friendlyname`,&apos;)&apos; ORDER BY `db_9fbcd4_itopp`.`tblCS`.`service_id_friendlyname` DESC SEPARATOR &apos; + &apos;) AS services,
-        ///    `db_9fbcd4_itopp`.`tblC`.`start_date`,
-        ///    `db_9fbcd4_itopp`.` [rest of string was truncated]&quot;;.
+        ///    `{0}`.`tblC`.`id`,
+        ///    `{0}`.`tblC`.`name`,
+        ///    `{0}`.`tblC`.`org_id`,
+        ///    `{0}`.`tblC`.`organization_name`,
+        ///    `{0}`.`tblC`.`description`,
+        ///    GROUP_CONCAT(`{0}`.`tblCS`.`service_id_friendlyname`,&apos; (&apos;,`{0}`.`tblCS`.`coveragewindow_id_friendlyname`,&apos;)&apos; ORDER BY `{0}`.`tblCS`.`service_id_friendlyname` DESC SEPARATOR &apos; + &apos;) AS services,
+        ///    `{0}`.`tblC`.`start_date`,
+        ///    `{0}`.`tblC`.`end_date`,
+        ///    `{0}`.`tblC`.`provider_id`,
+        ///    `{0}`.`tblC`.`provider_name`
+        ///FROM
+        ///    `{0}`.`_itopview [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string itop_platform_get_contractbyid {
             get {
