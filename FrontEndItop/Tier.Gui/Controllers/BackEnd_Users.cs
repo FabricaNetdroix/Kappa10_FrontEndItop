@@ -56,6 +56,7 @@ namespace Tier.Gui.Controllers
             {
                 obj.last_user_update = 1;
                 obj.status = (short)Dto.UserStatus.Active;
+                obj.password = Tier.Transverse.Crypto.GetMd5Hash(obj.password);
 
                 bool result = new Business.BFEi_Users().CreateUser(obj);
 
@@ -105,6 +106,7 @@ namespace Tier.Gui.Controllers
             objDB.notes = obj.notes;
             objDB.role = obj.role;
             objDB.status = obj.status;
+            objDB.password = Tier.Transverse.Crypto.GetMd5Hash(obj.password);
             obj.last_user_update = 1;
 
             bool result = new Business.BFEi_Users().UpdateUser(objDB);

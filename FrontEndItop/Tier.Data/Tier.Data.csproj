@@ -60,6 +60,7 @@
     <Compile Include="DFEi_Notifications.cs" />
     <Compile Include="DFEi_Users.cs" />
     <Compile Include="DItopPlatform.cs" />
+    <Compile Include="DFEi_ExcludedCategories.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticQueries.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -8,5 +8,9 @@ namespace Tier.Business
 {
     public class BusinessParent
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        protected string iTopPlatformConnectionStringName { get { return "iTopPlatformConnectionString"; } }
     }
 }

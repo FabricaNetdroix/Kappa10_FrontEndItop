@@ -103,7 +103,10 @@ namespace Tier.Data
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.CommandText = string.Format(StaticQueries.itop_platform_get_ticketsbycontractid, base.iTopPlatformSchema, contractId);
+
+                string concadenatedExcludedCategories = new Data.DFEi_ExcludedCategories().GetConcadenatedExcludedCategories();
+                concadenatedExcludedCategories = (string.IsNullOrEmpty(concadenatedExcludedCategories) ? "-1" : concadenatedExcludedCategories);
+                cmd.CommandText = string.Format(StaticQueries.itop_platform_get_ticketsbycontractid, base.iTopPlatformSchema, contractId, concadenatedExcludedCategories);
 
                 using (System.Data.IDataReader reader = base.CurrentDatabase.ExecuteReader(cmd))
                 {

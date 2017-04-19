@@ -94,7 +94,7 @@ namespace Tier.Data {
         ///    `{0}`.`tblC`.`provider_id`,
         ///    `{0}`.`tblC`.`provider_name`
         ///FROM
-        ///    `{0}`.`_itopview_contract` ` [rest of string was truncated]&quot;;.
+        ///    `{0}`.`_itopview [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string itop_platform_get_contracts {
             get {
@@ -114,7 +114,7 @@ namespace Tier.Data {
         ///    `{0}`.`_itopview_ticket`.`start_date`,
         ///    `{0}`.`_itopticket_request`.`assignment_date`,
         ///    `{0}`.`_itopticket_request`.`resolution_date`,
-        ///    `{0}`.`_it [rest of string was truncated]&quot;;.
+        ///    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string itop_platform_get_ticketbyid {
             get {
@@ -132,9 +132,9 @@ namespace Tier.Data {
         ///    `{0}`.`_itopview_ticket`.`agent_id_friendlyname`,
         ///    `{0}`.`_itopview_lnkfunctionalcitoticket`.`functionalci_id_friendlyname`,
         ///    `{0}`.`_itopview_ticket`.`start_date`,
-        ///    `{0}`.`_itopticket_request`.`assignment_date`,
-        ///    `{0}`.`_itopticket_request`.`resolution_date`,
-        ///    `{0}`.`_itopticket_ [rest of string was truncated]&quot;;.
+        ///    `{0}`.`_itopview_userrequest`.`assignment_date`,
+        ///    `{0}`.`_itopview_userrequest`.`resolution_date`,
+        ///    `{0}`.`_itopvie [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string itop_platform_get_ticketsbycontractid {
             get {
@@ -156,7 +156,7 @@ namespace Tier.Data {
         ///FROM
         ///    `{0}`.`_itoppriv_user`
         ///        INNER JOIN
-        ///    `{0}`.`_itoplnkcontacttocontract` ON `{0}`.`_itoppriv [rest of string was truncated]&quot;;.
+        ///    `{0}`.`_itoplnkcontacttocontract` ON `{0 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string itop_platform_get_userbylogin {
             get {

@@ -47,7 +47,7 @@
         <!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">Inicio de sesión</p>
-            <form action="@Url.Action("LogIn","Security")" method="post">
+            <form action="@Url.Action("LogIn","Security")" method="post" autocomplete="off">
                 <div class="form-group has-feedback">
                     @Html.TextBoxFor(m => m.UserAlias, new { placeholder = "Usuario", @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.UserAlias)

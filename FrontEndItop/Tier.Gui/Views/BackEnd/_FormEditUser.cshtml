@@ -13,18 +13,18 @@
         @Html.ValidationMessageFor(m => m.alias)
     </div>
     <!-- /.form-group -->
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.password)
-            @Html.PasswordFor(m => m.password, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.password)
-        </div>
-        <!-- /.form-group -->
-        <div class="form-group">
-            @Html.LabelFor(m => m.passwordConfirm)
-            @Html.PasswordFor(m => m.passwordConfirm, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.passwordConfirm)
-        </div>
-        <!-- /.form-group -->*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.password)
+        @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.password)
+    </div>
+    <!-- /.form-group -->
+    <div class="form-group">
+        @Html.LabelFor(m => m.passwordConfirm)
+        @Html.PasswordFor(m => m.passwordConfirm, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.passwordConfirm)
+    </div>
+    <!-- /.form-group -->
     <div class="form-group">
         @Html.LabelFor(m => m.role)
         @Html.DropDownListFor(m => m.role, null, "-- Seleccione --", new { @class = "form-control" })

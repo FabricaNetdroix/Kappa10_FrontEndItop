@@ -208,14 +208,14 @@ WHERE
     `{0}`.`_itopview_ticket`.`agent_id_friendlyname`,
     `{0}`.`_itopview_lnkfunctionalcitoticket`.`functionalci_id_friendlyname`,
     `{0}`.`_itopview_ticket`.`start_date`,
-    `{0}`.`_itopticket_request`.`assignment_date`,
-    `{0}`.`_itopticket_request`.`resolution_date`,
-    `{0}`.`_itopticket_request`.`pending_reason`,
-    `{0}`.`_itopticket_request`.`solution`,
-    `{0}`.`_itopticket_request`.`status`,
-    `{0}`.`_itopticket_request`.`time_spent`,
-    `{0}`.`_itopticket_request`.`cumulatedpending_timespent`,
-    `{0}`.`_itopticket_request`.`time_spent` - `{0}`.`_itopticket_request`.`cumulatedpending_timespent` AS `effective_timespent`
+    `{0}`.`_itopview_userrequest`.`assignment_date`,
+    `{0}`.`_itopview_userrequest`.`resolution_date`,
+    `{0}`.`_itopview_userrequest`.`pending_reason`,
+    `{0}`.`_itopview_userrequest`.`solution`,
+    `{0}`.`_itopview_userrequest`.`status`,
+    `{0}`.`_itopview_userrequest`.`time_spent`,
+    `{0}`.`_itopview_userrequest`.`cumulatedpending`,
+    `{0}`.`_itopview_userrequest`.`time_spent` - `{0}`.`_itopview_userrequest`.`cumulatedpending` AS `effective_timespent`
 FROM
     `{0}`.`_itopview_ticket`
         INNER JOIN
@@ -225,11 +225,11 @@ FROM
 		INNER JOIN 
 	`{0}`.`_itopview_customercontract` ON `{0}`.`_itoplnkcustomercontracttofunctionalci`.`customercontract_id` = `{0}`.`_itopview_customercontract`.`id` AND `{0}`.`_itopview_customercontract`.`status` = 'production'
 		INNEr JOIN
-	`{0}`.`_itopticket_request` on `{0}`.`_itopview_ticket`.`id` = `{0}`.`_itopticket_request`.`id`
+	`{0}`.`_itopview_userrequest` ON `{0}`.`_itopview_ticket`.`id` = `{0}`.`_itopview_userrequest`.`id`
 		LEFT JOIN
 	`{0}`.`_itopview_lnkfunctionalcitoticket` ON `{0}`.`_itopview_ticket`.`id` = `{0}`.`_itopview_lnkfunctionalcitoticket`.`ticket_id`
 WHERE
-    `{0}`.`_itoplnkcustomercontracttofunctionalci`.`customercontract_id` = {1}</value>
+    `{0}`.`_itoplnkcustomercontracttofunctionalci`.`customercontract_id` = {1} and `{0}`.`_itopview_userrequest`.`servicesubcategory_id` not in ({2})</value>
     <comment>Consulta que se envia para recuperar los tickets que se computarán y mostraran en el resument de cuenta del usuario final.</comment>
   </data>
   <data name="itop_platform_get_userbylogin" xml:space="preserve">

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="DtoParent.cs" />
     <Compile Include="Enumerations.cs" />
+    <Compile Include="ExcludeSubcategory.cs" />
     <Compile Include="FEi_BagHours.cs" />
     <Compile Include="FEi_Notification.cs" />
     <Compile Include="FEi_User.cs" />
