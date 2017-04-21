@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.Transverse", "Tier.Transverse\Tier.Transverse.csproj", "{9446FFA6-E927-440B-9FE8-BAB9AD340A8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tier.ServiceNotification", "Tier.ServiceNotification\Tier.ServiceNotification.csproj", "{6F2A1B9F-EDDE-489B-8E2B-8210C594E96E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{9446FFA6-E927-440B-9FE8-BAB9AD340A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9446FFA6-E927-440B-9FE8-BAB9AD340A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9446FFA6-E927-440B-9FE8-BAB9AD340A8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F2A1B9F-EDDE-489B-8E2B-8210C594E96E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F2A1B9F-EDDE-489B-8E2B-8210C594E96E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F2A1B9F-EDDE-489B-8E2B-8210C594E96E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F2A1B9F-EDDE-489B-8E2B-8210C594E96E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
