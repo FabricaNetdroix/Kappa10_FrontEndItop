@@ -56,7 +56,7 @@ namespace Tier.Dto
         public string email { get; set; }
 
         [Column(Name = "department")]
-        [Display(Name = "Área")]
+        [Display(Name = "Proceso")]
         [StringLength(256, ErrorMessage = "Dato demasiado largo")]
         public string department { get; set; }
 

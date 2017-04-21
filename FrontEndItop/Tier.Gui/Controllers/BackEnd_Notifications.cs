@@ -22,7 +22,7 @@ namespace Tier.Gui.Controllers
         {
             if (ModelState.IsValid)
             {
-                obj.last_user_update = 1;
+                obj.last_user_update = base.CurrentUser.id;
                 obj.status = (short)Dto.NotificationStatus.Active;
 
                 bool result = new Business.BFEi_Notifications().CreateNotification(obj);
@@ -54,7 +54,7 @@ namespace Tier.Gui.Controllers
         {
             Dto.FEi_Notification obj = new Business.BFEi_Notifications().GetNotificationById(id);
 
-            obj.last_user_update = 1;
+            obj.last_user_update = base.CurrentUser.id;
 
             bool result = new Business.BFEi_Notifications().DeleteNotification(obj);
 
@@ -90,7 +90,7 @@ namespace Tier.Gui.Controllers
             objDB.notes = obj.notes;
             objDB.recipients = obj.recipients;
 
-            obj.last_user_update = 1;
+            obj.last_user_update = base.CurrentUser.id;
 
             bool result = new Business.BFEi_Notifications().UpdateNotification(objDB);
 

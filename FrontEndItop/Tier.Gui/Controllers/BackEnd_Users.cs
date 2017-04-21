@@ -54,7 +54,7 @@ namespace Tier.Gui.Controllers
         {
             if (ModelState.IsValid)
             {
-                obj.last_user_update = 1;
+                obj.last_user_update = base.CurrentUser.id;
                 obj.status = (short)Dto.UserStatus.Active;
                 obj.password = Tier.Transverse.Crypto.GetMd5Hash(obj.password);
 
@@ -107,7 +107,7 @@ namespace Tier.Gui.Controllers
             objDB.role = obj.role;
             objDB.status = obj.status;
             objDB.password = Tier.Transverse.Crypto.GetMd5Hash(obj.password);
-            obj.last_user_update = 1;
+            obj.last_user_update = base.CurrentUser.id;
 
             bool result = new Business.BFEi_Users().UpdateUser(objDB);
 
@@ -127,7 +127,7 @@ namespace Tier.Gui.Controllers
         {
             Dto.FEi_User obj = new Business.BFEi_Users().GetUserById(id);
 
-            obj.last_user_update = 1;
+            obj.last_user_update = base.CurrentUser.id;
 
             bool result = new Business.BFEi_Users().DeleteUser(obj);
 

@@ -59,7 +59,7 @@ namespace Tier.Gui.Controllers
                 obj.contract_description = objIPC.description;
                 obj.contract_services = objIPC.services;
 
-                obj.last_user_update = 1;
+                obj.last_user_update = base.CurrentUser.id;
 
                 bool result = new Business.BFEi_BagHours().CreateBagHours(obj);
 
@@ -90,7 +90,7 @@ namespace Tier.Gui.Controllers
         {
             Dto.FEi_BagHours obj = new Business.BFEi_BagHours().GetBagHoursById(id);
 
-            obj.last_user_update = 1;
+            obj.last_user_update = base.CurrentUser.id;
 
             bool result = new Business.BFEi_BagHours().DeleteBagHours(obj);
 
@@ -160,7 +160,7 @@ namespace Tier.Gui.Controllers
             objDB.quantity = obj.quantity;
             objDB.notes = obj.notes;
             objDB.is_warranty = obj.is_warranty;
-            objDB.last_user_update = 1;
+            objDB.last_user_update = base.CurrentUser.id;
             objDB.status = obj.status;
 
             bool result = new Business.BFEi_BagHours().UpdateBagHours(objDB);
