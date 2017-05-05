@@ -58,6 +58,7 @@
     <Compile Include="DataParent.cs" />
     <Compile Include="DFEi_BagHours.cs" />
     <Compile Include="DFEi_Notifications.cs" />
+    <Compile Include="DFEi_NotifiedBagHours.cs" />
     <Compile Include="DFEi_Users.cs" />
     <Compile Include="DItopPlatform.cs" />
     <Compile Include="DFEi_ExcludedCategories.cs" />

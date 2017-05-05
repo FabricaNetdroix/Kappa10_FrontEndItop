@@ -23,6 +23,19 @@
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <i class="fa fa-list"></i>
+                <h3 class="box-title">Opciones</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body ">
+                <a href="#" class="btn btn-block btn-social btn-google" id="btnStartSendingNotifications">
+                    <i class="fa fa-paper-plane"></i> Enviar notificaciones.
+                </a>
+            </div>
+            <!-- /.box-body -->
+        </div>
     </div>
     <!-- /.col -->
     <div class="col-md-8">
@@ -43,7 +56,59 @@
 <!-- modal detalle de la notificación -->
 @Html.Partial("_ModalNotificationDetails")
 
+<!-- Modal -->
+<div class="modal fade" id="myModalNSP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Proceso de envío de notificaciones</h4>
+            </div>
+            <div class="modal-body divBodyMessageSendingNotificationsProcess">
+                <div class="overlay">
+                    <i class="fa fa-refresh fa-spin"></i>&nbsp;Proceso de envío de notificaciones iniciado. Por favor espere a la respuesta.
+                </div>
+            </div>
+            <div class="modal-footer divFooterMessageSendingNotificationsProcess">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #tblBagHoursDetails > tbody > tr > th {
+        width: 100px;
+        vertical-align: top;
+    }
+</style>
+
 <script>
+    $("#btnStartSendingNotifications").click(function () {
+        var decision = confirm("Confirme que desea iniciar el envío de notificaciones.");
+
+        if (decision) {
+            $(".divFooterMessageSendingNotificationsProcess").hide();
+            $('#myModalNSP').modal({ backdrop: 'static', keyboard: false });
+
+            $.get("@Url.Action("SendNotifications", "BackEnd")", null, function (data) {
+                //{"EvaluatedNotifications":1,"EvaluatedBagHours":4,"NotifiedBagHours":0,"NotifiedBagHoursDetails":"[]","Message":"Se han procesado las notificaciones correctamente.","Result":true,"Error":null}
+                $(".divBodyMessageSendingNotificationsProcess").empty();
+                var response = "<p>Se ha terminado el procesamiento de notificaciones con los siguientes resultados.</p>" +
+                    "<p><b>Mensaje:</b> " + data.Message + "</p>" +
+                    "<p><b>Resultado:</b> " + data.Result + "</p>" +
+                    "<p><b>Bolsas de horas procesadas:</b> " + data.EvaluatedBagHours + "</p>" +
+                    "<p><b>Notificaciones Procesadas:</b> " + data.EvaluatedNotifications + "</p>" +
+                    "<p><b>Bolsas de horas notificadas:</b> " + data.NotifiedBagHours + "</p>";
+
+                $(".divBodyMessageSendingNotificationsProcess").html(response);
+            }).complete(function () {
+                $(".divFooterMessageSendingNotificationsProcess").show();
+            }).fail(function (ex) {
+                console.log(ex.responseText);
+            });
+        }
+    });
+
     function InsertVariablePlaceHolder(control) {
         CKEDITOR.instances['html_template'].insertText($(control).data("placeholder"));
     }
@@ -76,7 +141,7 @@
             blnResult = false;
         }
 
-        if ((!$("#date_rule").val() && !$("#hours_rule").val())) {
+        if (!$("#date_rule").val() && (!$("#hours_rule_lowest").val() || !$("#hours_rule_highest").val())) {
             new PNotify({
                 title: 'Notificación',
                 text: 'No se han especificado las reglas de validación para la notificación.',
@@ -91,6 +156,17 @@
             new PNotify({
                 title: 'Notificación',
                 text: 'No se han diseñado la plantilla para el correo de la notificación.',
+                type: 'notice',
+                hide: true
+            });
+
+            blnResult = false;
+        }
+
+        if (Number($("#hours_rule_lowest").val()) >= Number($("#hours_rule_highest").val())) {
+            new PNotify({
+                title: 'Notificación',
+                text: 'El rango pa la regla de horas consuminas es inválido.',
                 type: 'notice',
                 hide: true
             });
@@ -140,8 +216,7 @@
         $.get('@Url.Action("GetAllNotifications", "BackEnd")', null, function (data) {
             $(".divTableNotificationsList").empty();
             $(".divTableNotificationsList").html(data);
-        })
-        .fail(function (ex) {
+        }).fail(function (ex) {
             NotifyFailureAjax(ex);
             console.log(ex.responseText);
         });

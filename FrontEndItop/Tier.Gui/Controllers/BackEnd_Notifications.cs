@@ -85,7 +85,8 @@ namespace Tier.Gui.Controllers
             Dto.FEi_Notification objDB = new Business.BFEi_Notifications().GetNotificationById((int)obj.id);
 
             objDB.date_rule = obj.date_rule;
-            objDB.hours_rule = obj.hours_rule;
+            objDB.hours_rule_lowest = obj.hours_rule_lowest;
+            objDB.hours_rule_highest = obj.hours_rule_highest;
             objDB.html_template = obj.html_template;
             objDB.notes = obj.notes;
             objDB.recipients = obj.recipients;
@@ -101,6 +102,13 @@ namespace Tier.Gui.Controllers
         public PartialViewResult CreateNotification()
         {
             return PartialView("_FormCreateNotification");
+        }
+
+        public JsonResult SendNotifications()
+        {
+            Dto.FEi_NotificationSenderResponse response = new Business.BFEi_Notifications().SendNotifications();
+
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
     }
 }

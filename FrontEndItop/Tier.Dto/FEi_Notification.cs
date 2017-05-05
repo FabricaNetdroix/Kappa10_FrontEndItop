@@ -5,6 +5,7 @@ using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Tier.Dto
 {
@@ -18,15 +19,20 @@ namespace Tier.Dto
         [Column(Name = "recipients")]
         public string recipients { get; set; }
 
-        [Display(Name = "Regla F. Vigencia")]
+        [Display(Name = "Regla F. días previos")]
         [Range(1, 255, ErrorMessage = "El valor debe estar entre 1 y 255.")]
         [Column(Name = "date_rule")]
         public Nullable<byte> date_rule { get; set; }
 
-        [Display(Name = "Regla % Horas")]
+        [Display(Name = "Regla % Horas consumidas (Inf)")]
         [Range(1, 100, ErrorMessage = "El valor debe estar entre 1 y 100.")]
-        [Column(Name = "hours_rule")]
-        public Nullable<byte> hours_rule { get; set; }
+        [Column(Name = "hours_rule_lowest")]
+        public Nullable<byte> hours_rule_lowest { get; set; }
+
+        [Display(Name = "Regla % Horas consumidas (Sup)")]
+        [Range(1, 100, ErrorMessage = "El valor debe estar entre 1 y 100.")]
+        [Column(Name = "hours_rule_highest")]
+        public Nullable<byte> hours_rule_highest { get; set; }
 
         [Display(Name = "Plantilla HTML")]
         [Column(Name = "html_template")]

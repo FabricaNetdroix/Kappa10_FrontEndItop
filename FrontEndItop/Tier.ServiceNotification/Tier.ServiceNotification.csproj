@@ -76,6 +76,20 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tier.Business\Tier.Business.csproj">
+      <Project>{97512ef2-a7bf-4bdd-8415-322afd6e0fe5}</Project>
+      <Name>Tier.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tier.Dto\Tier.Dto.csproj">
+      <Project>{2527dc29-7161-4b30-9223-9cc428303545}</Project>
+      <Name>Tier.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tier.Transverse\Tier.Transverse.csproj">
+      <Project>{9446ffa6-e927-440b-9fe8-bab9ad340a8d}</Project>
+      <Name>Tier.Transverse</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

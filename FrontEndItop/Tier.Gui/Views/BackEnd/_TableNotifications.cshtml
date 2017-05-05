@@ -10,7 +10,7 @@
                 @Html.DisplayNameFor(model => model.date_rule)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.hours_rule)
+                Regla % Horas consumidas
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.status)
@@ -26,10 +26,17 @@
                     @Html.DisplayFor(modelItem => item.recipients)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.date_rule) día(s)
+                    @if (item.date_rule.HasValue)
+                    {
+                        @Html.DisplayFor(modelItem => item.date_rule) <text> día(s)</text>
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.hours_rule) %
+                    @Html.DisplayFor(modelItem => item.hours_rule_lowest) % - @Html.DisplayFor(modelItem => item.hours_rule_highest) %
                 </td>
                 <td>
                     @{Tier.Dto.NotificationStatus eStatus;

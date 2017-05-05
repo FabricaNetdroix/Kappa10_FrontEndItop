@@ -69,7 +69,9 @@ namespace Tier.Data
                     new MySql.Data.MySqlClient.MySqlParameter("p_id", null)
                 });
 
-                return (string)base.CurrentDatabase.ExecuteScalar(cmd);
+                var response = base.CurrentDatabase.ExecuteScalar(cmd);
+
+                return response != DBNull.Value ? (string)response : string.Empty;
             }
         }
     }

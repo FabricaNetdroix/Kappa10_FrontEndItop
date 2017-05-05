@@ -23,6 +23,11 @@ namespace Tier.Business
             return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { id = idBagHours }).FirstOrDefault();
         }
 
+        public IList<Dto.FEi_BagHours> GetBagActiveHours()
+        {
+            return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { status = (short)Dto.BagHoursStatus.Active });
+        }
+
         public bool DeleteBagHours(Dto.FEi_BagHours obj)
         {
             return new Data.DFEi_BagHours().Delete(obj);

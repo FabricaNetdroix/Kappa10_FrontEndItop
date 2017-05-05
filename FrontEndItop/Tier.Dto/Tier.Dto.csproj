@@ -47,6 +47,8 @@
     <Compile Include="ExcludeSubcategory.cs" />
     <Compile Include="FEi_BagHours.cs" />
     <Compile Include="FEi_Notification.cs" />
+    <Compile Include="FEi_NotificationSenderResponse.cs" />
+    <Compile Include="FEi_NotifiedBagHours.cs" />
     <Compile Include="FEi_User.cs" />
     <Compile Include="IP_Contract.cs" />
     <Compile Include="IP_Tickets.cs" />

@@ -24,11 +24,21 @@
             </div>
             <!-- /.form-group -->
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
-                @Html.LabelFor(m => m.hours_rule)
-                @Html.TextBoxFor(m => m.hours_rule, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.hours_rule)
+                @Html.LabelFor(m => m.hours_rule_lowest)
+                @Html.TextBoxFor(m => m.hours_rule_lowest, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.hours_rule_lowest)
+            </div>
+            <!-- /.row -->
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.hours_rule_highest)
+                @Html.TextBoxFor(m => m.hours_rule_highest, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.hours_rule_highest)
             </div>
             <!-- /.row -->
         </div>
@@ -43,7 +53,7 @@
     <!-- /.form-group -->
     <!-- /.box-body -->
     <div class="box-footer">
-        <button type="submit" class="btn btn-primary" onclick="return ValidateNotificationForm();">Guardar</button>
+        <button type="submit" class="btn btn-primary" onclick="return ValidateNotificationForm()">Guardar</button>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModalHtmlT">Plantilla</button>
         @Ajax.ActionLink("Cancelar", "CreateNotification", "BackEnd", null, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divNotificationForm", InsertionMode = InsertionMode.Replace, OnFailure = "EditNotificationFail" }, new { @class = "btn btn-danger pull-right", id = "btnCancelNotificationForm" })
     </div>
@@ -104,6 +114,9 @@
         }
     });
 
+    var $form = $("#frmEdit");
+    $.validator.unobtrusive.parse($form);
+
     $('#recipients').on('beforeItemAdd', function (event) {
         var tag = event.item;
         // Do some processing here
@@ -120,7 +133,4 @@
             }
         }
     });
-
-    var $form = $("#frmEdit");
-    $.validator.unobtrusive.parse($form);
 </script>

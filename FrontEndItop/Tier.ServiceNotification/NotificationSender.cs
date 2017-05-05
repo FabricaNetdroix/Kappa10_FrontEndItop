@@ -7,6 +7,9 @@ namespace Tier.ServiceNotification
 {
     public partial class NotificationSender : ServiceBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private System.Timers.Timer timer;
 
         public NotificationSender()
@@ -54,6 +57,28 @@ namespace Tier.ServiceNotification
         private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             eventLog.WriteEntry(string.Format("Se inicia el procesamiento de las notificaciones según programación en: {0}", DateTime.Now), EventLogEntryType.Information, (int)WServiceBase.ApplicationEventIds.Core);
+
+            Dto.FEi_NotificationSenderResponse response = new Business.BFEi_Notifications().SendNotifications();
+
+            string notificationProcessResult = string.Format("La solicitud de envío de notificaciones ha finalizado con los siguientes resultados:\n"
+                + "Mensaje:{0}\n"
+                + "Resultado:{1}\n"
+                + "Bolsas de horas procesadas:{2}\n"
+                + "Notificaciones Procesadas:{3}\n"
+                + "Bolsas de horas notificadas:{4}\n"
+                + "Detalle de notificaciones:{5}\n"
+                + "Error:{6}"
+                , response.Message
+                , response.Result.ToString()
+                , response.EvaluatedBagHours.ToString()
+                , response.EvaluatedNotifications.ToString()
+                , response.NotifiedBagHours.ToString()
+                , response.NotifiedBagHoursDetails
+                , (string.IsNullOrEmpty(response.Error) ? "N/A" : response.Error));
+
+            eventLog.WriteEntry(notificationProcessResult, EventLogEntryType.Information, (int)WServiceBase.ApplicationEventIds.Core);
+
+            eventLog.WriteEntry(string.Format("Se termina el procesamiento de las notificaciones según programación en: {0}", DateTime.Now), EventLogEntryType.Information, (int)WServiceBase.ApplicationEventIds.Core);
         }
 
         [DllImport("advapi32.dll", SetLastError = true)]
