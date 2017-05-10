@@ -12,7 +12,10 @@ namespace Tier.Gui.Controllers
         // GET: /BackEnd/
         public ActionResult Index()
         {
-            return View();
+            Dto.FEi_RoleDashboard dashboardInfo = new Business.BFEi_RoleDashboard().GetRoleDashboard(base.CurrentUser.role.Value);
+            ViewBag.UserRole = base.CurrentUser.role.Value;
+
+            return View(dashboardInfo);
         }
     }
 }

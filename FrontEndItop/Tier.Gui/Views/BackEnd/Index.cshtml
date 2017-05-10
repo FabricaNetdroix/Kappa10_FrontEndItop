@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Tier.Dto.FEi_RoleDashboard
+
+@{
     ViewBag.Title = "Resumen";
     ViewBag.SectionTitle = "Panel de visualización";
     Layout = "~/Views/Shared/_Layout_Back.cshtml";
@@ -6,6 +8,56 @@
 
 <!-- Small boxes (Stat box) -->
 <div class="row">
+    @if (ViewBag.UserRole == 1)
+    {
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-bar-chart"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">@Html.LabelFor(m => m.TotalBagHoursSold)</span>
+                    <span class="info-box-number">@Html.DisplayFor(m => m.TotalBagHoursSold)<small>&nbsp;(Mes)</small></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-check-circle-o"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">@Html.LabelFor(m => m.ActiveBagHours)</span>
+                    <span class="info-box-number">@Html.DisplayFor(m => m.ActiveBagHours)</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-orange"><i class="fa fa-puzzle-piece"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">@Html.LabelFor(m => m.ImplementingBagHours)</span>
+                    <span class="info-box-number">@Html.DisplayFor(m => m.ImplementingBagHours)</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-ban"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">@Html.LabelFor(m => m.InactiveBagHours)</span>
+                    <span class="info-box-number">@Html.DisplayFor(m => m.InactiveBagHours)</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    }
 </div>
 <!-- /.row -->
 <!-- Main row -->

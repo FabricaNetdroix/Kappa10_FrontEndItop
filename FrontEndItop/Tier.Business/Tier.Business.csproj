@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BFEi_BagHours.cs" />
     <Compile Include="BFEi_Notifications.cs" />
+    <Compile Include="BFEi_RoleDashboard.cs" />
     <Compile Include="BFEi_Users.cs" />
     <Compile Include="IP_General.cs" />
     <Compile Include="BusinessParent.cs" />

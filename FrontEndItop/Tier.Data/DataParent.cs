@@ -73,7 +73,8 @@ namespace Tier.Data
             Update = 3,
             Delete = 4,
             GetConcadenatedExcludedCategories = 5,
-            GetBagHourNotificationFlag = 6
+            GetBagHourNotificationFlag = 6,
+            GetDashboardInfo = 7
         }
 
         public enum DataBaseEntities : byte

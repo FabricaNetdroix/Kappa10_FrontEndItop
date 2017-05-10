@@ -70,20 +70,7 @@ namespace Tier.Gui.Controllers
                         {
                             //Cargar datos usuario
                             base.CurrentUser = objUser;
-
-                            if (obj.UserType == (byte)Dto.UserTypes.Vendor)
-                            {
-                                return RedirectToAction("BagHours", "BackEnd");
-                            }
-                            else if (obj.UserType == (byte)Dto.UserTypes.Administrator)
-                            {
-                                return RedirectToAction("Index", "BackEnd");
-                            }
-                            else
-                            {
-                                base.RegistrarNotificación(Messages.UnknownProfile, Base.Enumerations.NotificationTypes.error, Messages.NotificationTitleError);
-                                return RedirectToAction("LogIn", "Security");
-                            }
+                            return RedirectToAction("Index", "BackEnd");
                         }
                         else
                         {
