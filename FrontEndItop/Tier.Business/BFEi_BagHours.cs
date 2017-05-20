@@ -15,7 +15,7 @@ namespace Tier.Business
 
         public IList<Dto.FEi_BagHours> GetAllBagHours()
         {
-            return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours());
+            return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { is_visible = true });
         }
 
         public Dto.FEi_BagHours GetBagHoursById(int idBagHours)

@@ -11,7 +11,7 @@ namespace Tier.Gui.Controllers
     {
         public ActionResult Notifications()
         {
-            ViewBag.notificationsList = new Business.BFEi_Notifications().GetAllNotification();
+            ViewBag.notificationsList = new Business.BFEi_Notifications().GetActiveNotifications();
             return View();
         }
 
@@ -44,7 +44,7 @@ namespace Tier.Gui.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public PartialViewResult GetAllNotifications()
         {
-            IList<Dto.FEi_Notification> lstNotifications = new Business.BFEi_Notifications().GetAllNotification();
+            IList<Dto.FEi_Notification> lstNotifications = new Business.BFEi_Notifications().GetActiveNotifications();
 
             return PartialView("_TableNotifications", lstNotifications);
         }
