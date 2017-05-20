@@ -67,5 +67,8 @@ namespace Tier.Dto
 
         [Column(Name = "last_user_update")]
         public Nullable<int> last_user_update { get; set; }
+
+        [Column(Name = "is_visible")]
+        public Nullable<bool> is_visible { get; set; }
     }
 }

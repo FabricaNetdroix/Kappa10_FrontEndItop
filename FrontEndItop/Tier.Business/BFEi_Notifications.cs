@@ -39,7 +39,7 @@ namespace Tier.Business
 
         public IList<Dto.FEi_Notification> GetActiveNotifications()
         {
-            return new Data.DFEi_Notifications().RetrieveFiltered(new Dto.FEi_Notification() { status = (short)Dto.NotificationStatus.Active });
+            return new Data.DFEi_Notifications().RetrieveFiltered(new Dto.FEi_Notification() { status = (short)Dto.NotificationStatus.Active, is_visible = true });
         }
 
         public bool UpdateNotification(Dto.FEi_Notification obj)
@@ -89,17 +89,23 @@ namespace Tier.Business
                             if (daysToContractExpiration.Equals(notification.date_rule) | (hoursPercentage >= notification.hours_rule_lowest && hoursPercentage <= notification.hours_rule_highest))
                             {
                                 Data.DFEi_NotifiedBagHours dataNB = new Data.DFEi_NotifiedBagHours();
+                                Data.DFEi_BagHours dataBH = new Data.DFEi_BagHours();
+
                                 Dto.FEi_NotifiedBagHours nb = new Dto.FEi_NotifiedBagHours() { baghours_id = bh.id, notifications_id = notification.id };
 
                                 if (!dataNB.GetNotificationBagHourFlag(nb))
                                 {
                                     string messageBody = ReplaceNotificationData(notification, bh);
-                                    Tier.Transverse.Utilities.SendMail(notification.recipients, "Notificación bolsa de horas.", messageBody);
-                                    
+                                    string notificationSubject = System.Configuration.ConfigurationManager.AppSettings["NotificationSubject"].ToString();
+                                    Tier.Transverse.Utilities.SendMail(notification.recipients, notificationSubject, messageBody);
+
                                     QtyNotifiedBagHours++;
                                     notifiedBagHours.Append("{\"Notification\":\"" + notification.id.ToString() + "\",\"BagHour\":\"" + bh.id + "\"},");
+                                    bh.status = bh.contract_end.Value < DateTime.Now ? (short)Dto.BagHoursStatus.Inactive : (short)Dto.BagHoursStatus.Notified;
+                                    bh.last_user_update = Dto.FEi_User.DefaultNotificationServiceUserId;
 
                                     dataNB.Insert(nb);
+                                    dataBH.Update(bh);
                                 }
                             }
                         }

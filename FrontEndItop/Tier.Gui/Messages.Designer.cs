@@ -115,6 +115,24 @@ namespace Tier.Gui {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activa.
+        /// </summary>
+        public static string NotificationStatusDisplayTextActive {
+            get {
+                return ResourceManager.GetString("NotificationStatusDisplayTextActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactiva.
+        /// </summary>
+        public static string NotificationStatusDisplayTextInactive {
+            get {
+                return ResourceManager.GetString("NotificationStatusDisplayTextInactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to La solicitud no puedo ser procesada correctamente..
         /// </summary>
         public static string NotificationTextFailure {

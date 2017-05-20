@@ -70,5 +70,16 @@ namespace Tier.Dto
 
         [Column(Name = "last_user_update")]
         public Nullable<int> last_user_update { get; set; }
+
+        [Column(Name = "is_visible")]
+        public Nullable<bool> is_visible { get; set; }
+
+        public static Nullable<int> DefaultNotificationServiceUserId
+        {
+            get
+            {
+                return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["DefaultNotificaciontSenderUserId"].ToString());
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.recipients)
+                    <span title="@item.recipients">@(item.recipients.Length > 50 ? item.recipients.Substring(0, 50) + "..." : item.recipients)</span>
                 </td>
                 <td>
                     @if (item.date_rule.HasValue)

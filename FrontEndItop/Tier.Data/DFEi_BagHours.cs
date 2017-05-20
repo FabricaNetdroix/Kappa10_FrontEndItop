@@ -34,6 +34,7 @@ namespace Tier.Data
                 new MySql.Data.MySqlClient.MySqlParameter("p_notes", obj.notes),
                 new MySql.Data.MySqlClient.MySqlParameter("p_status", obj.status),
                 new MySql.Data.MySqlClient.MySqlParameter("p_last_user_update", obj.last_user_update),
+                new MySql.Data.MySqlClient.MySqlParameter("p_is_visible", obj.is_visible),
             });
         }
 

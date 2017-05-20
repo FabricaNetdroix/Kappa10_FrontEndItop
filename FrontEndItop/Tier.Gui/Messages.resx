@@ -141,6 +141,12 @@
     <value>Los datos solicitados no están correctamente diligenciados.</value>
     <comment>Mensaje que se muestra cuando la validación ModelState.IsValid no es correcta.</comment>
   </data>
+  <data name="NotificationStatusDisplayTextActive" xml:space="preserve">
+    <value>Activa</value>
+  </data>
+  <data name="NotificationStatusDisplayTextInactive" xml:space="preserve">
+    <value>Inactiva</value>
+  </data>
   <data name="NotificationTextFailure" xml:space="preserve">
     <value>La solicitud no puedo ser procesada correctamente.</value>
     <comment>Mensaje que se muestra en las idas al servidor con error.</comment>

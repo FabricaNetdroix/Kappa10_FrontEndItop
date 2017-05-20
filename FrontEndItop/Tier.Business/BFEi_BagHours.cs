@@ -25,7 +25,7 @@ namespace Tier.Business
 
         public IList<Dto.FEi_BagHours> GetBagActiveHours()
         {
-            return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { status = (short)Dto.BagHoursStatus.Active });
+            return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { status = (short)Dto.BagHoursStatus.Active, is_visible = true });
         }
 
         public bool DeleteBagHours(Dto.FEi_BagHours obj)
