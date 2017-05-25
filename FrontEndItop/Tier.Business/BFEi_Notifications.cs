@@ -156,7 +156,7 @@ namespace Tier.Business
 
             result = result.Replace("[[IDBoldaHoras]]", bh.id.ToString());
             result = result.Replace("[[NombreOrganizacion]]", bh.organization_name);
-            result = result.Replace("[[IDContrato]]", bh.contract_id.ToString());
+            result = result.Replace("[[IDContrato]]", bh.contract_name.ToString());
             result = result.Replace("[[ContratoFInicial]]", bh.contract_start.Value.ToShortDateString());
             result = result.Replace("[[ContratoFFinal]]", bh.contract_end.Value.ToShortDateString());
             result = result.Replace("[[HorasContratadas]]", bh.quantity.ToString());
