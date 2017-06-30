@@ -14,7 +14,7 @@ namespace Tier.Gui.Base
             get
             {
                 return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["WindowsEventLogApplicationName"].ToString())
-                    ? "Front-End-Itop"
+                    ? "Portal Clientes KAPPA10"
                     : System.Configuration.ConfigurationManager.AppSettings["WindowsEventLogApplicationName"].ToString();
             }
         }
@@ -24,7 +24,7 @@ namespace Tier.Gui.Base
             get
             {
                 return string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["ApplicationName"].ToString())
-                    ? "FrontEnd-Itop"
+                    ? "Portal Clientes KAPPA10"
                     : System.Configuration.ConfigurationManager.AppSettings["ApplicationName"].ToString();
             }
         }

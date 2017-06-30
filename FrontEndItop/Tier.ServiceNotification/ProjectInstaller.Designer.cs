@@ -39,8 +39,8 @@
             // 
             // serviceInstaller
             // 
-            this.serviceInstaller.Description = "Servicio de envío de notificaciones de bolsa de horas FrontEnd iTop.";
-            this.serviceInstaller.DisplayName = "FrontEnd iTop Notification Sender";
+            this.serviceInstaller.Description = "Servicio de envío de notificaciones de bolsa de horas Portal Clientes KAPPA10";
+            this.serviceInstaller.DisplayName = "Portal Clientes KAPPA10 Notification Sender";
             this.serviceInstaller.ServiceName = "NotificationSender";
             this.serviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
