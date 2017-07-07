@@ -93,6 +93,7 @@ namespace Tier.Business
                                 Dto.FEi_BagHours newBH = bh;
                                 newBH.contract_start = currentTerm != null ? currentTerm.Item1 : bh.contract_start;
                                 newBH.contract_end = currentTerm != null ? currentTerm.Item2 : bh.contract_end;
+                                newBH.quantity = Convert.ToInt16(newBH.quantity.Value / intYears);
 
                                 this.ProcessBagHourNotification(notification, newBH, qtyNotifiedBagHours, notifiedBagHours);
                             }
