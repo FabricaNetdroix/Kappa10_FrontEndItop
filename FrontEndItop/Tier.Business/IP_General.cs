@@ -23,9 +23,9 @@ namespace Tier.Business
             return new Data.DItopPlatform(base.iTopPlatformConnectionStringName).GetProductionContractsByLogin(userAlias);
         }
 
-        public IList<Dto.IP_Tickets> GetTicketsByContractId(int contractId)
+        public IList<Dto.IP_Tickets> GetTicketsByContractId(int contractId, DateTime contractStart, DateTime contractEnd)
         {
-            return new Data.DItopPlatform(base.iTopPlatformConnectionStringName).GetTicketsByContractId(contractId);
+            return new Data.DItopPlatform(base.iTopPlatformConnectionStringName).GetTicketsByContractId(contractId, contractStart, contractEnd);
         }
 
         public Dto.IP_Tickets GetTicketById(int ticketId)

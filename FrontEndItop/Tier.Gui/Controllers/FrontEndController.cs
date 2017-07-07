@@ -22,7 +22,7 @@ namespace Tier.Gui.Controllers
         public PartialViewResult DetalleConsumo(int id)
         {
             Dto.FEi_BagHours bh = new Business.BFEi_BagHours().GetBagHoursByContractId(id);
-            IList<Dto.IP_Tickets> tks = new Business.IP_General().GetTicketsByContractId(id);
+            IList<Dto.IP_Tickets> tks = new Business.IP_General().GetTicketsByContractId(id, bh.contract_start.Value, bh.contract_end.Value);
             ViewBag.BagHours = bh;
             ViewBag.Tickets = tks;
 

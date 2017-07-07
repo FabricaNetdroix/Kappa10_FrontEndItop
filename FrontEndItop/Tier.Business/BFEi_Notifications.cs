@@ -52,14 +52,17 @@ namespace Tier.Business
             return new Data.DFEi_Notifications().Delete(obj);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Dto.FEi_NotificationSenderResponse SendNotifications()
         {
             try
             {
-                int QtyNotifications = 0;
-                int QtyBagHours = 0;
-                int QtyNotifiedBagHours = 0;
+                int qtyNotifications = 0;
+                int qtyBagHours = 0;
+                int qtyNotifiedBagHours = 0;
                 StringBuilder notifiedBagHours = new StringBuilder();
 
                 if (!isProcessingNotifications)
@@ -69,9 +72,12 @@ namespace Tier.Business
                     IList<Dto.FEi_Notification> notifications = new Business.BFEi_Notifications().GetActiveNotifications();
                     IList<Dto.FEi_BagHours> baghours = new Business.BFEi_BagHours().GetBagActiveHours();
 
-                    QtyNotifications = notifications.Count;
-                    QtyBagHours = baghours.Count;
-                    QtyNotifiedBagHours = 0;
+                    int intYears = 1;
+                    IList<Tuple<DateTime, DateTime>> tTerms;
+
+                    qtyNotifications = notifications.Count;
+                    qtyBagHours = baghours.Count;
+                    qtyNotifiedBagHours = 0;
 
                     notifiedBagHours.Append("[");
 
@@ -79,34 +85,20 @@ namespace Tier.Business
                     {
                         foreach (Dto.FEi_BagHours bh in baghours)
                         {
-                            IList<Dto.IP_Tickets> contractTickets = new Business.IP_General().GetTicketsByContractId((int)bh.contract_id);
-
-                            double totalSpendedHours = Math.Round(contractTickets.Sum(ee => ee.elapsedhours));
-                            double hoursPercentage = Math.Round((totalSpendedHours * 100) / bh.quantity.Value);
-
-                            double daysToContractExpiration = (bh.contract_end.Value.Date - DateTime.Now.Date).TotalDays;
-
-                            if (daysToContractExpiration.Equals(notification.date_rule) | (hoursPercentage >= notification.hours_rule_lowest && hoursPercentage <= notification.hours_rule_highest))
+                            if (this.ValidateBagHourAnuality(bh, out intYears, out tTerms))
                             {
-                                Data.DFEi_NotifiedBagHours dataNB = new Data.DFEi_NotifiedBagHours();
-                                Data.DFEi_BagHours dataBH = new Data.DFEi_BagHours();
+                                DateTime currentdate = DateTime.Now;
+                                Tuple<DateTime, DateTime> currentTerm = tTerms.Where(ee => currentdate > ee.Item1 && currentdate < ee.Item2).FirstOrDefault();
 
-                                Dto.FEi_NotifiedBagHours nb = new Dto.FEi_NotifiedBagHours() { baghours_id = bh.id, notifications_id = notification.id };
+                                Dto.FEi_BagHours newBH = bh;
+                                newBH.contract_start = currentTerm != null ? currentTerm.Item1 : bh.contract_start;
+                                newBH.contract_end = currentTerm != null ? currentTerm.Item2 : bh.contract_end;
 
-                                if (!dataNB.GetNotificationBagHourFlag(nb))
-                                {
-                                    string messageBody = ReplaceNotificationData(notification, bh);
-                                    string notificationSubject = System.Configuration.ConfigurationManager.AppSettings["NotificationSubject"].ToString();
-                                    Tier.Transverse.Utilities.SendMail(notification.recipients, notificationSubject, messageBody);
-
-                                    QtyNotifiedBagHours++;
-                                    notifiedBagHours.Append("{\"Notification\":\"" + notification.id.ToString() + "\",\"BagHour\":\"" + bh.id + "\"},");
-                                    bh.status = bh.contract_end.Value < DateTime.Now ? (short)Dto.BagHoursStatus.Inactive : (short)Dto.BagHoursStatus.Notified;
-                                    bh.last_user_update = Dto.FEi_User.DefaultNotificationServiceUserId;
-
-                                    dataNB.Insert(nb);
-                                    dataBH.Update(bh);
-                                }
+                                this.ProcessBagHourNotification(notification, newBH, qtyNotifiedBagHours, notifiedBagHours);
+                            }
+                            else
+                            {
+                                this.ProcessBagHourNotification(notification, bh, qtyNotifiedBagHours, notifiedBagHours);
                             }
                         }
                     }
@@ -117,9 +109,9 @@ namespace Tier.Business
 
                     return new Dto.FEi_NotificationSenderResponse()
                     {
-                        EvaluatedBagHours = QtyBagHours,
-                        EvaluatedNotifications = QtyNotifications,
-                        NotifiedBagHours = QtyNotifiedBagHours,
+                        EvaluatedBagHours = qtyBagHours,
+                        EvaluatedNotifications = qtyNotifications,
+                        NotifiedBagHours = qtyNotifiedBagHours,
                         NotifiedBagHoursDetails = notifiedBagHours.ToString(),
                         Message = "Se han procesado las notificaciones correctamente.",
                         Result = true,
@@ -135,6 +127,67 @@ namespace Tier.Business
             {
                 return new Dto.FEi_NotificationSenderResponse() { Message = "Se ha producido una excepción", Result = false, Error = ex.ToString() };
             }
+        }
+
+        private void ProcessBagHourNotification(Dto.FEi_Notification notification, Dto.FEi_BagHours bh, int QtyNotifiedBagHours, StringBuilder notifiedBagHours)
+        {
+            IList<Dto.IP_Tickets> contractTickets = new Business.IP_General().GetTicketsByContractId(bh.contract_id.Value, bh.contract_start.Value, bh.contract_end.Value);
+
+            double totalSpendedHours = Math.Round(contractTickets.Sum(ee => ee.elapsedhours));
+            double hoursPercentage = Math.Round((totalSpendedHours * 100) / bh.quantity.Value);
+
+            double daysToContractExpiration = (bh.contract_end.Value - DateTime.Now.Date).TotalDays;
+
+            if (daysToContractExpiration.Equals(notification.date_rule) | (hoursPercentage >= notification.hours_rule_lowest && hoursPercentage <= notification.hours_rule_highest))
+            {
+                Data.DFEi_NotifiedBagHours dataNB = new Data.DFEi_NotifiedBagHours();
+                Data.DFEi_BagHours dataBH = new Data.DFEi_BagHours();
+
+                Dto.FEi_NotifiedBagHours nbh = new Dto.FEi_NotifiedBagHours() { baghours_id = bh.id, notifications_id = notification.id };
+
+                if (!dataNB.GetNotificationBagHourFlag(nbh))
+                {
+                    string messageBody = ReplaceNotificationData(notification, bh);
+                    string notificationSubject = System.Configuration.ConfigurationManager.AppSettings["NotificationSubject"].ToString();
+                    Tier.Transverse.Utilities.SendMail(notification.recipients, notificationSubject, messageBody);
+
+                    QtyNotifiedBagHours++;
+                    notifiedBagHours.Append("{\"Notification\":\"" + notification.id.ToString() + "\",\"BagHour\":\"" + bh.id + "\"},");
+                    bh.status = bh.contract_end.Value < DateTime.Now ? (short)Dto.BagHoursStatus.Inactive : (short)Dto.BagHoursStatus.Notified;
+                    bh.last_user_update = Dto.FEi_User.DefaultNotificationServiceUserId;
+
+                    dataNB.Insert(nbh);
+                    dataBH.Update(bh);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bh"></param>
+        /// <param name="intYears"></param>
+        /// <param name="tTerms"></param>
+        /// <returns></returns>
+        private bool ValidateBagHourAnuality(Dto.FEi_BagHours bh, out int intYears, out IList<Tuple<DateTime, DateTime>> tTerms)
+        {
+            IList<Tuple<DateTime, DateTime>> terms = new List<Tuple<DateTime, DateTime>>();
+
+            DateTime zeroTime = new DateTime(1, 1, 1);
+            TimeSpan span = bh.contract_end.Value - bh.contract_start.Value;
+
+            intYears = (zeroTime + span).Year - 1;
+
+            terms.Add(new Tuple<DateTime, DateTime>(bh.contract_start.Value, bh.contract_start.Value.AddYears(1)));
+
+            for (int i = 1; i < intYears; i++)
+            {
+                terms.Add(new Tuple<DateTime, DateTime>(terms[i - 1].Item1.AddYears(1), terms[i - 1].Item2.AddYears(1)));
+            }
+
+            tTerms = terms;
+
+            return intYears > 1;
         }
 
         /// <summary>
