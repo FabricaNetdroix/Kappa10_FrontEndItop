@@ -107,7 +107,10 @@ namespace Tier.Gui.Controllers
         public JsonResult SendNotifications()
         {
             Dto.FEi_NotificationSenderResponse response = new Business.BFEi_Notifications().SendNotifications();
-
+            if (response.Result == false || !string.IsNullOrEmpty(response.Error))
+            {
+                Logs.Error(new ApplicationException(response.Message, new Exception(response.Error)), "Notifications");
+            }
             return Json(response, JsonRequestBehavior.AllowGet);
         }
     }

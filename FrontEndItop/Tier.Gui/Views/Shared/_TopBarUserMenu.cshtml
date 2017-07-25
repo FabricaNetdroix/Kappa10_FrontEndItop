@@ -25,12 +25,14 @@
         </li>
         <!-- Menu Footer-->
         <li class="user-footer">
-            @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.SelfManagement))
+            @*
+                @if (ApplicationConfigurationManager.ValidateRolePermission((UserTypes)objU.role, Enumerations.ApplicationModules.SelfManagement))
             {
                 <div class="pull-left">
                     <a href="@Url.Action("SelfManagement", "Security")" class="btn btn-default btn-flat">Perfil</a>
                 </div>
             }
+                *@
             <div class="pull-right">
                 <a href="@Url.Action("SingOut","Security")" class="btn btn-default btn-flat">Salir</a>
             </div>

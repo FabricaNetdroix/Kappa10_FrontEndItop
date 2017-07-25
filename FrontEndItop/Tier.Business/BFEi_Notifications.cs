@@ -126,6 +126,7 @@ namespace Tier.Business
             }
             catch (Exception ex)
             {
+                isProcessingNotifications = false;
                 return new Dto.FEi_NotificationSenderResponse() { Message = "Se ha producido una excepción", Result = false, Error = ex.ToString() };
             }
         }
