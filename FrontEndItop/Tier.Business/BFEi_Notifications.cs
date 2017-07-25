@@ -69,8 +69,11 @@ namespace Tier.Business
                 {
                     isProcessingNotifications = true;
 
-                    IList<Dto.FEi_Notification> notifications = new Business.BFEi_Notifications().GetActiveNotifications();
-                    IList<Dto.FEi_BagHours> baghours = new Business.BFEi_BagHours().GetBagActiveHours();
+                    List<Dto.FEi_Notification> notifications = new Business.BFEi_Notifications().GetActiveNotifications().ToList();
+                    List<Dto.FEi_BagHours> baghours = new List<Dto.FEi_BagHours>();
+
+                    baghours.AddRange(new Business.BFEi_BagHours().GetActiveBagHours());
+                    baghours.AddRange(new Business.BFEi_BagHours().GetNotifiedBagHours());
 
                     int intYears = 1;
                     IList<Tuple<DateTime, DateTime>> tTerms;
@@ -95,11 +98,11 @@ namespace Tier.Business
                                 newBH.contract_end = currentTerm != null ? currentTerm.Item2 : bh.contract_end;
                                 newBH.quantity = Convert.ToInt16(newBH.quantity.Value / intYears);
 
-                                this.ProcessBagHourNotification(notification, newBH, qtyNotifiedBagHours, notifiedBagHours);
+                                this.ProcessBagHourNotification(notification, newBH, ref qtyNotifiedBagHours, notifiedBagHours);
                             }
                             else
                             {
-                                this.ProcessBagHourNotification(notification, bh, qtyNotifiedBagHours, notifiedBagHours);
+                                this.ProcessBagHourNotification(notification, bh, ref qtyNotifiedBagHours, notifiedBagHours);
                             }
                         }
                     }
@@ -131,7 +134,7 @@ namespace Tier.Business
             }
         }
 
-        private void ProcessBagHourNotification(Dto.FEi_Notification notification, Dto.FEi_BagHours bh, int QtyNotifiedBagHours, StringBuilder notifiedBagHours)
+        private void ProcessBagHourNotification(Dto.FEi_Notification notification, Dto.FEi_BagHours bh, ref int QtyNotifiedBagHours, StringBuilder notifiedBagHours)
         {
             IList<Dto.IP_Tickets> contractTickets = new Business.IP_General().GetTicketsByContractId(bh.contract_id.Value, bh.contract_start.Value, bh.contract_end.Value);
 
@@ -146,6 +149,7 @@ namespace Tier.Business
                 Data.DFEi_BagHours dataBH = new Data.DFEi_BagHours();
 
                 Dto.FEi_NotifiedBagHours nbh = new Dto.FEi_NotifiedBagHours() { baghours_id = bh.id, notifications_id = notification.id };
+                Dto.FEi_BagHours bhDB = new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { id = bh.id }).FirstOrDefault();
 
                 if (!dataNB.GetNotificationBagHourFlag(nbh))
                 {
@@ -154,12 +158,12 @@ namespace Tier.Business
                     Tier.Transverse.Utilities.SendMail(notification.recipients, notificationSubject, messageBody);
 
                     QtyNotifiedBagHours++;
-                    notifiedBagHours.Append("{\"Notification\":\"" + notification.id.ToString() + "\",\"BagHour\":\"" + bh.id + "\"},");
-                    bh.status = bh.contract_end.Value < DateTime.Now ? (short)Dto.BagHoursStatus.Inactive : (short)Dto.BagHoursStatus.Notified;
-                    bh.last_user_update = Dto.FEi_User.DefaultNotificationServiceUserId;
+                    notifiedBagHours.Append("{\"Notification\":\"" + notification.id.ToString() + "\",\"BagHour\":\"" + bhDB.id + "\"},");
+                    bhDB.status = bhDB.contract_end.Value < DateTime.Now ? (short)Dto.BagHoursStatus.Inactive : (short)Dto.BagHoursStatus.Notified;
+                    bhDB.last_user_update = Dto.FEi_User.DefaultNotificationServiceUserId;
 
                     dataNB.Insert(nbh);
-                    dataBH.Update(bh);
+                    dataBH.Update(bhDB);
                 }
             }
         }

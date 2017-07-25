@@ -23,9 +23,14 @@ namespace Tier.Business
             return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { id = idBagHours }).FirstOrDefault();
         }
 
-        public IList<Dto.FEi_BagHours> GetBagActiveHours()
+        public IList<Dto.FEi_BagHours> GetActiveBagHours()
         {
             return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { status = (short)Dto.BagHoursStatus.Active, is_visible = true });
+        }
+
+        public IList<Dto.FEi_BagHours> GetNotifiedBagHours()
+        {
+            return new Data.DFEi_BagHours().RetrieveFiltered(new Dto.FEi_BagHours() { status = (short)Dto.BagHoursStatus.Notified, is_visible = true });
         }
 
         public bool DeleteBagHours(Dto.FEi_BagHours obj)
