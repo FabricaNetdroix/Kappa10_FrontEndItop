@@ -20,9 +20,9 @@ namespace Tier.Dto
         public string recipients { get; set; }
 
         [Display(Name = "Regla F. días previos")]
-        [Range(1, 255, ErrorMessage = "El valor debe estar entre 1 y 255.")]
+        [Range(1, 255, ErrorMessage = "El valor debe estar entre 1 y 32767.")]
         [Column(Name = "date_rule")]
-        public Nullable<byte> date_rule { get; set; }
+        public Nullable<short> date_rule { get; set; }
 
         [Display(Name = "Regla % Horas consumidas (Inf)")]
         [Range(1, 100, ErrorMessage = "El valor debe estar entre 1 y 100.")]
