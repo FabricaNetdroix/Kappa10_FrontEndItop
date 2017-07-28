@@ -143,7 +143,7 @@ namespace Tier.Business
 
             double daysToContractExpiration = (bh.contract_end.Value - DateTime.Now.Date).TotalDays;
 
-            if (daysToContractExpiration.Equals(notification.date_rule) | (hoursPercentage >= notification.hours_rule_lowest && hoursPercentage <= notification.hours_rule_highest))
+            if (daysToContractExpiration.Equals(Convert.ToDouble(notification.date_rule.Value)) | (hoursPercentage >= notification.hours_rule_lowest && hoursPercentage <= notification.hours_rule_highest))
             {
                 Data.DFEi_NotifiedBagHours dataNB = new Data.DFEi_NotifiedBagHours();
                 Data.DFEi_BagHours dataBH = new Data.DFEi_BagHours();
